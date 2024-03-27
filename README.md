@@ -59,9 +59,12 @@
 <https://github.com/m-abdi/voice2text>
 <https://github.com/ggerganov/whisper.cpp/tree/master/examples/whisper.wasm>
 
+<https://www.adamgrant.info/tiny-predictive-text>
+
 ### Video calls
 
 <https://farplay.io/pricing/>
+<https://tomosterlund.github.io/qalendar/guide.html>
 
 ### examples
 

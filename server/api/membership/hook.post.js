@@ -4,9 +4,11 @@ import Stripe from 'stripe'
 
 export default defineEventHandler(async (event) => {
 
-  let endpointSecret = 'whsec_yrSmSjHRtyqz4m9sqECrAATOKqaWJX2m'
+  const config = useRuntimeConfig(event)
 
-  const stripe = new Stripe(useRuntimeConfig(event).stripeSecretKey)
+  let endpointSecret = config.stripeWebhookSecret
+
+  const stripe = new Stripe(config.stripeSecretKey)
 
   const stripeEvent = await readRawBody(event)
 

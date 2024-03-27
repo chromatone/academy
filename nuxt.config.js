@@ -20,6 +20,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     dbManagerKey: '',
     stripeSecretKey: '',
+    stripeWebhookSecret: '',
     apiToken: '',
     public: {
       appDomain: '',

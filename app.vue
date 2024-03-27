@@ -6,13 +6,15 @@ useHead({
   }
 })
 
+const config = useRuntimeConfig()
+
 if (process.env.NODE_ENV == 'production') {
   useHead({
     script: [
       {
-        'data-website-id': 'b6e6f7c9-19cd-4e1d-b507-56b3900e2baa',
+        'data-website-id': config.public.umamiId,
         async: '',
-        src: 'https://stats.chromatone.center/script.js'
+        src: config.public.umamiUrl
       }
     ]
   })
@@ -23,7 +25,7 @@ useSeoMeta({
   ogTitle: 'Chromatone Academy',
   description: 'Visual Music Education Community Center',
   ogDescription: 'Visual Music Education Community Center',
-  ogImage: '/front.png',
+  ogImage: 'https://academy.chromatone.center/front.png',
   twitterCard: 'summary_large_image',
 })
 

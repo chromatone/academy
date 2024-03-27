@@ -23,7 +23,9 @@ export default defineNuxtConfig({
     apiToken: '',
     public: {
       appDomain: '',
-      dbUrl: ''
+      dbUrl: '',
+      umamiId: '',
+      umamiUrl: ''
     }
   },
   modules: [

@@ -4,10 +4,9 @@ export default defineEventHandler(async event => {
   // console.log(event)
 
   const config = useRuntimeConfig(event)
+  const stripe = new Stripe(config.stripeSecretKey)
 
   const body = await readBody(event)
-  const secret = useRuntimeConfig(event).stripeSecretKey
-  const stripe = new Stripe(secret)
 
   const products = await stripe.products.list({
     ids: [body?.price]

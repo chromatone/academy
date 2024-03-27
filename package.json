@@ -30,6 +30,7 @@
 		"nuxt-directus": "^5.6.0",
 		"pug": "^3.0.2",
 		"vue": "^3.4.21",
-		"vue-router": "^4.3.0"
+		"vue-router": "^4.3.0",
+		"stripe": "^14.22.0"
 	}
 }

@@ -2,9 +2,8 @@
 const route = useRoute()
 </script>
 
-<template>
-  <div>
-    <h1>404!</h1>
-    <p>Current route: {{ route.path }}</p>
-  </div>
+<template lang="pug">
+.p-4.glass.flex.flex-col
+  h1.text-2xl 404!
+  p Current route: {{ route.path }}
 </template>

@@ -10,7 +10,7 @@ const user = useDirectusUser();
   DarkToggle
   .flex-1
     slot
-  template(v-if="!user")
+  template(v-if="!user?.email")
     NuxtLink(to="/auth/login") Login
     NuxtLink.bg-purple-400.dark-bg-purple-600.p-2.rounded-xl(to="/membership/subscribe") Subscribe
   template(v-else)

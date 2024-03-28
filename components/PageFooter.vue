@@ -19,19 +19,16 @@ const { data: docs, error } = await useAsyncData('docs-titles', () => getItems({
 const routes = {
   programs: 'Programs',
   courses: 'Courses',
+  tutors: 'Tutors',
+  students: 'Students',
   projects: 'Projects',
   events: 'Events',
-  students: 'Students'
 }
 </script>
 
 <template lang='pug'>
 footer.bg-dark-900.bg-opacity-20.flex.flex-col.items-stretch
-  //- .flex.flex-wrap
-    NuxtLink.p-4.flex-1.text-lg.bg-dark-900(
-      :style="{backgroundColor: route.path.includes(program.slug) ? program.color+'50': '#ccc3'}"
-      :to="`/p/${program.slug}/`"
-      v-for="program in programs" :key="program") {{ program.title }}
+
   .flex.flex-wrap.p-2.gap-4
     NuxtLink.p-2.text-xl(
       v-for="(rTitle, r) in routes"

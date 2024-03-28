@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     }
   },
   directus: {
+    autoRefresh: true,
     devtools: true,
     url: process.env?.NUXT_PUBLIC_DB_URL,
     token: process.env?.NUXT_PUBLIC_ACADEMY_KEY
@@ -25,6 +26,8 @@ export default defineNuxtConfig({
     public: {
       appDomain: '',
       dbUrl: '',
+      dbToken: '',
+      academyKey: '',
       umamiId: '',
       umamiUrl: ''
     }

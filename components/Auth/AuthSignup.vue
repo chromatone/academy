@@ -15,7 +15,6 @@ const onSubmit = async () => {
   try {
     await createUser(u)
     await login(u)
-    await navigateTo('/student/')
   } catch (e) {
 
     console.log(JSON.stringify(e))
@@ -25,8 +24,9 @@ const onSubmit = async () => {
 </script>
 
 <template lang='pug'>
-.glass.max-w-55ch
-  .text-2xl.text-center.p-2 Sign Up {{ statusCode || '' }}
+.glass.p-4.flex.flex-col.gap-4
+  slot  
+    .text-2xl.p-2 Sign Up
   form.p-4.flex.flex-col.gap-4(
     @submit.prevent.stop="onSubmit()")
     .flex.gap-4
@@ -45,4 +45,5 @@ const onSubmit = async () => {
         type="password"
         v-model="u.password")
     button(type="submit") Sign up
+    .text-sm.text-red(v-if="statusCode") {{ statusCode }}
 </template>

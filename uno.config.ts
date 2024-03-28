@@ -10,7 +10,6 @@ import {
 import extractorPug from "@unocss/extractor-pug";
 
 export default defineConfig(
-  // ...UnoCSS options
   {
     transformers: [transformerDirectives()],
     presets: [

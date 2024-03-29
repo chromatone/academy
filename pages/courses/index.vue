@@ -1,10 +1,8 @@
 <script setup>
-const { getItems } = useDirectusItems()
-const { getThumbnail: img } = useDirectusFiles()
-
-const { data: courses, error } = await useAsyncData('courses', () => getItems({
-  collection: 'courses'
-}))
+const courses = await usePublicItems('courses', {
+  sort: ['sort'],
+  fields: ['slug', 'color', 'projects', 'title', 'description', 'cover', 'courses']
+})
 </script>
 
 <template lang='pug'>

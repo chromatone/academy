@@ -1,13 +1,9 @@
 <script setup>
 
-const { getItems } = useDirectusItems()
-
-const { data: programs } = await useAsyncData('programs', async () => await getItems({
-  collection: 'programs',
-  params: {
-    sort: ['sort']
-  }
-}))
+const programs = usePublicItems('programs', {
+  sort: ['sort'],
+  fields: ['slug', 'color', 'projects', 'title', 'description', 'cover', 'courses']
+})
 
 const { academy } = await useMeta()
 

@@ -10,18 +10,19 @@ NuxtLink.p-0.relative.overflow-clip.rounded-xl(
   :to="`/programs/${p?.slug}/`"
   )
   .absolute.z-2.transition.duration-500.w-full.h-auto.op-80.hover-op-90
-    NuxtPicture(
+    NuxtImg.w-full.overflow-clip.rounded-xl(
       v-if="p?.cover"
       :src="p?.cover"
-      :imgAttrs="{class:'w-full overflow-clip rounded-xl', width:'100%'}")
+      width="300"
+      )
   .z-200.p-4.m-4.mt-50.glass.flex.flex-col.gap-4.max-w-55ch.relative()
 
     .text-3xl {{ p?.title }}
     .text-md {{ p?.description }}
 
     .text-lg.px-2.bg-light-500.dark-bg-dark-500.filter.dark-brightness-62.dark-contrast-400.rounded.whitespace-nowrap.self-start(
-      :style="{backgroundColor: p?.color}"
-      v-if="p?.projects?.length>0"
+      :style="{ backgroundColor: p?.color }"
+      v-if="p?.projects?.length > 0"
       ) {{ p?.projects.length }} project{{ (p?.projects.length % 10 === 1 && p?.projects.length !== 11) ? '' : 's' }}
     slot
     //- .flex.flex-wrap.gap-4

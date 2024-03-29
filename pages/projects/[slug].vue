@@ -4,12 +4,9 @@ import { useDateFormat } from '@vueuse/core'
 
 const route = useRoute()
 
-const { getItems } = useDirectusItems()
-const { getThumbnail: img } = useDirectusFiles();
-
-const { data: projects, error } = await useAsyncData('project-' + route.params?.slug, async () => await getItems({
-  collection: 'projects',
-  params: {
+const projects = await usePublicItems(
+  'projects',
+  {
     filter: {
       slug: {
         _eq: route.params?.slug
@@ -17,7 +14,7 @@ const { data: projects, error } = await useAsyncData('project-' + route.params?.
     },
     fields: ['*', 'events.*', 'program.title', 'program.slug', 'program.color', 'partners.partners_id.title', 'partners.partners_id.url']
   }
-}))
+)
 
 const p = computed(() => projects.value?.[0])
 
@@ -59,7 +56,7 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
 
     .glass.p-4.flex.flex-col.gap-3
       .text-lg.max-w-55ch {{ p?.description }}
-      .text-lg {{ from  }} - {{ to }}
+      .text-lg {{ from }} - {{ to }}
       .flex.items-center.gap-2(v-if="p?.url")
         .i-la-link
         NuxtLink(:to="p.url" target="_blank") {{ p.url }}
@@ -70,7 +67,7 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
       MDC.prose.px-4(:value="p?.content || ''" tag="article")
 
   .flex.flex-wrap.gap-4.glass.max-w-55ch.p-4.mb-4.mx-4(
-    v-if="p?.objects?.length>0"
+    v-if="p?.objects?.length > 0"
     style="flex: 1 1 200px")
     .text-2xl.w-full Objects
     EventCard(
@@ -80,7 +77,7 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
 
   .flex.flex-wrap.gap-4.items-start(
     style="flex: 1 1 300px"
-    v-if="p?.events?.length>0")
+    v-if="p?.events?.length > 0")
 
     .text-3xl.px-4.w-full Events 
     transition-group(name="fade")
@@ -90,7 +87,7 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
         :key="event"
         v-for="event in eventList")
 
-      .w-full.text-center Showing {{ eventList?.length }} of {{  p?.events?.length }} events
+      .w-full.text-center Showing {{ eventList?.length }} of {{ p?.events?.length }} events
 
     button.w-full.rounded-xl.text-xl.shadow.p-4.bg-purple(
       v-if="eventList?.length < p?.events?.length"
@@ -98,7 +95,7 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
 
   .flex.flex-col.gap-4.max-w-55ch(
     style="flex: 1 1 300px"
-    v-if="p?.partners?.length>0")
+    v-if="p?.partners?.length > 0")
 
     .text-3xl.w-full Partners
     .flex.flex-wrap.gap-4

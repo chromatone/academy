@@ -1,17 +1,20 @@
 <script setup>
-const { getItems } = useDirectusItems()
-const { getThumbnail: img } = useDirectusFiles()
 
-const { data: projects, error } = await useAsyncData('projects', () => getItems({
-  collection: 'projects'
-}))
+const projects = await usePublicItems('projects', {
+  sort: ['sort'],
+  fields: ['slug', 'color', 'title', 'description', 'cover', 'courses', 'events', {
+    program: ['title', 'slug']
+  }]
+})
 </script>
 
 <template lang='pug'>
-.p-0.flex.flex-wrap.gap-8
-  .text-4xl.p-4.w-full Projects
-  ProjectCard(
-    v-for="project in projects"
-    :project="project"
-  )
+.flex.flex-col.gap-8.p-4
+  .text-4xl.w-full Projects
+  .flex.flex-wrap.gap-4
+    ProjectCard(
+      style="flex: 1 1 300px"
+      v-for="project in projects"
+      :project="project"
+      )
 </template>

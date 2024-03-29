@@ -1,14 +1,10 @@
 <script setup>
 import { useClamp } from '@vueuse/math'
 
-const { getItems } = useDirectusItems()
 
-const { data: events, error } = await useAsyncData('events', () => getItems({
-  collection: 'events',
-  sort: ['date']
-}))
+const events = await usePublicItems('events', { sort: ['date'] })
 
-const page = useClamp(1, 1, events.value.length)
+const page = useClamp(1, 1, events.value?.length)
 
 const perPage = ref(6)
 
@@ -27,7 +23,7 @@ const eventList = computed(() => [...events.value]?.sort((a, b) => a.date > b.da
       :key="event"
       v-for="event in eventList")
 
-    .w-full.text-center Showing {{ eventList?.length }} of {{  events?.length }} events
+    .w-full.text-center Showing {{ eventList?.length }} of {{ events?.length }} events
 
     button.w-full.rounded-xl.text-xl.shadow.p-4.bg-purple(
       v-if="eventList?.length < events?.length"

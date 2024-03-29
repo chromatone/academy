@@ -17,8 +17,6 @@ export async function joinWaitlist(body) {
 
 export async function addStudent(data) {
 
-
-
   const cus = data?.data?.object
 
   const userData = {

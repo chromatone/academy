@@ -114,7 +114,7 @@ const attributes = reactive([
     )
     .text-3xl.w-full Projects
     ProjectCard(
-      style="flex: 1 1 200px"
+      style="flex: 1 1 250px"
       v-for="project in p?.projects"
       :key="project"
       :project="project"

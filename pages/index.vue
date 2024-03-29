@@ -1,16 +1,10 @@
 <script setup>
-import { readItems } from '@directus/sdk';
-
 const user = useDirectusUser()
 
-const directus = usePublicDirectus()
-
-const { data: programs } = await useAsyncData('programs', async () => await directus.request(readItems('programs',
-  {
-    sort: ['sort'],
-    fields: ['slug', 'color', 'projects', 'title', 'description', 'cover', 'courses']
-  }
-)))
+const programs = await usePublicItems('programs', {
+  sort: ['sort'],
+  fields: ['slug', 'color', 'projects', 'title', 'description', 'cover', 'courses']
+})
 
 const { academy } = await useMeta()
 
@@ -30,7 +24,7 @@ const { academy } = await useMeta()
       WaitList(v-if="!user?.email")
 
   .flex.flex-wrap.gap-8.p-6(style="flex: 1 1 600px")
-    NuxtLink.w-full.text-4xl(to="/programs/") Programs
+    NuxtLink.w-full.text-4xl(to="/programs/") Programs 
     ProgramBlock.overflow-clip.rounded-xl(
       style="flex: 1 1 300px"
       v-for="p in programs"

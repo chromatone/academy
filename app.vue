@@ -33,6 +33,8 @@ useSeoMeta({
 
 <template lang="pug">
 NuxtLoadingIndicator(color='purple')
+Notivue(v-slot="item")
+  Notification(:item="item")
 NuxtLayout
   NuxtPage
 </template>
@@ -40,7 +42,12 @@ NuxtLayout
 <style lang="postcss">
 @import url(~/assets/index.postcss);
 
+main a {
+  @apply underline
+}
+
 body {
+  --nv-root-top: 5em;
   @apply bg-light-500 transition overflow-x-hidden min-h-100vh hyphens-auto
 }
 

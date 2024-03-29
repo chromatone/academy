@@ -1,29 +1,37 @@
-import Stripe from 'stripe'
+import { z } from 'zod'
+import { readItem, readUser } from '@directus/sdk'
 
-// import { z } from 'zod'
-
-// const subscriptionSchema = z.object({
-//   name: z.string().default('Guest'),
-//   email: z.string().email(),
-// })
+const subscriptionSchema = z.object({
+  user: z.string().uuid(),
+  plan: z.string().uuid(),
+})
 
 export default defineEventHandler(async event => {
-  const directus = useManagerDirectus()
 
   const stripe = useStripe()
 
-  const body = await readBody(event)
+  const { data: body, error, success } = await readValidatedBody(event, b => subscriptionSchema.safeParse(b))
 
-  console.log(body)
+  if (!success) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'The request should include a valid user UUID and a valid subscription plan UUID',
+    })
+  }
 
-  return '#'
+  const plan = await useDirectus().request(readItem('plans', body.plan))
 
-  // const products = await stripe.products.list({
-  //   ids: [body?.price]
-  // })
+  const user = await useDirectus().request(readUser(body.user))
 
-  // const line_items = products.data?.map(d => ({ price: d?.default_price, quantity: body?.quantity || 1 }))
+  console.log(user)
 
+  const products = await stripe.products.list({
+    ids: [plan.stripe_product]
+  })
+
+  const line_items = products.data?.map(d => ({ price: d?.default_price, quantity: 1 }))
+
+  console.log(line_items)
 
   // const session = await stripe.checkout.sessions.create({
   //   cancel_url: `${config.public.appDomain}/membership/cancel`,
@@ -32,5 +40,8 @@ export default defineEventHandler(async event => {
   //   line_items
   // })
 
+
   // return session.url
+
+  return '#'
 })

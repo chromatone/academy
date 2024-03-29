@@ -2,16 +2,11 @@
 import { useClamp } from '@vueuse/math';
 
 const { academy } = await useMeta()
-
-const { getItems } = useDirectusItems()
 const user = useDirectusUser()
 
-const { data: plans } = await useAsyncData('plans', async () => await getItems({
-  collection: 'plans',
-  params: {
-    sort: ['sort']
-  }
-}))
+const plans = await usePublicItems('plans', {
+  sort: ['sort']
+})
 
 const showPrice = useShowPrice()
 
@@ -26,23 +21,30 @@ const details = reactive(plans.value.reduce(
   }, {}))
 
 const sending = ref(false)
+const error = ref('')
 
 async function subscribe() {
+
   sending.value = true
 
-  let res = await $fetch('/api/membership/subscribe', {
-    method: 'POST',
-    body: {
-      email: user.value?.email,
-      price: prefer.value?.stripe_product,
-      quantity: quantity.value
-    }
-  })
+  let res
+  try {
+    res = await $fetch('/api/membership/subscribe', {
+      method: 'POST',
+      body: {
+        user: user?.value?.id,
+        plan: prefer?.value?.id
+      }
+    })
+  } catch (e) {
+    console.log(e)
+    push.error(e.message)
+  }
+
   sending.value = false
   if (res) {
     window.location = res
   }
-
 }
 
 </script>
@@ -74,8 +76,13 @@ async function subscribe() {
         .text-sm.op-60(style="flex: 1 1 200px") {{ plan?.description }}
 
 
-    button.relative.p-2.bg-purple-300.hover-bg-purple-400.dark-bg-purple-700.transition.rounded-xl.text-xl.items-center.flex.items-center(@click="subscribe()") 
+    button.relative.p-2.bg-purple-300.hover-bg-purple-400.dark-bg-purple-600.dark-hover-bg-purple-500.dark-active-bg-purple-800.transition.rounded-xl.text-xl.items-center.flex.items-center(@click="subscribe()") 
       .i-la-spinner.animate-spin.absolute(v-if="sending")
       .flex-1 Subscribe 
-      .i-la-lock.absolute.right-4.op-60
+      .i-fa6-brands-stripe.text-2xl.absolute.right-4.op-60
+  .text-sm 
+    p Secure payment processing provided by 
+      <a href="https://stripe.com" target="_blank">Stripe</a>.
+    p Please <a href="mailto:support@chromatone.center"  target="_blank">contact us</a> in case of any problems with checkout.
+    
 </template>

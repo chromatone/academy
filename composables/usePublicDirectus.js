@@ -11,7 +11,6 @@ export function usePublicDirectus() {
   return directus
 }
 
-
 export async function usePublicItems(collection, options) {
   let pd = usePublicDirectus()
   const { data } = await useAsyncData(`public-${collection}`, async () => await pd.request(readItems(collection, options)))
@@ -22,5 +21,4 @@ export async function usePublicItem(collection, id, options) {
   let pd = usePublicDirectus()
   const { data } = await useAsyncData(`public-${collection}-item`, async () => await pd.request(readItem(collection, id, options)))
   return data
-
 }

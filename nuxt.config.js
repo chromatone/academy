@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  extends: ['./auth'],
+  extends: ['./auth', './theme', './membership'],
   app: {
     pageTransition: { name: 'page', mode: 'out-in' }
   },

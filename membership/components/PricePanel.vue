@@ -24,6 +24,7 @@ const sending = ref(false)
 const error = ref('')
 
 async function subscribe() {
+  if (!user?.value?.email) return
 
   sending.value = true
 
@@ -54,7 +55,10 @@ async function subscribe() {
 
   slot
 
-  .flex.flex-col.gap-6(style="flex: 2 1 400px")
+  .flex.flex-col.gap-6(
+    style="flex: 2 1 400px"
+
+    )
     .text-xl Choose your plan
     .flex.flex-wrap.gap-4
       .shadow.p-4.border-2.flex.flex-wrap.gap-2.rounded-xl.cursor-pointer.relative(

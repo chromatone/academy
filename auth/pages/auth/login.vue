@@ -1,5 +1,4 @@
 <script setup>
-import PricePanel from '~/components/PricePanel.vue';
 const email = ref('')
 </script>
 

@@ -26,7 +26,6 @@ const onSubmit = async () => {
 <template lang='pug'>
 .glass.p-4.flex.flex-col.gap-4
   slot  
-    .text-2xl.p-2 Sign Up
   form.p-4.flex.flex-col.gap-4(
     @submit.prevent.stop="onSubmit()")
     .flex.gap-4
@@ -34,6 +33,11 @@ const onSubmit = async () => {
       input#first_name(
         type="text"
         v-model="u.first_name")
+    .flex.gap-4
+      label(for="last_name") Last name
+      input#last_name(
+        type="text"
+        v-model="u.last_name")
     .flex.gap-4
       label(for="email") Email
       input#email(

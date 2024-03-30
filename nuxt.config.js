@@ -1,4 +1,5 @@
 export default defineNuxtConfig({
+  extends: ['./auth'],
   app: {
     pageTransition: { name: 'page', mode: 'out-in' }
   },

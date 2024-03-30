@@ -1,7 +1,4 @@
 <script setup>
-import { useClamp } from '@vueuse/math';
-
-const { academy } = await useMeta()
 const user = useDirectusUser()
 
 const plans = await usePublicItems('plans', {
@@ -12,16 +9,7 @@ const showPrice = useShowPrice()
 
 const prefer = ref(plans.value[0])
 
-const quantity = useClamp(1, 1, 12)
-
-const details = reactive(plans.value.reduce(
-  (acc, plan) => {
-    acc[plan?.id] = false
-    return acc
-  }, {}))
-
 const sending = ref(false)
-const error = ref('')
 
 async function subscribe() {
   if (!user?.value?.email) return
@@ -57,7 +45,7 @@ async function subscribe() {
 
   .flex.flex-col.gap-6(
     style="flex: 2 1 400px"
-
+    :class="{ 'pointer-events-none cursor-cross op-50': !user?.value?.email }"
     )
     .text-xl Choose your plan
     .flex.flex-wrap.gap-4

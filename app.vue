@@ -40,8 +40,8 @@ NuxtLayout
 </template>
 
 <style lang="postcss">
-main a {
-  @apply underline
+main p a {
+  @apply underline underline-dotted
 }
 
 body {

@@ -1,4 +1,6 @@
 <script setup>
+import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
+
 const user = useDirectusUser()
 
 const programs = await usePublicItems('programs', {
@@ -15,6 +17,10 @@ const { academy } = await useMeta()
   .max-w-55ch.p-6.flex.flex-col.gap-8(style="flex: 1 1 300px")
     h1.text-4xl {{ academy?.title }}
     h2.text-lg {{ academy?.description }}
+
+    LiteYouTubeEmbed( title="Video" 
+      :id="academy?.youtube_intro" 
+      v-if="academy?.youtube_intro")
     .p-0.flex.flex-col.gap-4
       .text-2xl Membership Features
       ul
@@ -22,6 +28,7 @@ const { academy } = await useMeta()
       //- button.p-4.text-2xl.bg-purple.rounded-lg.shadow-lg Buy Academy Membership
       NuxtLink.p-4.bg-purple-500.rounded-xl.shadow-lg.text-xl.text-center(to="membership/subscribe" v-if="!user?.email") Subscribe
       WaitList(v-if="!user?.email")
+
 
   .flex.flex-wrap.gap-8.p-6(style="flex: 1 1 600px")
     NuxtLink.w-full.text-4xl(to="/programs/") Programs 

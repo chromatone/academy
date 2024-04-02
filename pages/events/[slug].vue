@@ -1,6 +1,4 @@
 <script setup>
-definePageMeta({ middleware: ["auth"] })
-
 import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
 import { useDateFormat } from '@vueuse/core'
 

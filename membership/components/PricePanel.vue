@@ -39,13 +39,13 @@ async function subscribe() {
 </script>
 
 <template lang='pug'>
-.glass.flex.flex-wrap.gap-8.p-4.border-dark-300.dark-border-light-300.max-h-full.overflow-scroll.flex-1(v-show="showPrice")
+.glass.flex.flex-wrap.gap-8.p-4.border-dark-300.dark-border-light-300.max-h-full.overflow-scroll.flex-1(v-show="showPrice") 
 
   slot
 
   .flex.flex-col.gap-6(
     style="flex: 2 1 400px"
-    :class="{ 'pointer-events-none cursor-cross op-50': !user?.value?.email }"
+    :class="{ 'pointer-events-none cursor-cross op-50': !user?.email }"
     )
     .text-xl Choose your plan
     .flex.flex-wrap.gap-4
@@ -67,11 +67,11 @@ async function subscribe() {
           .text-md.op-50 ${{ (plan?.price / plan?.months).toFixed() }}/mo
         .text-sm.op-60(style="flex: 1 1 200px") {{ plan?.description }}
 
-
     button.relative.p-2.bg-purple-300.hover-bg-purple-400.dark-bg-purple-600.dark-hover-bg-purple-500.dark-active-bg-purple-800.transition.rounded-xl.text-xl.items-center.flex.items-center(@click="subscribe()") 
       .i-la-spinner.animate-spin.absolute(v-if="sending")
       .flex-1 Subscribe 
       .i-fa6-brands-stripe.text-2xl.absolute.right-4.op-60
+
   .text-sm 
     p Secure payment processing provided by 
       <a href="https://stripe.com" target="_blank">Stripe</a>.

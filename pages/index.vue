@@ -17,10 +17,10 @@ const { academy } = await useMeta()
   .max-w-55ch.p-6.flex.flex-col.gap-8(style="flex: 1 1 300px")
     h1.text-4xl {{ academy?.title }}
     h2.text-lg {{ academy?.description }}
-
-    LiteYouTubeEmbed( title="Video" 
-      :id="academy?.youtube_intro" 
-      v-if="academy?.youtube_intro")
+    .rounded-2xl.overflow-clip
+      LiteYouTubeEmbed(title="Video" 
+        :id="academy?.youtube_intro" 
+        v-if="academy?.youtube_intro")
     .p-0.flex.flex-col.gap-4
       .text-2xl Membership Features
       ul

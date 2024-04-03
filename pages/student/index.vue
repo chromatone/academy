@@ -4,7 +4,7 @@ definePageMeta({ middleware: ["auth"] })
 const user = useDirectusUser();
 const { logout } = useDirectusAuth();
 
-watch(user, us => !us ? navigateTo('/auth/login') : '')
+// watch(user, us => !us.email ? navigateTo('/auth/login') : '')
 </script>
 
 <template lang='pug'>

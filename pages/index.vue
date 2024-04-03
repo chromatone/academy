@@ -3,17 +3,14 @@ import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
 
 const user = useDirectusUser()
 
-const programs = await usePublicItems('programs', {
-  sort: ['sort'],
-  fields: ['slug', 'color', 'projects', 'title', 'description', 'cover', 'courses']
-})
-
 const { academy } = await useMeta()
+
+const { data: programs } = await useFetch('/api/get/programs')
 
 </script>
 
 <template lang="pug">
-.p-0.flex.flex-wrap
+.p-0.flex.flex-wrap 
   .max-w-55ch.p-6.flex.flex-col.gap-8(style="flex: 1 1 300px")
     h1.text-4xl {{ academy?.title }}
     h2.text-lg {{ academy?.description }}

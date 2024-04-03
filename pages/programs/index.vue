@@ -1,9 +1,6 @@
 <script setup>
 
-const programs = usePublicItems('programs', {
-  sort: ['sort'],
-  fields: ['slug', 'color', 'projects', 'title', 'description', 'cover', 'courses']
-})
+const { data: programs } = await useFetch('/api/get/programs')
 
 const { academy } = await useMeta()
 

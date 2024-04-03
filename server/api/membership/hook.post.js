@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
 
   if (msg.type == 'customer.created') {
     console.log('creating a new customer')
-    await addStudent(msg)
+    // await addStudent(msg)
   }
 
   if (msg.type.startsWith('customer.subscription')) {

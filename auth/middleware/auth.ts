@@ -9,7 +9,7 @@ export default defineNuxtRouteMiddleware(async (to, _from) => {
     return navigateTo("/auth/login");
   }
 
-  if (user.value.role == "adb23b79-49a5-4873-95fe-503654ccdbc1") {
-    return navigateTo('/membership/subscribe')
-  }
+  // if (user.value.role == "adb23b79-49a5-4873-95fe-503654ccdbc1") {
+  //   return navigateTo('/membership/subscribe')
+  // }
 });

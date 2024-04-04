@@ -14,7 +14,7 @@ const user = useDirectusUser();
     NuxtLink(to="/auth/login") Login
     NuxtLink.bg-purple-400.dark-bg-purple-600.p-2.rounded-xl(to="/membership/subscribe") Subscribe
   template(v-else)
-    NuxtLink.flex.gap-1(to="/student/")
+    NuxtLink.flex.gap-1(to="/me/")
       .i-la-user
       .text-sm {{ user?.first_name }}
       .text-sm {{ user?.last_name }}

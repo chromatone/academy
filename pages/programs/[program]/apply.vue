@@ -1,21 +1,7 @@
 <script setup>
 const route = useRoute()
 
-const { getItems } = useDirectusItems()
-
-const { data: programs, error } = await useAsyncData('program-s-' + route.params?.program, async () => await getItems({
-  collection: 'programs',
-  params: {
-    filter: {
-      slug: {
-        _eq: route.params?.program
-      }
-    },
-    fields: ['*']
-  }
-}))
-
-const p = computed(() => programs.value?.[0])
+const { data: p } = await useFetch('/api/get/program', { query: { slug: route.params?.program } })
 
 useHead({
   title: p.value?.title,

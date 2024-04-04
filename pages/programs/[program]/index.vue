@@ -6,22 +6,8 @@ import { useDateFormat } from '@vueuse/core'
 
 const route = useRoute()
 
-const { getItems } = useDirectusItems()
+const { data: p } = await useFetch('/api/get/program', { query: { slug: route.params?.program } })
 
-const { data: programs, error } = await useAsyncData('program-' + route.params?.program, async () => await getItems({
-  collection: 'programs',
-  params: {
-    filter: {
-      slug: {
-        _eq: route.params?.program
-      }
-    },
-    fields: ['*', 'projects.*', 'courses.*', 'courses.craft.*', 'courses.modules.title', 'tutors.tutors_id.*'
-    ]
-  }
-}))
-
-const p = computed(() => programs.value?.[0])
 
 useHead({
   title: p.value?.title,
@@ -77,7 +63,7 @@ const attributes = reactive([
       .p-4.flex.gap-2.items-center
         .p-0 Tutors:
         NuxtLink.flex.gap-2.items-center.bg-light-100.dark-bg-dark-100.rounded-full.shadow.pr-4(:to="`/tutors/${p?.tutors[0].tutors_id.id}/`") 
-          NuxtImg.rounded-full.max-w-10.max-h-10(:width="100" :src="p?.tutors[0].tutors_id.photo")
+          NuxtImg.rounded-full.max-w-10.max-h-10(:width="100" v-if="p?.tutors[0].tutors_id?.photo" :src="p?.tutors[0].tutors_id?.photo")
           .p-0 {{ p?.tutors?.[0]?.tutors_id?.first_name }} 
           .p-0 {{ p?.tutors?.[0]?.tutors_id?.last_name }}
 

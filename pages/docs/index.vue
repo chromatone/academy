@@ -1,9 +1,7 @@
 <script setup>
 const { getItems } = useDirectusItems()
 
-const { data: docs, error } = await useAsyncData('docs', () => getItems({
-  collection: 'academy_docs'
-}))
+const { data: docs } = await useFetch('/api/get/docs')
 </script>
 
 <template lang='pug'>

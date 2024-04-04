@@ -20,7 +20,7 @@ const onSubmit = async () => {
 };
 
 
-watch(user, us => us ? navigateTo('/student/') : '')
+watch(user, us => us ? navigateTo('/me/') : '')
 
 
 </script>

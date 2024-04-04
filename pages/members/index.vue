@@ -1,10 +1,7 @@
 <script setup>
 const { getItems } = useDirectusItems()
-const { getThumbnail: img } = useDirectusFiles()
 
-const { data: students, error } = await useAsyncData('students', () => getItems({
-  collection: 'students'
-}))
+const { data: students } = await useFetch('/api/get/students')
 
 const { academy } = await useMeta()
 </script>
@@ -16,7 +13,7 @@ const { academy } = await useMeta()
     .text-2xl Students
   .flex.flex-wrap.gap-4
     NuxtLink.glass.p-4.text-lg.flex.flex-col.gap-1(
-      :to="`/students/${student?.id}`"
+      :to="`/members/${student?.id}`"
       v-for="student in students"
       :key="student"
       )

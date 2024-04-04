@@ -1,12 +1,7 @@
 <script setup>
 const route = useRoute()
 
-const { getItemById } = useDirectusItems()
-
-const { data: doc, error } = await useAsyncData(route.params.doc, () => getItemById({
-  collection: 'academy_docs',
-  id: route.params.doc
-}))
+const { data: doc } = await useFetch('/api/get/doc', { query: { slug: route.params.doc } })
 
 </script>
 

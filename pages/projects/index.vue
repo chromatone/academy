@@ -1,11 +1,6 @@
 <script setup>
 
-const projects = await usePublicItems('projects', {
-  sort: ['sort'],
-  fields: ['slug', 'color', 'title', 'description', 'cover', 'courses', 'events', {
-    program: ['title', 'slug']
-  }]
-})
+const { data: projects } = await useFetch('/api/get/projects')
 </script>
 
 <template lang='pug'>

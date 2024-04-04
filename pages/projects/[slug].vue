@@ -4,19 +4,8 @@ import { useDateFormat } from '@vueuse/core'
 
 const route = useRoute()
 
-const projects = await usePublicItems(
-  'projects',
-  {
-    filter: {
-      slug: {
-        _eq: route.params?.slug
-      }
-    },
-    fields: ['*', 'events.*', 'program.title', 'program.slug', 'program.color', 'partners.partners_id.title', 'partners.partners_id.url']
-  }
-)
+const { data: p } = await useFetch('/api/get/project', { query: { slug: route.params?.slug } })
 
-const p = computed(() => projects.value?.[0])
 
 useHead({
   title: p.value?.title,

@@ -1,26 +1,10 @@
 <script setup>
-const route = useRoute()
-
-const { getItems } = useDirectusItems()
-
-const { data: programs } = await useAsyncData('footer-programs', async () => await getItems({
-  collection: 'programs',
-  params: {
-    sort: ['sort'],
-    fields: ['title', 'slug', 'color']
-  }
-}))
-
-const { data: docs, error } = await useAsyncData('docs-titles', () => getItems({
-  collection: 'academy_docs',
-  fields: ['title', 'slug']
-}))
+const { data: docs } = await useFetch('/api/get/docs')
 
 const routes = {
   programs: 'Programs',
   courses: 'Courses',
-  tutors: 'Tutors',
-  students: 'Students',
+  members: 'Members',
   projects: 'Projects',
   events: 'Events',
 }

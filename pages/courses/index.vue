@@ -1,8 +1,5 @@
 <script setup>
-const courses = await usePublicItems('courses', {
-  sort: ['sort'],
-  fields: ['slug', 'color', 'projects', 'title', 'description', 'cover', 'courses']
-})
+const { data: courses } = await useFetch('/api/get/courses')
 </script>
 
 <template lang='pug'>
@@ -12,5 +9,5 @@ const courses = await usePublicItems('courses', {
     style="flex: 1 1 300px"
     v-for="course in courses"
     :p="course"
-  )
+    )
 </template>

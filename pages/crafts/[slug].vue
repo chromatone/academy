@@ -17,7 +17,7 @@ const { data: crafts, error } = await useAsyncData('craft-' + route.params?.slug
         _eq: route.params?.slug
       }
     },
-    fields: ['*',]
+    fields: ['*', 'skills.*', 'courses.*']
   }
 }))
 
@@ -32,10 +32,24 @@ const date = useDateFormat(() => p.value?.date, 'DD MMM YYYY')
 </script>
 
 <template lang='pug'>
-.p-0 
+.flex.flex-wrap.gap-4.p-4
 
-  .text-2xl {{ p?.title }}
+  .flex.flex-col.gap-4.max-w-55ch(style="flex: 1 1 200px")
+    .glass.p-2
+      .text-sm.uppercase.op-60 Craft
+      .text-2xl {{ p?.title }}
+      .text-lg {{ p?.description }}
 
+    .glass.p-2
+      .text-sm.uppercase.op-60 Skills
+      .text-xs {{ p?.skills }}
+
+    .glass.p-2
+      .text-sm.uppercase.op-60 Courses
+      .text-xs {{ p?.courses }}
+
+  .glass.p-2.max-w-55ch(style="flex: 1 1 400px")
+    MDC.prose.text-lg(:value="p?.content || ''" tag="article")
   .font-mono {{ p }}
 
   //- PageCover(:id="p?.cover")

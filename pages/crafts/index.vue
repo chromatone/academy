@@ -1,9 +1,5 @@
 <script setup>
-const { getItems } = useDirectusItems()
-
-const { data: crafts, error } = await useAsyncData('crafts', () => getItems({
-  collection: 'crafts',
-}))
+const { data: crafts } = await useFetch('/api/get/crafts')
 </script>
 
 <template lang='pug'>

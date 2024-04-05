@@ -5,23 +5,7 @@ import { useDateFormat } from '@vueuse/core'
 const route = useRoute()
 
 // definePageMeta({ middleware: ["auth"] })
-
-const { getItems } = useDirectusItems()
-
-
-const { data: crafts, error } = await useAsyncData('craft-' + route.params?.slug, async () => await getItems({
-  collection: 'crafts',
-  params: {
-    filter: {
-      slug: {
-        _eq: route.params?.slug
-      }
-    },
-    fields: ['*', 'skills.*', 'courses.*']
-  }
-}))
-
-const p = computed(() => crafts.value?.[0])
+const { data: p } = await useFetch('/api/get/craft', { query: { slug: route.params?.slug } })
 
 useHead({
   title: p.value?.title,
@@ -34,25 +18,28 @@ const date = useDateFormat(() => p.value?.date, 'DD MMM YYYY')
 <template lang='pug'>
 .flex.flex-wrap.gap-4.p-4
 
+  PageCover(:id="p?.cover")
+
   .flex.flex-col.gap-4.max-w-55ch(style="flex: 1 1 200px")
     .glass.p-2
-      .text-sm.uppercase.op-60 Craft
+      NuxtLink.text-sm.uppercase.op-60(to="/crafts/") Craft
       .text-2xl {{ p?.title }}
       .text-lg {{ p?.description }}
 
-    .glass.p-2
+    .glass.p-2.flex.flex-col.gap-2.p-2
       .text-sm.uppercase.op-60 Skills
-      .text-xs {{ p?.skills }}
+      .p-2.border-1.rounded-lg(v-for="skill in p?.skills" :key="skill") {{ skill?.title }}
 
-    .glass.p-2
-      .text-sm.uppercase.op-60 Courses
-      .text-xs {{ p?.courses }}
+    .glass.p-2.flex.flex-col.gap-2.p-2
+      NuxtLink.text-sm.uppercase.op-60(to="/courses/") Courses
+      NuxtLink.p-2.border-1.rounded-lg(
+        :to="`/courses/${course?.slug}/`"
+        v-for="course in p?.courses" :key="course") {{ course?.title }}
 
   .glass.p-2.max-w-55ch(style="flex: 1 1 400px")
     MDC.prose.text-lg(:value="p?.content || ''" tag="article")
-  .font-mono {{ p }}
 
-  //- PageCover(:id="p?.cover")
+
 
   //- .glass.mx-4.max-w-55ch.mt-40.flex.flex-col
 

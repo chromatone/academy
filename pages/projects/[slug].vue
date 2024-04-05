@@ -25,26 +25,32 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
 
 <template lang='pug'>
 .relative.flex.flex-wrap.px-4.gap-8.items-start
-
   .max-w-55ch.flex.flex-col.gap-4(
-    style="flex: 1 1 300px")
+  style="flex: 1 1 200px")
+
+
+
 
     NuxtLink.flex.flex-col.p-4.glass(
       :to="`/programs/${p?.program?.slug}`")
-      .op-50.uppercase.text-sm  Program
-      .text-2xl {{ p?.program?.title }}
+      .op-50.uppercase.text-xs  Program
+      .text-xl {{ p?.program?.title }}
 
     .glass.p-4.flex.flex-col.bg-light-300.dark-bg-dark-300
-      .op-50.uppercase.text-sm Project
-      .text-3xl {{ p?.title }}
+      .op-50.uppercase.text-xs Project
+      .text-2xl {{ p?.title }}
+      .text-md.mt-2 {{ p?.description }}
 
-    NuxtImg.w-full.rounded-xl.shadow-lg(
+    NuxtImg.rounded-xl.w-full(
+      style="flex: 1 1 200px"
       v-if="p?.cover"
       :src="p?.cover"
       width="600")
 
-    .glass.p-4.flex.flex-col.gap-3
-      .text-lg.max-w-55ch {{ p?.description }}
+  .max-w-55ch.flex.flex-col.gap-4(
+  style="flex: 1 1 300px")
+    .glass.p-4.flex.flex-col.bg-light-300.dark-bg-dark-300.gap-2  
+
       .text-lg {{ from }} - {{ to }}
       .flex.items-center.gap-2(v-if="p?.url")
         .i-la-link
@@ -54,6 +60,8 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
         NuxtLink(:to="p.github" target="_blank") {{ p.github }}
     .glass.flex.flex-col.gap-3
       MDC.prose.px-4(:value="p?.content || ''" tag="article")
+
+
 
   .flex.flex-wrap.gap-4.glass.max-w-55ch.p-4.mb-4.mx-4(
     v-if="p?.objects?.length > 0"

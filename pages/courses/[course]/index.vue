@@ -24,37 +24,27 @@ useHead({
 
     NuxtLink.flex.flex-col.glass.p-4(
       :to="`/programs/${course?.program?.slug}`") 
-      .op-50.text-sm.uppercase Program
-      .text-2xl {{ course?.program?.title }}
+      .op-50.text-xs.uppercase Program
+      .text-xl {{ course?.program?.title }}
 
     .glass.p-4.flex.flex-col
-      .op-50.text-sm.uppercase  Course
-      .text-2xl {{ course?.title }}
+      .op-50.text-xs.uppercase  Course
+      .text-xl {{ course?.title }}
 
+    .glass.gap-4.flex.flex-col.p-4
+      .text-md {{ course?.description }}
 
+    .glass.flex.flex-col.p-4
+      .op-50.text-xs.uppercase Craft
+      NuxtLink.text-xl(:to="`/crafts/${course?.craft?.slug}`") {{ course?.craft.title }}
 
     PageCover(:id="course?.cover")
 
-
-
-    .glass.gap-4.flex.flex-col.p-4
-
-
-
-
-
-      .text-lg {{ course?.description }}
-
-    .glass.flex.flex-col.p-4
-      .op-50.text-sm.uppercase Craft
-      NuxtLink.text-xl(:to="`/crafts/${course?.craft?.slug}`") {{ course?.craft.title }}
-
   .max-w-55ch.gap-4.flex.flex-col(style="flex: 1 1 300px")
-    .p-4.glass
-      .text-2xl Modules
+    .text-2xl.glass.p-2.sticky.top-16.z-1000.flex-1.w-full Modules
     NuxtLink.glass.p-2.flex.items-baseline.gap-1.hover-bg-light-900.dark-hover-bg-dark-400(
       v-for="(mod, m) in course?.modules?.sort((a, b) => a?.sort > b?.sort ? 1 : -1)"
-      :to="user ? `/courses/${route.paramcourse?.course}/${mod?.slug}` : '/auth/login'"
+      :to="user ? `/courses/${route.params?.course}/${mod?.slug}` : '/auth/login'"
       @click="!user ? showPrice = true : null"
       )
       .font-mono.text-lg.min-w-8.text-end {{ m + 1 }}.

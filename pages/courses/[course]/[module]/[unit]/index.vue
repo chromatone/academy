@@ -37,8 +37,6 @@ useHead({
 
   .max-w-55ch.gap-4.flex.flex-col(style="flex: 1 1 300px")
 
-    PageCover(:id="l?.cover")
-
     .flex.flex-col.gap-2
 
       NuxtLink.glass.p-4.uppercase.flex.items-center(:to="`/programs/${l?.module?.course?.program?.slug}/`") 
@@ -56,7 +54,6 @@ useHead({
         .flex-1
         .p-0.op-60.text-sm Module
 
-
     .glass.gap-4.flex.flex-col.p-4
       .flex.items-center 
         .text-3xl {{ l?.title }}
@@ -64,6 +61,7 @@ useHead({
         .op-60.uppercase.text-sm Unit
       .text-lg {{ l?.description }}
 
+    PageCover(:id="l?.cover")
 
   .flex.flex-col.gap-4.max-w-55ch(style="flex: 1 1 300px")
 

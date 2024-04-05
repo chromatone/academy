@@ -17,34 +17,7 @@ useHead({
 const from = useDateFormat(() => p.value?.start_date, 'DD MMM YYYY')
 const to = p.value?.end_date ? useDateFormat(() => p.value?.end_date, 'DD MMM YYYY',) : 'Present'
 
-const colorMode = useColorMode()
 
-const session_date = ref()
-
-function setDay(event) {
-  session_date.value = event.id
-}
-
-const attributes = reactive([
-  {
-    key: 'bohemia',
-    // content: 'green',
-    // highlight: true,
-    dot: true,
-    color: 'purple',
-    popover: {
-      label: 'Bohemia No-Covers Night',
-    },
-    // fillMode: 'outline',
-    dates: {
-      start: new Date(2023, 10, 7, 19),
-      repeat: {
-        every: [1, 'weeks'],
-        weekdays: 5,
-      }
-    }
-  }
-])
 </script>
 
 <template lang='pug'>
@@ -53,17 +26,20 @@ const attributes = reactive([
   .flex.flex-col.gap-4(
     style="flex: 1 1 300px")
 
-    PageCover(:id="p?.cover")
-    .glass
-      .p-4.flex.flex-wrap.items-center.gap-0
-        NuxtLink.text-sm(to="/programs/") PROGRAM
-        .text-3xl.w-full {{ p?.title }}
 
-      .p-4.text-lg {{ p?.description }}
-      .p-4.flex.gap-2.items-center
+    .glass.gap-4.flex.flex-col.p-4
+      .flex.flex-wrap.items-center.gap-0
+        NuxtLink.text-xs(to="/programs/") PROGRAM
+        .text-2xl.w-full {{ p?.title }}
+        .text-md {{ p?.description }}
+
+    PageCover(:id="p?.cover")
+    .glass.gap-4.flex.flex-col.p-4
+
+      .flex.gap-2.items-center
         .p-0 Tutors:
         NuxtLink.flex.gap-2.items-center.bg-light-100.dark-bg-dark-100.rounded-full.shadow.pr-4(:to="`/tutors/${p?.tutors[0].tutors_id.id}/`") 
-          NuxtImg.rounded-full.max-w-10.max-h-10(:width="100" v-if="p?.tutors[0].tutors_id?.photo" :src="p?.tutors[0].tutors_id?.photo")
+          NuxtImg.rounded-full.max-w-8.max-h-8(:width="50" v-if="p?.tutors[0].tutors_id?.photo" :src="p?.tutors[0].tutors_id?.photo")
           .p-0 {{ p?.tutors?.[0]?.tutors_id?.first_name }} 
           .p-0 {{ p?.tutors?.[0]?.tutors_id?.last_name }}
 
@@ -73,7 +49,7 @@ const attributes = reactive([
 
   .flex.flex-col.gap-4(style="flex: 1 1 300px")
 
-    .max-w-55ch.glass
+    .max-w-55ch.glass.rounded-2xl.overflow-clip
       LiteYouTubeEmbed(title="Video" :id="p?.youtube")
     .max-w-55ch.glass
       MDC.prose.m-4(:value="p?.content || ''" tag="article")
@@ -81,10 +57,10 @@ const attributes = reactive([
 
 
 
-  .flex.flex-col.gap-4.max-w-55ch(
+  .flex.flex-wrap.gap-4.max-w-55ch(
     style="flex: 1 1 300px"
     v-if="p?.courses?.length > 0")
-    .text-3xl Courses
+    .text-2xl.glass.p-2.sticky.top-16.z-1000.flex-1.w-full Courses
     .flex.flex-wrap.gap-4
 
       CourseBlock(
@@ -98,7 +74,7 @@ const attributes = reactive([
     style="flex: 1 1 300px"
     v-if="p?.projects?.length > 0"
     )
-    .text-3xl.w-full Projects
+    .text-2xl.glass.p-2.sticky.top-16.z-1000.w-full Projects
     ProjectCard(
       style="flex: 1 1 250px"
       v-for="project in p?.projects"

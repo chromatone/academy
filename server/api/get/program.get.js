@@ -10,7 +10,7 @@ export default defineEventHandler(async event => {
         _eq: query?.slug
       }
     },
-    fields: ['*', 'projects.*', 'courses.*', 'courses.craft.*', 'courses.modules.title', 'tutors.tutors_id.*']
+    fields: ['*', 'projects.*', 'projects.program.title', 'courses.*', 'courses.craft.*', 'courses.modules.title', 'tutors.tutors_id.*']
   }))
   return list?.[0]
 })

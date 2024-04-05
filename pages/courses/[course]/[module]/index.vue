@@ -26,20 +26,17 @@ useHead({
 
 
     NuxtLink.gap-2.glass.p-4.text-sm.flex.flex-col(:to="`/courses/${module?.course?.slug}`") 
-      .p-0.op-60.uppercase Course
-      .p-0.text-2xl {{ module?.course?.title }}
-
-
-    PageCover(:id="module?.cover")
+      .text-xs.op-60.uppercase Course
+      .p-0.text-xl {{ module?.course?.title }}
 
     .glass.p-4.gap-2.flex.flex-col
 
-      .p-0.uppercase.text-sm.op-60 Module
-      .p-0.text-4xl {{ module?.title }}
+      .p-0.uppercase.text-xs.op-60 Module
+      .p-0.text-2xl {{ module?.title }}
 
-      .text-lg {{ module?.description }}
+      .text-md {{ module?.description }}
 
-
+    PageCover(:id="module?.cover")
 
   .flex.flex-col.gap-4.max-w-55ch(style="flex: 1 1 300px")
 

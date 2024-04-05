@@ -17,13 +17,18 @@ NuxtLink.p-0.relative.overflow-clip.rounded-xl(
       )
   .z-200.p-4.m-4.mt-50.glass.flex.flex-col.gap-4.max-w-55ch.relative()
 
-    .text-3xl {{ p?.title }}
+    .text-2xl {{ p?.title }}
     .text-md {{ p?.description }}
 
-    .text-lg.px-2.bg-light-500.dark-bg-dark-500.filter.dark-brightness-62.dark-contrast-400.rounded.whitespace-nowrap.self-start(
-      :style="{ backgroundColor: p?.color }"
-      v-if="p?.projects?.length > 0"
-      ) {{ p?.projects.length }} project{{ (p?.projects.length % 10 === 1 && p?.projects.length !== 11) ? '' : 's' }}
+    .flex.flex-wrap.gap-2
+      .text-sm.px-2.bg-light-500.dark-bg-dark-500.filter.dark-brightness-62.dark-contrast-400.rounded.whitespace-nowrap.self-start(
+        :style="{ backgroundColor: p?.color }"
+        v-if="p?.courses?.length > 0"
+        ) {{ p?.courses.length }} course{{ (p?.courses.length % 10 === 1 && p?.projects.length !== 11) ? '' : 's' }}
+      .text-sm.px-2.bg-light-500.dark-bg-dark-500.filter.dark-brightness-62.dark-contrast-400.rounded.whitespace-nowrap.self-start(
+        :style="{ backgroundColor: p?.color }"
+        v-if="p?.projects?.length > 0"
+        ) {{ p?.projects.length }} project{{ (p?.projects.length % 10 === 1 && p?.projects.length !== 11) ? '' : 's' }}
     slot
     //- .flex.flex-wrap.gap-4
     //-   NuxtLink.py-4.px-6.rounded-lg.shadow-lg.text-xl.self-start.filter.dark-brightness-62.dark-contrast-400.border-4.border-transparent(

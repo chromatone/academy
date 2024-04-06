@@ -60,6 +60,6 @@ useHead({
         .text-md.p-2(v-if="unit?.description") {{ unit?.description }}
         .max-h-60.overflow-clip.flex.flex-col.items-center.relative.justify-center 
           NuxtImg.w-full(v-if="unit?.cover" :src="unit?.cover" width="400")
-          .i-la-play-circle.text-6xl.absolute(v-if="unit?.type == 'youtube'")
+          .i-la-play-circle.text-6xl.absolute(v-if="unit?.youtube")
         
 </template>

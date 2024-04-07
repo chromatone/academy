@@ -10,7 +10,7 @@ export default defineEventHandler(async event => {
         _eq: query?.slug
       }
     },
-    fields: ['*', 'events.*', 'program.title', 'program.slug', 'program.color', 'partners.partners_id.title', 'partners.partners_id.url']
+    fields: ['*', 'artifacts.*', 'events.*', 'program.title', 'program.slug', 'program.color', 'partners.partners_id.title', 'partners.partners_id.url']
   }))
   return list?.[0]
 })

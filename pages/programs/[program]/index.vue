@@ -60,7 +60,7 @@ const to = p.value?.end_date ? useDateFormat(() => p.value?.end_date, 'DD MMM YY
   .flex.flex-wrap.gap-4.max-w-55ch(
     style="flex: 1 1 300px"
     v-if="p?.courses?.length > 0")
-    .text-2xl.glass.p-2.sticky.top-16.z-1000.flex-1.w-full Courses
+    .mx-2.text-2xl.glass.p-2.sticky.top-16.z-1000.flex-1.w-full Courses
     .flex.flex-wrap.gap-4
 
       CourseBlock(
@@ -74,7 +74,7 @@ const to = p.value?.end_date ? useDateFormat(() => p.value?.end_date, 'DD MMM YY
     style="flex: 1 1 300px"
     v-if="p?.projects?.length > 0"
     )
-    .text-2xl.glass.p-2.sticky.top-16.z-1000.w-full Projects
+    .mx-2.text-2xl.glass.p-2.sticky.top-16.z-1000.w-full Projects
     ProjectCard(
       style="flex: 1 1 250px"
       v-for="project in p?.projects"

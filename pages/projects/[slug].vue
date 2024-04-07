@@ -1,6 +1,7 @@
 <script setup>
 import { useClamp } from '@vueuse/math'
 import { useDateFormat } from '@vueuse/core'
+import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
 
 const route = useRoute()
 
@@ -28,9 +29,6 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
   .max-w-55ch.flex.flex-col.gap-4(
   style="flex: 1 1 200px")
 
-
-
-
     NuxtLink.flex.flex-col.p-4.glass(
       :to="`/programs/${p?.program?.slug}`")
       .op-50.uppercase.text-xs  Program
@@ -41,6 +39,18 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
       .text-2xl {{ p?.title }}
       .text-md.mt-2 {{ p?.description }}
 
+    .glass.p-4.flex.flex-col.bg-light-300.dark-bg-dark-300.gap-2  
+      .text-sm.font-mono from:  {{ from }} 
+      .text-sm.font-mono till: {{ to }}
+
+    .glass.p-4.flex.flex-col.bg-light-300.dark-bg-dark-300.gap-2
+      .flex.items-center.gap-2(v-if="p?.url")
+        .i-la-link
+        NuxtLink.text-truncate(:to="p.url" target="_blank") {{ p.url.split('https://')[1] }}
+      .flex.items-center.gap-2(v-if="p?.github")
+        .i-la-github
+        NuxtLink.text-truncate.max-w-80(:to="p.github" target="_blank") {{ p.github.split('https://github.com/')[1] }}
+
     NuxtImg.rounded-xl.w-full(
       style="flex: 1 1 200px"
       v-if="p?.cover"
@@ -49,28 +59,26 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
 
   .max-w-55ch.flex.flex-col.gap-4(
   style="flex: 1 1 300px")
-    .glass.p-4.flex.flex-col.bg-light-300.dark-bg-dark-300.gap-2  
 
-      .text-lg {{ from }} - {{ to }}
-      .flex.items-center.gap-2(v-if="p?.url")
-        .i-la-link
-        NuxtLink(:to="p.url" target="_blank") {{ p.url }}
-      .flex.items-center.gap-2(v-if="p?.github")
-        .i-la-github
-        NuxtLink(:to="p.github" target="_blank") {{ p.github }}
+    LiteYouTubeEmbed(
+      title="Video" 
+      :id="p?.youtube_video" 
+      v-if="p?.youtube_video")
+
     .glass.flex.flex-col.gap-3
       MDC.prose.px-4(:value="p?.content || ''" tag="article")
 
 
 
-  .flex.flex-wrap.gap-4.glass.max-w-55ch.p-4.mb-4.mx-4(
-    v-if="p?.objects?.length > 0"
+  .flex.flex-wrap.gap-4(
+    v-if="p?.artifacts?.length > 0"
     style="flex: 1 1 200px")
-    .text-2xl.w-full Objects
-    EventCard(
+    .text-2xl.w-full Artifacts
+    ArtifactCard(
       style="flex: 1 1 200px"
-      :event="event"  
-      v-for="event in p?.objects")
+      v-for="artifact in p?.artifacts"
+      :artifact="artifact")
+
 
   .flex.flex-wrap.gap-4.items-start(
     style="flex: 1 1 300px"

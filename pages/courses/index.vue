@@ -1,5 +1,5 @@
 <script setup>
-const { data: courses } = await useFetch('/api/get/courses')
+const { data: courses } = await useFetch('/api/list/courses')
 </script>
 
 <template lang='pug'>

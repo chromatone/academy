@@ -15,18 +15,20 @@ const eventList = computed(() => [...events.value]?.sort((a, b) => a.date > b.da
 
 <template lang='pug'>
 .p-4.flex.flex-wrap.gap-6
-  .text-2xl.p-4.w-full Events 
+  .flex.flex-col.gap-2
+    .text-2xl Upcoming Events
+  .text-2xl.w-full Past Events 
   transition-group(name="fade")
     EventCard(
       style="flex: 1 1 240px"
       :event="event"  
       :key="event"
       v-for="event in eventList")
-
-    .w-full.text-center Showing {{ eventList?.length }} of {{ events?.length }} events
+  .flex.w-full.flex-col.gap-2(v-if="eventList?.length < events?.length")
+    .w-full.text-center.op-80 Showing {{ eventList?.length }} of {{ events?.length }} events
 
     button.w-full.rounded-xl.text-xl.shadow.p-4.bg-purple(
-      v-if="eventList?.length < events?.length"
+      key="show-more"
       @click="page++") Show more 
     
 </template>

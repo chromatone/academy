@@ -1,6 +1,6 @@
 <script setup>
 
-const { data: projects } = await useFetch('/api/get/projects')
+const { data: projects } = await useFetch('/api/list/projects')
 </script>
 
 <template lang='pug'>

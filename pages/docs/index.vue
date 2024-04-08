@@ -1,7 +1,7 @@
 <script setup>
 const { getItems } = useDirectusItems()
 
-const { data: docs } = await useFetch('/api/get/docs')
+const { data: docs } = await useFetch('/api/list/docs')
 </script>
 
 <template lang='pug'>

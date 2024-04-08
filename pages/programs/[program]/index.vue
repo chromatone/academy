@@ -31,17 +31,19 @@ const to = p.value?.end_date ? useDateFormat(() => p.value?.end_date, 'DD MMM YY
       .flex.flex-wrap.items-center.gap-0
         NuxtLink.text-xs(to="/programs/") PROGRAM
         .text-2xl.w-full {{ p?.title }}
-        .text-md {{ p?.description }}
-
-    PageCover(:id="p?.cover")
     .glass.gap-4.flex.flex-col.p-4
+      .text-md {{ p?.description }}
 
+    .glass.gap-4.flex.flex-col.p-4(v-if="p?.tutors")
       .flex.gap-2.items-center
-        .p-0 Tutors:
+        .p-0 Tutors: 
         NuxtLink.flex.gap-2.items-center.bg-light-100.dark-bg-dark-100.rounded-full.shadow.pr-4(:to="`/tutors/${p?.tutors[0].tutors_id.id}/`") 
           NuxtImg.rounded-full.max-w-8.max-h-8(:width="50" v-if="p?.tutors[0].tutors_id?.photo" :src="p?.tutors[0].tutors_id?.photo")
           .p-0 {{ p?.tutors?.[0]?.tutors_id?.first_name }} 
           .p-0 {{ p?.tutors?.[0]?.tutors_id?.last_name }}
+
+    PageCover(:id="p?.cover")
+
 
     NuxtLink.rounded-xl.shadow-lg.p-4.text-2xl.shadow.bg-light-900.dark-bg-dark-900.filter.dark-brightness-62.dark-contrast-400(
       :style="{ backgroundColor: p?.color }"

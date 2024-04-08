@@ -1,5 +1,5 @@
 <script setup>
-const { data: crafts } = await useFetch('/api/get/crafts')
+const { data: crafts } = await useFetch('/api/list/crafts')
 </script>
 
 <template lang='pug'>

@@ -5,7 +5,7 @@ const user = useDirectusUser()
 
 const { academy } = await useMeta()
 
-const { data: programs } = await useFetch('/api/get/programs')
+const { data: programs } = await useFetch('/api/list/programs')
 
 </script>
 

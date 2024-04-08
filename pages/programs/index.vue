@@ -1,6 +1,6 @@
 <script setup>
 
-const { data: programs } = await useFetch('/api/get/programs')
+const { data: programs } = await useFetch('/api/list/programs')
 
 const { academy } = await useMeta()
 

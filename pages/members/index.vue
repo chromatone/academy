@@ -1,7 +1,7 @@
 <script setup>
 const { getItems } = useDirectusItems()
 
-const { data: students } = await useFetch('/api/get/students')
+const { data: students } = await useFetch('/api/list/students')
 
 const { academy } = await useMeta()
 </script>

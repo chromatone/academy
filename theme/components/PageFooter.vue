@@ -1,5 +1,5 @@
 <script setup>
-const { data: docs } = await useFetch('/api/get/docs')
+const { data: docs } = await useFetch('/api/list/docs')
 
 const routes = {
   programs: 'Programs',

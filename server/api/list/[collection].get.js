@@ -1,6 +1,8 @@
 import { readItems } from '@directus/sdk'
 
 const collections = {
+  students: ['students', {}],
+  courses: ['courses', {}],
   crafts: [
     'crafts',
     {
@@ -27,7 +29,8 @@ const collections = {
     {
       sort: ['sort'],
       fields: ['*']
-    }]
+    }],
+
 }
 
 export default defineEventHandler(async event => {

@@ -20,7 +20,7 @@ const onSubmit = async () => {
 };
 
 
-watch(user, us => us ? navigateTo('/me/') : '')
+watch(user, us => us ? navigateTo('/my/') : '')
 
 
 </script>
@@ -28,7 +28,7 @@ watch(user, us => us ? navigateTo('/me/') : '')
 <template lang='pug'>
 form.p-4.flex.flex-col.gap-4.max-w-55ch.glass(
   @submit.prevent.stop="onSubmit()")
-  .text-center.text-2xl Login to your account
+  .text-2xl Login to your account
   .flex.text-right
     label.flex-1(for="email") Email
     input#email(

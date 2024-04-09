@@ -12,7 +12,7 @@ export default defineEventHandler(async event => {
   const checkoutSession = await stripe.checkout.sessions.retrieve(session_id)
   const portalSession = await stripe.billingPortal.sessions.create({
     customer: checkoutSession.customer,
-    return_url: config.public.appDomain
+    return_url: `${config.public.appDomain}/membership/manage/`
   })
 
   await sendRedirect(event, portalSession.url)

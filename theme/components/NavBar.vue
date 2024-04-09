@@ -12,11 +12,12 @@ const user = useDirectusUser();
     slot
   template(v-if="!user?.email")
     NuxtLink(to="/auth/login") Login
-    NuxtLink.bg-purple-400.dark-bg-purple-600.p-2.rounded-xl(to="/membership/subscribe") Subscribe
   template(v-else)
-    NuxtLink.flex.gap-1(to="/me/")
+    NuxtLink.flex.gap-1(to="/my/")
       .i-la-user
       .text-sm {{ user?.first_name }}
       .text-sm {{ user?.last_name }}
-  
+  NuxtLink.bg-purple-400.dark-bg-purple-600.p-2.rounded-xl(
+    v-if="!user?.member?.[0]"
+    to="/membership/subscribe") Subscribe
 </template>

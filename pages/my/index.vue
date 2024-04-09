@@ -4,29 +4,7 @@ definePageMeta({ middleware: ["auth"] })
 const user = useDirectusUser();
 const { logout } = useDirectusAuth();
 
-const { getItemById } = useDirectusItems()
-
-// const member = await getItemById({
-//   collection: 'members',
-//   id: user?.value?.member?.[0],
-//   params: {
-//     deep: {
-//       subscriptions: {
-//         _filter: {
-//           status: {
-//             _eq: 'active'
-//           }
-//         }
-//       }
-//     },
-//     filter: {
-
-//     },
-//     fields: ['*', 'subscriptions.*', 'subscriptions.plan.title']
-//   }
-// })
-
-watch(user, us => !us.email ? navigateTo('/auth/login') : '')
+watch(user, us => !us?.email ? navigateTo('/auth/login') : '')
 
 const onSubmit = async () => { await logout(); await navigateTo('/auth/') };
 </script>
@@ -39,12 +17,12 @@ const onSubmit = async () => { await logout(); await navigateTo('/auth/') };
       .text-4xl {{ user?.first_name }} 
       .text-4xl {{ user?.last_name }}
 
-  MembershipManage(v-if="user && user.member?.[0]")
+  MembershipManage(v-if="user && user?.member?.[0]")
   .p-2.flex.flex-col.gap-4(v-else)
     .p-2 No membership yet
     NuxtLink.flex-1.text-xl.bg-purple-500.p-4.rounded-xl.shadow(to="/membership/subscribe/") Subscribe for membership
 
 
-  button.flex-1.p-4.border-1.shadow-lg(@click="onSubmit") Logout
+  button.flex-1.p-4.border-1.shadow-lg(@click="onSubmit()") Logout
 
 </template>

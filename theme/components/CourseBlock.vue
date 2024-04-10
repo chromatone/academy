@@ -10,11 +10,12 @@ const props = defineProps({
 NuxtLink.p-0.relative.overflow-clip.rounded-xl(
   :to="`/courses/${p?.slug}/`"
   )
-  .absolute.z-2.transition.duration-500.w-full.h-auto.op-80.hover-op-90
-    NuxtPicture(
+  .absolute.z-2.transition.duration-500.w-full.h-auto.op-80.hover-op-90.w-full.overflow-clip.rounded-xl.w-full
+    NuxtImg.w-full(
       v-if="p?.cover"
       :src="p?.cover"
-      :imgAttrs="{ class: 'w-full overflow-clip rounded-xl', width: '100%' }")
+      width="300"
+      :imgAttrs="{ class: '', width: '100%' }")
   .z-200.p-4.mx-2.mt-50.glass.flex.flex-col.gap-4.max-w-55ch.relative()
 
     .text-2xl {{ p?.title }}

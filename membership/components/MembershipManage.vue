@@ -32,7 +32,6 @@ const member = await getItemById({
     .p-0 {{ member.active ? 'Active' : 'Disabled' }} account
   .flex.gap-2
     .text-sm.uppercase.px-4.flex-1 Subscriptions
-    NuxtLink.bg-purple-500.rounded-xl.shadow-lg.px-2.py-1(to="/membership/subscribe/") Subscribe
   .flex.flex-col.gap-4
     .glass.p-4.flex-1.flex.flex-col.gap-4.font-mono(v-for="sub in member.subscriptions" :key="sub" :class="{'op-50':sub.status != 'active'}") 
       .flex.gap-2.items-center.flex-1

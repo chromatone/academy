@@ -5,7 +5,7 @@ const props = defineProps({
 </script>
 
 <template lang='pug'>
-NuxtLink.flex.items-start.flex-col.gap-2.max-w-90.relative(
+NuxtLink.flex.items-start.flex-col.gap-2.relative(
   :to="`/projects/${project?.slug}/`") 
   .p-0.overflow-hidden(
     style="flex: 1 1 180px")

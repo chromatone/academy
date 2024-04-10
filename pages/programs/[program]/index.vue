@@ -63,7 +63,7 @@ const to = p.value?.end_date ? useDateFormat(() => p.value?.end_date, 'DD MMM YY
     style="flex: 1 1 300px"
     v-if="p?.courses?.length > 0")
     .mx-2.text-2xl.glass.p-2.sticky.top-16.z-1000.flex-1.w-full Courses
-    .flex.flex-wrap.gap-4
+    .flex.flex-wrap.gap-4.p-2
 
       CourseBlock(
         :program="p?.slug"
@@ -72,7 +72,7 @@ const to = p.value?.end_date ? useDateFormat(() => p.value?.end_date, 'DD MMM YY
 
         //- NuxtLink.text-xl.underline.py-2( :to="`/crafts/${course?.craft?.slug}/`") Learn to become a {{ course?.craft?.title }}
 
-  .flex.flex-wrap.gap-4.z-100(
+  .flex.flex-wrap.gap-4.z-100.p-2(
     style="flex: 1 1 300px"
     v-if="p?.projects?.length > 0"
     )

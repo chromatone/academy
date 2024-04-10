@@ -5,11 +5,11 @@ const props = defineProps({
 </script>
 
 <template lang='pug'>
-NuxtPicture.rounded-xl.overflow-clip.max-w-55ch.shadow-xl(
+NuxtImg.rounded-xl.overflow-clip.max-w-55ch.shadow-xl.top-0.w-full(
   title="Project cover"
   :src="id"
   v-if="id"
   format="webp"
-  :img-attrs="{class:'top-0 w-full '}"
+  width="600"
   )
 </template>

@@ -31,6 +31,12 @@ const collections = {
   project: [
     'projects',
     { fields: ['*', 'artifacts.*', 'events.*', 'program.title', 'program.slug', 'program.color', 'partners.partners_id.title', 'partners.partners_id.url'] }
+  ],
+  event: [
+    'events',
+    {
+      fields: ['*', 'project.title', 'project.slug', 'project.program.title', 'project.program.slug', 'project.program.color', 'place.title', 'place.url']
+    }
   ]
 }
 

@@ -2,33 +2,18 @@
 import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
 import { useDateFormat } from '@vueuse/core'
 
-const route = useRoute()
-
 // definePageMeta({ middleware: ["auth"] })
 
-const { getItems } = useDirectusItems()
-const { getThumbnail: img } = useDirectusFiles();
+const route = useRoute()
 
-const { data: events, error } = await useAsyncData('event-' + route.params?.slug, async () => await getItems({
-  collection: 'events',
-  params: {
-    filter: {
-      slug: {
-        _eq: route.params?.slug
-      }
-    },
-    fields: ['*', 'project.title', 'project.slug', 'project.program.title', 'project.program.slug', 'project.program.color', 'place.title', 'place.url']
-  }
-}))
-
-const p = computed(() => events.value?.[0])
+const { data: event } = await useFetch('/api/get/event', { query: { slug: route.params.slug } })
 
 useHead({
-  title: p.value?.title,
+  title: event.value?.title,
   titleTemplate: '%s event'
 })
 
-const date = useDateFormat(() => p.value?.date, 'DD MMM YYYY')
+const date = useDateFormat(() => event.value?.date, 'DD MMM YYYY')
 </script>
 
 <template lang='pug'>
@@ -39,33 +24,33 @@ const date = useDateFormat(() => p.value?.date, 'DD MMM YYYY')
   .max-w-55ch.flex.flex-col.gap-4(style="flex: 1 1 300px")
 
     NuxtLink.glass.p-2.text-lg.flex.gap-2.flex-wrap(
-      :to="`/programs/${p?.project?.program?.slug}/`") {{ p?.project?.program?.title }} 
+      :to="`/programs/${event?.project?.program?.slug}/`") {{ event?.project?.program?.title }} 
       .flex-1
       .op-50 program
 
-    NuxtLink.glass.p-2.text-lg.flex.gap-2.flex-wrap(:to="`/projects/${p?.project?.slug}/`") {{ p?.project.title }}
+    NuxtLink.glass.p-2.text-lg.flex.gap-2.flex-wrap(:to="`/projects/${event?.project?.slug}/`") {{ event?.project?.title }}
       .flex-1
       .op-50 project
 
     NuxtImg.w-full.rounded-xl.shadow-lg(
-      v-if="p?.cover"
-      :src="p?.cover"
+      v-if="event?.cover"
+      :src="event?.cover"
       width="600"
       )
 
     .glass.p-4.flex-col.flex.gap-4
       .flex.gap-2.flex-wrap.items-center
-        .text-3xl {{ p?.title }}
+        .text-3xl {{ event?.title }}
         .flex-auto
         NuxtLink.op-50(to="/events/") event
 
-      .text-xl.op-70 {{ date }} @ {{ p?.place?.title }}
+      .text-xl.op-70 {{ date }} @ {{ event?.place?.title }}
 
-      .text-lg {{ p?.description }}
+      .text-lg {{ event?.description }}
 
     NuxtImg.w-full.rounded-xl.shadow-lg(
-      v-if="p?.poster && p.poster != p?.cover"
-      :src="p?.poster"
+      v-if="event?.poster && event?.poster != event?.cover"
+      :src="event?.poster"
       width="400"
       )
 
@@ -74,18 +59,18 @@ const date = useDateFormat(() => p.value?.date, 'DD MMM YYYY')
 
     LiteYouTubeEmbed(
       title="Video" 
-      :id="p?.youtube_video" 
-      v-if="p?.youtube_video")
+      :id="event?.youtube_video" 
+      v-if="event?.youtube_video")
 
     .glass
 
-      EventSchedule(:schedule="p?.schedule")
+      EventSchedule(:schedule="event?.schedule")
 
-      MDC.prose.p-4(:value="p?.content || ''" tag="article")
+      MDC.prose.p-4(:value="event?.content || ''" tag="article")
 
     LiteYouTubeEmbed(
       title="Video" 
-      :id="p?.live_stream" 
-      v-if="p?.live_stream")
+      :id="event?.live_stream" 
+      v-if="event?.live_stream")
 
 </template>

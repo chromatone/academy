@@ -8,3 +8,6 @@ export default defineNuxtRouteMiddleware(async (to) => {
   console.log(user.value?.email, 'access')
   return 
 });
+
+
+//https://blog.ypertex.com/articles/nuxt-directus-authentication-middleware/

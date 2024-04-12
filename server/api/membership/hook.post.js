@@ -125,12 +125,5 @@ export default defineEventHandler(async (event) => {
     }
   }
 
-  // if (msg.type.startsWith('customer.subscription')) {
-  //   if (msg.type.endsWith('created')) {
-  //     console.log('subscription created')
-
-  //   }
-  // }
-
   return msg.type + " is ok";
 });

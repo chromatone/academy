@@ -1,6 +1,13 @@
 <script setup>
 const user = useDirectusUser();
 
+const { getItemById } = useDirectusItems()
+
+const member = user.value?.member?.[0] ? await getItemById({
+  collection: 'members',
+  id: user.value?.member?.[0]
+}) : {}
+
 </script>
 
 <template lang='pug'>
@@ -14,7 +21,9 @@ const user = useDirectusUser();
     NuxtLink(to="/auth/login") Login
   template(v-else)
     NuxtLink.flex.gap-1(to="/my/")
-      .i-la-user
+      .i-la-user(v-if="!member?.active")
+      .i-la-user-check(v-else)
+
       .text-sm {{ user?.first_name }}
       .text-sm {{ user?.last_name }}
   NuxtLink.bg-purple-400.dark-bg-purple-600.p-2.rounded-xl(

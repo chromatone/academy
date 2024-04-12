@@ -12,6 +12,7 @@ const { data: programs } = await useFetch('/api/list/programs')
 <template lang="pug">
 .p-0.flex.flex-wrap 
   .max-w-55ch.p-6.flex.flex-col.gap-8(style="flex: 1 1 300px")
+
     h1.text-4xl {{ academy?.title }}
     h2.text-lg {{ academy?.description }}
     .rounded-2xl.overflow-clip

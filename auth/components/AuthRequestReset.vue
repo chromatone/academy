@@ -31,7 +31,7 @@ const isReset = ref(false)
 .p-4.flex.flex-col.gap-4.max-w-55ch.glass(v-if="isReset") 
   .text-xl Your password reset request has been processed. Check your inbox for a reset link.
 .max-w-55ch.glass.p-4(v-else)
-  form.flex.flex-col.gap-4(
+  form.form.flex.flex-col.gap-4(
     @submit.prevent.stop="onSubmit()")
     .text-center.text-2xl Request password reset 
     .flex.text-right

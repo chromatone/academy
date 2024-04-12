@@ -17,7 +17,7 @@ const { data: units, error } = await useAsyncData('unit-' + route.params?.unit, 
         _eq: route.params?.unit
       }
     },
-    fields: ['*', 'module.*', 'module.course.title', 'module.course.slug', 'module.course.program.title', 'module.course.program.slug']
+    fields: ['*', 'module.title', 'module.slug', 'module.course.title', 'module.course.slug', 'module.course.program.title', 'module.course.program.slug']
   }
 }))
 
@@ -59,6 +59,7 @@ useHead({
         .text-3xl {{ l?.title }}
         .flex-1
         .op-60.uppercase.text-sm Unit
+    .glass.gap-4.flex.flex-col.p-4(v-if="l?.description")
       .text-lg {{ l?.description }}
 
     PageCover(:id="l?.cover")

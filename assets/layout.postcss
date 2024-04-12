@@ -12,7 +12,7 @@ body {
 }
 
 .dark body {
-	@apply bg-dark-700 transition duration-1000 text-light-200;
+	@apply bg-dark-700 transition duration-1000 text-light-700;
 }
 
 .page {
@@ -46,17 +46,17 @@ body {
 	opacity: 0;
 }
 
-form input {
+.form input {
 	@apply p-2 text-lg rounded bg-light-200 dark-bg-dark-100;
 	flex: 1 1 200px;
 }
 
-form button,
-form button[type="submit"] {
+.form button,
+.form button[type="submit"] {
 	@apply p-4 rounded-xl bg-purple-500 shadow-xl text-xl;
 }
 
-form label {
+.form label {
 	@apply p-2 text-lg flex-1 text-right;
 }
 

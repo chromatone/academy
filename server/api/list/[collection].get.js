@@ -1,8 +1,12 @@
 import { readItems } from '@directus/sdk'
 
 const collections = {
-  students: ['students', {}],
-  courses: ['courses', {}],
+  members: ['members', {
+    fields: ['*', 'user.*']
+  }],
+  courses: ['courses', {
+    fields: ['*', 'program.title', 'program.slug']
+  }],
   crafts: [
     'crafts',
     {

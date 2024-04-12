@@ -43,7 +43,7 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
       .text-sm.font-mono from:  {{ from }} 
       .text-sm.font-mono till: {{ to }}
 
-    .glass.p-4.flex.flex-col.bg-light-300.dark-bg-dark-300.gap-2
+    .glass.p-4.flex.flex-col.bg-light-300.dark-bg-dark-300.gap-2(v-if="p?.url || p?.github")
       .flex.items-center.gap-2(v-if="p?.url")
         .i-la-link
         NuxtLink.text-truncate(:to="p.url" target="_blank") {{ p.url.split('https://')[1] }}

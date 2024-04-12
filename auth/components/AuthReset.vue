@@ -58,7 +58,7 @@ function flipType() {
   .glass.p-4.max-w-55ch
     .text-2xl Set your new password
 
-  form.glass.p-4.max-w-55ch.flex.flex-wrap.gap-6(submit.stop.prevent="onSubmit")
+  form.form.glass.p-4.max-w-55ch.flex.flex-wrap.gap-6(submit.stop.prevent="onSubmit")
     .flex.gap-2.w-full
       input.flex-1.dark-bg-dark-200.border-2(
         :class="{ 'border-red': valid?.error, 'border-green': valid?.data }"

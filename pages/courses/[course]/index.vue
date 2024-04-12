@@ -38,6 +38,14 @@ useHead({
       .op-50.text-xs.uppercase Craft
       NuxtLink.text-xl(:to="`/crafts/${course?.craft?.slug}`") {{ course?.craft.title }}
 
+    .glass.gap-4.flex.flex-col.py-2.px-4(v-if="course?.team")
+
+      .flex.gap-2.items-center 
+        .p-0.uppercase.text-xs.op-70 Team 
+        UserPill(
+          v-for="t in course?.team" :key="t"
+          :user="t?.team_id?.member?.user") {{ t?.position }}
+
     PageCover(:id="course?.cover")
 
   .max-w-55ch.gap-4.flex.flex-col(style="flex: 1 1 300px")

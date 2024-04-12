@@ -26,7 +26,7 @@ const onSubmit = async () => {
 <template lang='pug'>
 .glass.p-4.flex.flex-col.gap-4
   slot  
-  form.p-4.flex.flex-col.gap-4(
+  form.form.p-4.flex.flex-col.gap-4(
     @submit.prevent.stop="onSubmit()")
     .flex.gap-4
       label(for="first_name") First name

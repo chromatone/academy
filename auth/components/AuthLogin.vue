@@ -26,7 +26,7 @@ watch(user, us => us ? navigateTo('/my/') : '')
 </script>
 
 <template lang='pug'>
-form.p-4.flex.flex-col.gap-4.max-w-55ch.glass(
+form.form.p-4.flex.flex-col.gap-4.max-w-55ch.glass(
   @submit.prevent.stop="onSubmit()")
   .text-2xl Login to your account
   .flex.text-right

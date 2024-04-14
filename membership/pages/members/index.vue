@@ -10,7 +10,7 @@ const { academy } = await useMeta()
   .glass.p-4.flex-1
     .text-2xl Members
   .flex.flex-wrap.gap-4
-    NuxtLink.glass.p-2.text-lg.flex.flex-wrap.gap-1.items-center(
+    NuxtLink.glass.p-2.text-lg.flex.flex-wrap.gap-3.items-center(
       style="flex: 1 1 240px"
       :to="`/members/${member?.id}`"
       v-for="member in members"

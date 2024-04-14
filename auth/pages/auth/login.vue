@@ -7,6 +7,6 @@ const email = ref('')
   .flex.flex-col.gap-4.px-4.flex-1
     AuthLogin(@email="email = $event")
     .p-4.text-center.max-w-55ch 
-      .text-xl - or - {{ email }}
+      .text-xl - or - 
     AuthRequestReset(:email)
 </template>

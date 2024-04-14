@@ -34,7 +34,7 @@ const member = await getItemById({
       .uppercase.op-90.text-lg {{ member.role }}
       .uppercase.op-70.text-sm {{ member.active ? 'Active' : 'Disabled' }}
       .flex-1 
-      NuxtLink.bg-purple-500.px-2.py-1.rounded-xl.shadow.bg-op-80.op-60(to="/membership/subscribe") Subscribe again
+      NuxtLink.bg-purple-500.px-2.py-1.rounded-xl.shadow.bg-op-80.op-60(to="/membership/subscribe") New subscription
 
   .glass.flex.flex-wrap.gap-2.items-center.p-4.rounded-lg
     .flex.gap-2.font-mono.w-full.items-center.flex-wrap(v-for="sub in member?.subscriptions" :key="sub")

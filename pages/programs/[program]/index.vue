@@ -45,9 +45,9 @@ const to = p.value?.end_date ? useDateFormat(() => p.value?.end_date, 'DD MMM YY
     PageCover(:id="p?.cover")
 
 
-    NuxtLink.rounded-xl.shadow-lg.p-4.text-2xl.shadow.bg-light-900.dark-bg-dark-900.filter.dark-brightness-62.dark-contrast-400(
-      :style="{ backgroundColor: p?.color }"
-      :to="`/programs/${route?.params?.program}/apply`") Apply to the program
+    //- NuxtLink.rounded-xl.shadow-lg.p-4.text-2xl.shadow.bg-light-900.dark-bg-dark-900.filter.dark-brightness-62.dark-contrast-400(
+    //-   :style="{ backgroundColor: p?.color }"
+    //-   :to="`/programs/${route?.params?.program}/apply`") Apply to the program
 
   .flex.flex-col.gap-4(style="flex: 1 1 300px")
 

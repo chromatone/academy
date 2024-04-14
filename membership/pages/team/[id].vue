@@ -26,8 +26,8 @@ const { data: user } = await useFetch('/api/get/user', {
 <template lang='pug'>
 .p-4.flex.flex-wrap.flex-1.gap-4
   .flex.flex-col.gap-4.flex-1
-    NuxtLink.glass.p-4.flex-1(to="/members/")
-      .text-xl Member
+    NuxtLink.glass.p-4.flex-1(to="/team/")
+      .text-xl Team Member
     .rounded-full.overflow-clip.max-w-64.max-h-64
       NuxtImg(width="300" :src="user?.avatar || academy?.default_avatar")
     .glass.p-4.flex.flex-col.gap-4
@@ -37,8 +37,7 @@ const { data: user } = await useFetch('/api/get/user', {
   .flex.flex-col.gap-4(
     style="flex: 1 1 400px"
     )
-    .glass.p-4
-      .text-xl Team
+
     .glass.p-4
 
       .flex.flex-wrap.gap-2.items-center

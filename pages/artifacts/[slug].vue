@@ -22,7 +22,7 @@ const { data: events, error } = await useAsyncData('artifact-' + route.params?.s
   }
 }))
 
-const p = computed(() => events.value?.[0])
+const p = computed(() => events.value)
 
 useHead({
   title: p.value?.title,
@@ -33,8 +33,7 @@ const date = useDateFormat(() => p.value?.date, 'DD MMM YYYY')
 </script>
 
 <template lang='pug'>
-.px-4.flex.flex-wrap.gap-4.items-start
-
+.px-4.flex.flex-wrap.gap-4.items-start 
 
 
   .max-w-55ch.flex.flex-col.gap-4(style="flex: 1 1 300px")
@@ -48,19 +47,11 @@ const date = useDateFormat(() => p.value?.date, 'DD MMM YYYY')
       .flex-1
       .op-50 project
 
-    NuxtImg.w-full.rounded-xl.shadow-lg(
-      v-if="p?.cover"
-      :src="p?.cover"
-      width="600"
-      )
-
     .glass.p-4.flex-col.flex.gap-4
       .flex.gap-2.flex-wrap.items-center
-        .text-3xl {{ p?.title }}
+        .text-2xl {{ p?.title }}
         .flex-auto
-        NuxtLink.op-50(to="/events/") event
-
-      .text-xl.op-70 {{ date }} @ {{ p?.place?.title }}
+        NuxtLink.op-50(to="/artifacts/") artifact
 
       .text-lg {{ p?.description }}
 
@@ -70,6 +61,11 @@ const date = useDateFormat(() => p.value?.date, 'DD MMM YYYY')
       width="400"
       )
 
+    NuxtImg.w-full.rounded-xl.shadow-lg(
+      v-if="p?.cover"
+      :src="p?.cover"
+      width="600"
+      )
 
   .max-w-55ch.flex.flex-col.gap-4(style="flex: 1 1 300px")
 
@@ -78,11 +74,11 @@ const date = useDateFormat(() => p.value?.date, 'DD MMM YYYY')
       :id="p?.youtube_video" 
       v-if="p?.youtube_video")
 
-    .glass
+    .glass.px-4
 
-      EventSchedule(:schedule="p?.schedule")
+      EventSchedule(:schedule="p?.schedule" v-if="p?.schedule")
 
-      MDC.prose.p-4(:value="p?.content || ''" tag="article")
+      MDC.prose(:value="p?.content || ''" tag="article")
 
     LiteYouTubeEmbed(
       title="Video" 

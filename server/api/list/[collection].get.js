@@ -2,7 +2,15 @@ import { readItems } from '@directus/sdk'
 
 const collections = {
   members: ['members', {
-    fields: ['*', 'user.*']
+    fields: ['*', 'user.*',]
+  }],
+  team: ['members', {
+    fields: ['*', 'user.*'],
+    filter: {
+      team: {
+        _nnull: true
+      }
+    }
   }],
   courses: ['courses', {
     fields: ['*', 'program.title', 'program.slug']
@@ -43,7 +51,12 @@ export default defineEventHandler(async event => {
   const db = usePublicDirectus()
 
   if (collections[collection]) {
-    return await db.request(readItems(collections[collection][0], collections[collection][1]))
+    try {
+      return await db.request(readItems(collections[collection][0], collections[collection][1]))
+    } catch (e) {
+      console.log(e)
+    }
+
   }
 
   console.log('No ' + collection + ' collection')

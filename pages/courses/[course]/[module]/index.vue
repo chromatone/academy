@@ -43,6 +43,7 @@ useHead({
     .glass.max-w-55ch.px-4(v-if="module?.content")
       MDC.prose.text-lg(:value="module?.content || ''" tag="article")
 
+
     .glass.p-4.gap-4.flex.items-center.uppercase
       .w-full.text-sm Units
       .flex-1 

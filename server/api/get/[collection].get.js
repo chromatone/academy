@@ -4,7 +4,7 @@ const collections = {
   course: [
     'courses',
     {
-      fields: ['*', 'craft.*', 'program.title', 'program.slug', 'program.color', 'modules.*', 'team.team_id.member.user', 'team.team_id.member.id', 'team.position', 'students.students_id.member.user']
+      fields: ['*', 'craft.*', 'program.title', 'program.slug', 'program.color', 'modules.*', 'team.team_id.member.user', 'team.team_id.member.id', 'team.position', 'students.students_id.member.user', 'students.students_id.member.id']
     }],
   craft: [
     'crafts',

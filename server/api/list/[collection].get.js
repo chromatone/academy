@@ -12,6 +12,14 @@ const collections = {
       }
     }
   }],
+  students: ['members', {
+    fields: ['*', 'user.*'],
+    filter: {
+      student: {
+        _nnull: true
+      }
+    }
+  }],
   courses: ['courses', {
     fields: ['*', 'program.title', 'program.slug']
   }],

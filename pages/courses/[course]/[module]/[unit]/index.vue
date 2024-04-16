@@ -75,10 +75,11 @@ useHead({
       target="_blank"
       :to="l?.link" v-if="l?.link") {{ l?.link }}
 
-    iframe.min-h-80vh.rounded-xl(:src="l?.link" v-if="l?.link")
 
     .glass.max-w-55ch.px-4(
       v-if="l?.content"
       style="flex: 1 1 300px")
       MDC.prose.text-lg(:value="l?.content || ''" tag="article")
+
+  iframe.min-h-80vh.rounded-xl.w-full(:src="l?.link" v-if="l?.link")
 </template>

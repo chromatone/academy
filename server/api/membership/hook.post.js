@@ -102,6 +102,12 @@ export default defineEventHandler(async (event) => {
     }))
 
 
+    if (mem.student?.length == 0) {
+      await db.request(createItem('students', {
+        member: ev.metadata?.member
+      }))
+    }
+
     const stripe_sub = await stripe.subscriptions.retrieve(ev.subscription);
 
     try {

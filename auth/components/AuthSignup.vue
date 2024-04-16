@@ -48,6 +48,6 @@ const onSubmit = async () => {
       input#password(
         type="password"
         v-model="u.password")
-    button(type="submit") Sign up
+    button.button(type="submit") Sign up
     .text-sm.text-red(v-if="statusCode") {{ statusCode }}
 </template>

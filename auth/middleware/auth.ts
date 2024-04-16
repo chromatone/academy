@@ -8,7 +8,7 @@ export default defineNuxtRouteMiddleware(async (to, _from) => {
   }
 
   if (!user.value?.email) {
-    return navigateTo("/auth/login");
+    return navigateTo("/auth/");
   }
 
   if (!user.value?.member?.[0]) {

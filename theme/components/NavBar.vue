@@ -18,7 +18,7 @@ const member = user.value?.member?.[0] ? await getItemById({
   .flex-1
     slot
   template(v-if="!user?.email")
-    NuxtLink(to="/auth/login") Login
+    NuxtLink(to="/auth/") Login
   template(v-else)
     NuxtLink.flex.gap-1(to="/my/")
       .i-la-user(v-if="!member?.active")
@@ -26,7 +26,7 @@ const member = user.value?.member?.[0] ? await getItemById({
 
       .text-sm {{ user?.first_name }}
       .text-sm {{ user?.last_name }}
-  NuxtLink.bg-purple-400.dark-bg-purple-600.p-2.rounded-xl(
+  NuxtLink.bg-purple-400.dark-bg-purple-600.p-2.-my-2.rounded-xl(
     v-if="!user?.member?.[0]"
     to="/membership/subscribe") Subscribe
 </template>

@@ -23,24 +23,18 @@ const date = useDateFormat(() => event.value?.date, 'DD MMM YYYY')
 
   .max-w-55ch.flex.flex-col.gap-4(style="flex: 1 1 300px")
 
-    NuxtLink.glass.p-2.text-lg.flex.gap-2.flex-wrap(
+    NuxtLink.glass.p-4.text-lg.flex.gap-2.flex-wrap.items-center(
       :to="`/programs/${event?.project?.program?.slug}/`") {{ event?.project?.program?.title }} 
       .flex-1
-      .op-50 program
+      .op-50.uppercase.text-xs program
 
-    NuxtLink.glass.p-2.text-lg.flex.gap-2.flex-wrap(:to="`/projects/${event?.project?.slug}/`") {{ event?.project?.title }}
+    NuxtLink.glass.p-4.text-lg.flex.gap-2.flex-wrap.items-center(:to="`/projects/${event?.project?.slug}/`") {{ event?.project?.title }}
       .flex-1
-      .op-50 project
-
-    NuxtImg.w-full.rounded-xl.shadow-lg(
-      v-if="event?.cover"
-      :src="event?.cover"
-      width="600"
-      )
+      .op-50.uppercase.text-xs project
 
     .glass.p-4.flex-col.flex.gap-4
       .flex.gap-2.flex-wrap.items-center
-        .text-3xl {{ event?.title }}
+        .text-2xl {{ event?.title }}
         .flex-auto
         NuxtLink.op-50(to="/events/") event
 
@@ -49,13 +43,19 @@ const date = useDateFormat(() => event.value?.date, 'DD MMM YYYY')
       .text-lg {{ event?.description }}
 
     NuxtImg.w-full.rounded-xl.shadow-lg(
-      v-if="event?.poster && event?.poster != event?.cover"
-      :src="event?.poster"
+      v-if="event?.cover"
+      :src="event?.cover"
       width="400"
       )
 
 
   .max-w-55ch.flex.flex-col.gap-4(style="flex: 1 1 300px")
+
+    NuxtImg.w-full.rounded-xl.shadow-lg(
+      v-if="event?.poster && event?.poster != event?.cover"
+      :src="event?.poster"
+      width="400"
+      )
 
     LiteYouTubeEmbed(
       title="Video" 

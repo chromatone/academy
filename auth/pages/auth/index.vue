@@ -5,11 +5,10 @@ const { academy } = await useMeta()
 <template lang='pug'>
 .flex.flex-wrap.gap-4.px-4
   //- .flex.flex-col.gap-4.flex-1.max-w-55ch
-  AuthLogin 
-  .p-4.glass.flex-1.items-center.flex.justify-center
-    .text-lg.text-center or
-  AuthSignup 
-    .text-2xl Create a new account
+  AuthLogin.max-w-55ch(style="flex: 1 1 300px") 
+    .text-2xl Login to your existing account...
+  AuthSignup.max-w-55ch(style="flex: 1 1 300px")
+    .text-2xl ...or create a new account
 </template>
 
 <style lang="postcss" scoped>

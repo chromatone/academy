@@ -47,13 +47,16 @@ body {
 }
 
 .form input {
-	@apply p-2 text-lg rounded bg-light-200 dark-bg-dark-100;
+	@apply border-1 border-dark-300 border-op-40 dark-border-light-300 dark-border-op-40 p-2 text-lg rounded-lg bg-light-200 dark-bg-dark-100;
 	flex: 1 1 200px;
 }
 
-.form button,
-.form button[type="submit"] {
+button.button {
 	@apply p-4 rounded-xl bg-purple-500 shadow-xl text-xl;
+}
+
+button.button:disabled {
+	@apply op-60 hover-op-70;
 }
 
 .form label {

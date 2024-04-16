@@ -68,7 +68,7 @@ const to = p.value?.end_date ? useDateFormat(() => p.value?.end_date, 'DD MMM YY
       CourseBlock(
         :program="p?.title"
         :p="course" v-for="course in p?.courses")
-        .px-2.bg-light-900.dark-bg-dark-800.rounded-xl.self-start(v-if="course?.modules?.length > 0") {{ course?.modules?.length }} modules
+
 
 
   .flex.flex-wrap.gap-4.z-100(

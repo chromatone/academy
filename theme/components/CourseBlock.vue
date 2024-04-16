@@ -26,6 +26,9 @@ NuxtLink.p-0.relative.overflow-clip.rounded-xl(
       v-if="p?.projects?.length > 0"
       ) {{ p?.projects.length }} project{{ (p?.projects.length % 10 === 1 && p?.projects.length !== 11) ? '' : 's' }}
     slot
+    .flex.flex-wrap.gap-2
+      .px-2.bg-light-900.dark-bg-dark-800.rounded-xl.self-start(v-if="p?.modules?.length > 0") {{ p?.modules?.length }} modules
+      .px-2.bg-light-900.dark-bg-dark-800.rounded-xl.self-start(v-if="p?.students?.length>0") {{ p?.students?.length }} student{{ p?.students?.length>1 ? 's': '' }}
     //- .flex.flex-wrap.gap-4
     //-   NuxtLink.py-4.px-6.rounded-lg.shadow-lg.text-xl.self-start.filter.dark-brightness-62.dark-contrast-400.border-4.border-transparent(
     //-     :to='`/${p?.slug}`'

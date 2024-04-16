@@ -48,6 +48,14 @@ useHead({
 
     PageCover(:id="course?.cover")
 
+    .glass.gap-4.flex.flex-col.py-2.px-4(v-if="course?.students")
+
+      .flex.gap-2.items-center 
+        .p-0.uppercase.text-xs.op-70 Students 
+        UserPill(
+          v-for="t in course?.students" :key="t"
+          :user="t?.students_id?.member?.user")
+
   .max-w-55ch.gap-4.flex.flex-col(style="flex: 1 1 300px")
     .text-2xl.glass.p-2.sticky.top-16.z-1000.flex-1.w-full Modules
     NuxtLink.glass.p-2.flex.items-baseline.gap-1.hover-bg-light-900.dark-hover-bg-dark-400(

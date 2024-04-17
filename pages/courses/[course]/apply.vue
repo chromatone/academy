@@ -1,6 +1,4 @@
 <script setup>
-definePageMeta({ middleware: ["auth", "course"] })
-
 const user = useDirectusUser()
 
 const route = useRoute()
@@ -15,6 +13,14 @@ useHead({
   title: course.value?.title,
   titleTemplate: '%s course'
 })
+
+const application = reactive({
+  motivation: ''
+})
+
+function sendApplication() {
+  console.log(application)
+}
 </script>
 
 <template lang='pug'>
@@ -62,26 +68,14 @@ useHead({
 
   .max-w-55ch.gap-4.flex.flex-col(style="flex: 1 1 300px")
 
-    .max-w-55ch.glass(v-if="course?.content")
-      MDC.prose.m-4(:value="course?.content || ''" tag="article")
-    .glass.p-2.px-4.sticky.top-16.z-1000.flex-1.w-full.flex.flex-wrap.items-center
-      .text-2xl.flex-1 Modules
-      .op-70 {{ course?.modules?.length }}
+    .max-w-55ch.glass.p-4.flex.flex-col.gap-4(v-if="course?.welcome")
+      h1.text-4xl Welcome!
+      .text-md To participate in this course you need to apply to it by filling out this simple form. Just press Apply and you will immediately get access to the course and we will get to know our students a bit better. 
 
-    NuxtLink.relative.glass.flex.items-center.gap-2.hover-bg-light-900.dark-hover-bg-dark-400(
-      v-for="(mod, m) in course?.modules?.sort((a, b) => a?.sort > b?.sort ? 1 : -1)"
-      :to="user ? `/courses/${route.params?.course}/${mod?.slug}` : '/auth/login'"
-      @click="!user ? showPrice = true : null"
+    form.form.max-w-55ch.glass.p-4.flex.flex-col.gap-4(
+      @submit.prevent="sendApplication()"
       )
-
-      //- .absolute.-left-5.font-mono.text-lg.text-end {{ m + 1 }}
-      NuxtImg.rounded-xl(:src="mod?.cover" v-if="mod?.cover" width="80")
-      .flex.flex-col.gap-1.p-2
-        .text-xl {{ m + 1 }}. {{ mod.title }}
-        .text-md {{ mod?.description }}
-
-      .op-70.mx-4(v-if="mod?.units?.length > 0") {{ mod?.units?.length }}
-      .i-la-lock.min-w-8.op-80(
-        v-if="!user"
-        title="You need to log in in order to view these")
+      .text-xl Motivation
+      textarea(v-model="application.motivation")
+      button.button(type="submit") Apply
 </template>

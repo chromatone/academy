@@ -15,7 +15,7 @@ const { data: programs } = await useFetch('/api/list/programs')
 
     h1.text-4xl {{ academy?.title }}
     h2.text-lg {{ academy?.description }}
-    .rounded-2xl.overflow-clip
+    //- .rounded-2xl.overflow-clip
       LiteYouTubeEmbed(title="Video" 
         :id="academy?.youtube_intro" 
         v-if="academy?.youtube_intro")

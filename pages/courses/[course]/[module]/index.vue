@@ -1,7 +1,7 @@
 <script setup>
 import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
 
-definePageMeta({ middleware: ["auth"] })
+definePageMeta({ middleware: ["auth", "course"] })
 
 const route = useRoute()
 

@@ -24,8 +24,7 @@ useHead({
 <template lang='pug'>
 .flex.flex-wrap.overflow-clip.items-start.px-4.gap-4 
 
-  .max-w-55ch.flex.flex-col.gap-4(style="flex: 1 1 300px") {{ isStudent }}
-
+  .max-w-55ch.flex.flex-col.gap-4(style="flex: 1 1 300px") 
     NuxtLink.flex.flex-col.glass.p-4(
       :to="`/programs/${course?.program?.slug}`") 
       .op-50.text-xs.uppercase Program

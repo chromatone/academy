@@ -61,6 +61,4 @@ async function sendApplication() {
       placeholder="I'm interested in this course because..."
       )
     button.button(type="submit") Apply
-
-  pre.flex-1.max-w-40 {{ application }}
 </template>

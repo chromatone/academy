@@ -10,7 +10,7 @@ const { token } = useDirectusToken()
 const db = createDirectus(useRuntimeConfig().public.dbUrl).with(rest())
 
 const usr = await db.request(withToken(token.value, readMe({
-  fields: ['member.student']
+  fields: ['member.*']
 })))
 
 const application = reactive({

@@ -20,7 +20,7 @@ const member = user.value?.member?.[0] ? await getItemById({
   template(v-if="!user?.email")
     NuxtLink(to="/auth/") Login
   template(v-else)
-    NuxtLink.flex.gap-1(to="/my/")
+    NuxtLink.flex.gap-1(to="/me/")
       .i-la-user(v-if="!member?.active")
       .i-la-user-check(v-else)
 

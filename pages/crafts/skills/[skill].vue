@@ -1,15 +1,14 @@
 <script setup>
-import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
 import { useDateFormat } from '@vueuse/core'
 
 const route = useRoute()
 
 // definePageMeta({ middleware: ["auth"] })
-const { data: p } = await useFetch('/api/get/craft', { query: { slug: route.params?.slug } })
+const { data: p } = await useFetch('/api/get/skill', { query: { slug: route.params?.skill } })
 
 useHead({
   title: p.value?.title,
-  titleTemplate: '%s event'
+  titleTemplate: '%s skill'
 })
 
 const date = useDateFormat(() => p.value?.date, 'DD MMM YYYY')
@@ -22,21 +21,26 @@ const date = useDateFormat(() => p.value?.date, 'DD MMM YYYY')
 
   .flex.flex-col.gap-4.max-w-55ch(style="flex: 1 1 200px")
     .glass.p-2
-      NuxtLink.text-sm.uppercase.op-60(to="/crafts/") Craft
+      NuxtLink.text-sm.uppercase.op-60(to="/crafts/skills/") Skill
       .text-2xl {{ p?.title }}
       .text-lg {{ p?.description }}
 
-    .glass.p-2.flex.flex-col.gap-2.p-2
-      .text-sm.uppercase.op-60 Skills
-      .p-2.border-1.rounded-lg(v-for="skill in p?.skills" :key="skill") {{ skill?.title }}
+    //- .glass.p-2.flex.flex-col.gap-2.p-2
+    //-   .text-sm.uppercase.op-60 Skills
+    //-   .p-2.border-1.rounded-lg(v-for="skill in p?.skills" :key="skill") {{ skill?.title }}
 
     .glass.p-2.flex.flex-col.gap-2.p-2
-      NuxtLink.text-sm.uppercase.op-60(to="/courses/") Courses
+      NuxtLink.text-sm.uppercase.op-60(to="/course/") Course
       NuxtLink.p-2.border-1.rounded-lg(
-        :to="`/courses/${course?.slug}/`"
-        v-for="course in p?.courses" :key="course") {{ course?.title }}
+        :to="`/courses/${p?.module?.course?.slug}/`") {{ p?.module?.course?.title }}
+
+    .glass.p-2.flex.flex-col.gap-2.p-2
+      NuxtLink.text-sm.uppercase.op-60(to="/modules/") Module
+      NuxtLink.p-2.border-1.rounded-lg(
+        :to="`/courses/${p?.module?.course?.slug}/${p?.module?.slug}/`") {{ p?.module?.title }}
 
   .glass.p-2.max-w-55ch(style="flex: 1 1 400px")
+    p {{ p }}
     MDC.prose.text-lg(:value="p?.content || ''" tag="article")
 
 

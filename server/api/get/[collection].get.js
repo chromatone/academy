@@ -10,6 +10,10 @@ const collections = {
     'crafts',
     { fields: ['*', 'skills.*', 'courses.*'] }
   ],
+  skill: [
+    'skills',
+    { fields: ['*', 'module.*', 'module.course.title', 'module.course.slug'] }
+  ],
   doc: [
     'academy_docs',
     {

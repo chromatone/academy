@@ -30,6 +30,13 @@ const collections = {
       fields: ['*']
     }
   ],
+  skills: [
+    'skills',
+    {
+      sort: ['sort'],
+      fields: ['*']
+    }
+  ],
   programs: [
     'programs',
     {

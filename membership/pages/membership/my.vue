@@ -12,7 +12,7 @@ const onSubmit = async () => { await logout(); await navigateTo('/auth/') };
 <template lang='pug'>
 .flex.flex-col.gap-4.mx-4.max-w-55ch
   NuxtLink.glass.p-4.flex.flex-col.gap-2(
-    to="/my/"
+    to="/me/"
   )
     .flex.flex-wrap.gap-2
       .text-4xl {{ user?.first_name }} 
@@ -23,5 +23,5 @@ const onSubmit = async () => { await logout(); await navigateTo('/auth/') };
     .p-2 No membership yet
     NuxtLink.flex-1.text-xl.bg-purple-500.p-4.rounded-xl.shadow(to="/membership/subscribe/") Subscribe for membership
 
-  NuxtLink.bg-purple-500.bg-op-70.rounded-xl.shadow-lg.px-3.py-2(to="/my/") Back to profile page
+  NuxtLink.bg-purple-500.bg-op-70.rounded-xl.shadow-lg.px-3.py-2(to="/me/") Back to profile page
 </template>

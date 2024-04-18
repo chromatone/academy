@@ -26,7 +26,7 @@ const emailSchema = z.string().email();
 const valid = computed(() => emailSchema.safeParse(u?.email))
 
 
-watch(user, us => us ? navigateTo('/my/') : '')
+watch(user, us => us ? navigateTo('/me/') : '')
 
 
 </script>

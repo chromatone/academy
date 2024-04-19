@@ -41,6 +41,7 @@ export default defineNuxtConfig({
     }
   },
   modules: [
+    'nuxt-auth-utils',
     "@unocss/nuxt",
     "nuxt-directus",
     "@nuxtjs/sitemap",

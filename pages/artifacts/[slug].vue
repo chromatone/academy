@@ -55,6 +55,14 @@ const date = useDateFormat(() => p.value?.date, 'DD MMM YYYY')
 
       .text-lg {{ p?.description }}
 
+    .glass.p-4.flex.flex-col.bg-light-300.dark-bg-dark-300.gap-2(v-if="p?.link || p?.github_repo")
+      .flex.items-center.gap-2(v-if="p?.link")
+        .i-la-link
+        NuxtLink.text-truncate(:to="p.link" target="_blank") {{ p.link.split('https://')[1] || p.link }}
+      .flex.items-center.gap-2(v-if="p?.github_repo")
+        .i-la-github
+        NuxtLink.text-truncate.max-w-80(:to="p.github_repo" target="_blank") {{ p.github_repo.split('https://github.com/')[1] || p.github_repo }}
+
     NuxtImg.w-full.rounded-xl.shadow-lg(
       v-if="p?.poster && p.poster != p?.cover"
       :src="p?.poster"

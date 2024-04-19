@@ -11,7 +11,7 @@ const member = user.value?.member?.[0] ? await getItemById({
 </script>
 
 <template lang='pug'>
-.flex.flex-wrap.items-center.gap-4.glass.p-3.my-1.mx-4.sticky.top-1.z-9000
+.flex.flex-wrap.items-center.gap-4.glass.p-3.mt-2.mx-4.sticky.top-2.z-9000
   NuxtLink(to="/") academy
   NuxtLink.op-40(to="https://chromatone.center" target="_blank") chromatone.center
   DarkToggle

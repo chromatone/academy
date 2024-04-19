@@ -16,6 +16,7 @@
 		"@vueuse/math": "^10.9.0",
 		"add": "^2.0.6",
 		"notivue": "^2.3.2",
+		"nuxt-auth-utils": "^0.0.24",
 		"pnpm": "^8.15.6",
 		"timezones-list": "^3.0.3",
 		"vue-lite-youtube-embed": "^1.2.4",

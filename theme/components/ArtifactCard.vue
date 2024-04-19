@@ -9,15 +9,17 @@ NuxtLink.p-0.flex.flex-wrap.items-start.gap-4.rounded-xl.overflow-clip.max-w-150
   :to="`/artifacts/${artifact.slug}/`"
   ) 
   .p-0.max-h-30(style="flex: 1 1 400px")
-    NuxtImg.w-full.op-80.hover-op-100.transition(
+    NuxtImg.w-full.grayscale-30.contrast-70.hover-contrast-100.hover-grayscale-0.transition(
       title="Cover"
       format="webp"
       width="400"
       :src="artifact?.cover"
       v-if="artifact?.cover"
       )
-    .i-la-play-circle.op-80.text-light-400.text-80px.absolute.top-8(style="left:calc(50% - 50px)" v-if="artifact?.youtube_video")
+    //- .i-la-play-circle.op-80.text-light-400.text-80px.absolute.top-8(style="left:calc(50% - 50px)" v-if="artifact?.youtube_video")
   .flex.flex-col.flex-auto.gap-2.glass.p-2.mx-2.mb-2(style="flex: 1 1 400px")
+    .text-mono.text-xs.uppercase.op-60 {{ artifact?.type }}
     .text-xl {{ artifact?.title }}
     .text-sm {{ artifact?.description }}
+    
 </template>

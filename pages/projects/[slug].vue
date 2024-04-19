@@ -27,7 +27,7 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
 <template lang='pug'>
 .relative.flex.flex-wrap.px-4.gap-8.items-start
   .max-w-55ch.flex.flex-col.gap-4(
-  style="flex: 1 1 200px")
+  style="flex: 1 1 300px")
 
     NuxtLink.flex.flex-col.p-4.glass(
       :to="`/programs/${p?.program?.slug}`")
@@ -51,19 +51,22 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
         .i-la-github
         NuxtLink.text-truncate.max-w-80(:to="p.github" target="_blank") {{ p.github.split('https://github.com/')[1] }}
 
+
+
+  .max-w-55ch.flex.flex-col.gap-4(
+  style="flex: 1 1 300px")
+
     NuxtImg.rounded-xl.w-full(
       style="flex: 1 1 200px"
       v-if="p?.cover"
       :src="p?.cover"
       width="600")
 
-  .max-w-55ch.flex.flex-col.gap-4(
-  style="flex: 1 1 300px")
-
-    LiteYouTubeEmbed(
-      title="Video" 
-      :id="p?.youtube_video" 
-      v-if="p?.youtube_video")
+    .rounded-2xl.overflow-clip
+      LiteYouTubeEmbed(
+        title="Video" 
+        :id="p?.youtube_video" 
+        v-if="p?.youtube_video")
 
     .glass.flex.flex-col.gap-3
       MDC.prose.px-4(:value="p?.content || ''" tag="article")
@@ -72,8 +75,10 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
 
   .flex.flex-wrap.gap-4(
     v-if="p?.artifacts?.length > 0"
-    style="flex: 1 1 200px")
-    .text-2xl.w-full Artifacts
+    style="flex: 1 1 300px")
+    .glass.py-2.px-3.flex.bg-light-300.dark-bg-dark-300.gap-2.text-sm.uppercase.w-full.flex
+      .flex-1 Artifacts
+      .p-0 {{ p?.artifacts?.length }}
     ArtifactCard(
       style="flex: 1 1 200px"
       v-for="artifact in p?.artifacts"
@@ -84,7 +89,9 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
     style="flex: 1 1 300px"
     v-if="p?.events?.length > 0")
 
-    .text-3xl.px-4.w-full Events 
+    .glass.py-2.px-3.flex.bg-light-300.dark-bg-dark-300.gap-2.text-sm.uppercase.w-full.flex
+      .flex-1 Events
+      .p-0 {{ p?.events?.length }}
     transition-group(name="fade")
       EventCard(
         style="flex: 1 1 240px"

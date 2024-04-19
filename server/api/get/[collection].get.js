@@ -23,7 +23,7 @@ const collections = {
   module: [
     'modules',
     {
-      fields: ['*', 'units.*', 'course.*', 'course.program.title', 'course.program.slug'
+      fields: ['*', 'units.*', 'course.*', 'course.program.title', 'course.program.slug', 'students'
       ]
     }
   ],

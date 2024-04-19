@@ -10,7 +10,7 @@ NuxtLink.flex.items-start.flex-col.gap-2.relative(
   .p-0.overflow-hidden(
     style="flex: 1 1 180px")
 
-    .absolute.z-2.transition.duration-500.w-full.h-auto.op-80.hover-op-90.max-h-80.overflow-clip.rounded-xl
+    .absolute.z-2.transition.duration-500.w-full.h-auto.grayscale-30.contrast-70.hover-contrast-100.hover-grayscale-0.max-h-80.overflow-clip.rounded-xl
       NuxtImg.w-full.overflow-clip.rounded-xl(
         v-if="project?.cover"
         :src="project?.cover"

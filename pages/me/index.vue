@@ -28,6 +28,7 @@ const member = await getItemById({
       .text-4xl {{ user?.last_name }}
     .font-mono  {{ user?.email }}
     button.absolute.right-4.rounded-xl.flex-1.p-2.border-1.shadow-lg(@click="onSubmit()") Logout
+    NuxtLink(to="/api/auth/discord" target="_blank") Connect Discord
 
   .glass.p-4.flex-1.flex.flex-col.gap-2.items-stretch
     .flex.gap-2.items-center.flex-wrap

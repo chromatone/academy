@@ -11,6 +11,18 @@ useHead({
   title: module.value?.title,
   titleTemplate: '%s module'
 })
+
+const user = useDirectusUser();
+
+const { getItemById } = useDirectusItems()
+
+const member = await getItemById({
+  collection: 'members',
+  id: user?.value?.member,
+  params: {
+    fields: ['student.modules.*']
+  }
+})
 </script>
 
 <template lang='pug'>
@@ -43,6 +55,9 @@ useHead({
     .glass.max-w-55ch.px-4(v-if="module?.content")
       MDC.prose.text-lg(:value="module?.content || ''" tag="article")
 
+    .glass.p-4 Start module
+      pre {{  }}
+      p {{ !!member?.student?.[0]?.modules.find(m=>m.modules_id == module?.id)}}
 
     .glass.p-4.gap-4.flex.items-center.uppercase
       .w-full.text-sm Units

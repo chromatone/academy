@@ -34,10 +34,6 @@ useHead({
     .glass.gap-4.flex.flex-col.p-4
       .text-md {{ course?.description }}
 
-    .glass.flex.flex-col.p-4
-      .op-50.text-xs.uppercase Craft
-      NuxtLink.text-xl(:to="`/crafts/${course?.craft?.slug}`") {{ course?.craft.title }}
-
     .glass.gap-4.flex.flex-col.py-2.px-4(v-if="course?.team")
 
       .flex.gap-2.items-center 
@@ -49,6 +45,10 @@ useHead({
             :user="t?.team_id?.member?.user") {{ t?.position }}
 
     PageCover(:id="course?.cover")
+
+    .glass.flex.flex-col.p-4
+      .op-50.text-xs.uppercase Craft
+      NuxtLink.text-xl(:to="`/crafts/${course?.craft?.slug}`") {{ course?.craft.title }}
 
     .glass.gap-4.flex.flex-col.py-2.px-4(v-if="course?.students")
 
@@ -64,7 +64,7 @@ useHead({
 
     .max-w-55ch.glass(v-if="course?.content")
       MDC.prose.m-4(:value="course?.content || ''" tag="article")
-    .glass.p-2.px-4.sticky.top-16.z-1000.flex-1.w-full.flex.flex-wrap.items-center
+    .glass.p-2.px-4.top-16.z-1000.flex-1.w-full.flex.flex-wrap.items-center
       .text-2xl.flex-1 Modules
       .op-70 {{ course?.modules?.length }}
 

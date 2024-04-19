@@ -26,7 +26,7 @@ table {
 }
 
 th {
-  @apply font-normal bg-light-600 shadow bg-dark-500
+  @apply font-normal bg-light-600 shadow dark-bg-dark-500
 }
 
 td, th {

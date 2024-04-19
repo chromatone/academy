@@ -1,11 +1,6 @@
 export default defineNuxtRouteMiddleware(async (to, _from) => {
-  const { fetchUser, setUser } = useDirectusAuth();
-  const user = useDirectusUser();
 
-  if (!user.value) {
-    const us = await fetchUser();
-    setUser(us.value);
-  }
+  const user = useDirectusUser();
 
   const { getItemById } = useDirectusItems()
 

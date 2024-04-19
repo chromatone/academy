@@ -21,7 +21,7 @@ const to = p.value?.end_date ? useDateFormat(() => p.value?.end_date, 'DD MMM YY
 </script>
 
 <template lang='pug'>
-.flex.flex-wrap.gap-4.items-start.px-4
+.flex.flex-wrap.gap-8.items-start.px-4
 
   .flex.flex-col.gap-4(
     style="flex: 1 1 300px")
@@ -60,7 +60,7 @@ const to = p.value?.end_date ? useDateFormat(() => p.value?.end_date, 'DD MMM YY
   .flex.flex-wrap.gap-4(
     style="flex: 1 1 300px"
     v-if="p?.courses?.length > 0")
-    .flex.items-center.glass.p-2.sticky.top-16.z-1000.flex-1.w-full   
+    .flex.items-center.glass.p-2.z-1000.flex-1.w-full   
       .text-xl.flex-1 Courses
       .text-sm.px-2.op-80 {{ p?.courses?.length }}
     .flex.flex-wrap.gap-4
@@ -75,7 +75,7 @@ const to = p.value?.end_date ? useDateFormat(() => p.value?.end_date, 'DD MMM YY
     style="flex: 1 1 300px"
     v-if="p?.projects?.length > 0"
     )
-    .flex.items-center.glass.p-2.sticky.top-16.z-1000.w-full   
+    .flex.items-center.glass.p-2.z-1000.w-full   
       .text-xl.flex-1 Projects
       .text-sm.px-2.op-80 {{ p?.projects?.length }}
     ProjectCard(

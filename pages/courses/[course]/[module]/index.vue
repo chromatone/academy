@@ -1,5 +1,5 @@
 <script setup>
-import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
+import { formatTimeAgo } from '@vueuse/core'
 
 definePageMeta({ middleware: ["auth", "course"] })
 
@@ -20,9 +20,27 @@ const member = await getItemById({
   collection: 'members',
   id: user?.value?.member,
   params: {
-    fields: ['student.modules.*']
+    fields: ['student.id', 'student.modules.*']
   }
 })
+
+const { token } = useDirectusToken()
+
+const studentModule = computed(() => {
+  return member?.student?.[0]?.modules.find(m => m.modules_id == module.value?.id)
+})
+
+const body = {
+  modules_id: module.value?.id,
+  students_id: member?.student?.[0]?.id,
+  token: token.value
+}
+
+const applyModule = useFetch('/api/apply/module', {
+  method: 'POST',
+  body
+})
+
 </script>
 
 <template lang='pug'>
@@ -48,16 +66,43 @@ const member = await getItemById({
 
       .text-md {{ module?.description }}
 
+
+    .glass.gap-4.flex.flex-col.py-2.px-4(v-if="module?.team")
+
+      .flex.gap-2.items-center 
+        .p-0.uppercase.text-xs.op-70 Team 
+        NuxtLink(
+          v-for="t in module?.team" :key="t"
+          :to="`/team/${t?.team_id?.member?.id}/`")
+          UserPill(
+            :user="t?.team_id?.member?.user") {{ t?.position }}
+
     PageCover(:id="module?.cover")
+
+    .glass.p-4.font-mono.text-xs.flex.flex-col.gap-2
+      template(v-if="studentModule")
+        .op-60 FIRST OPEN: {{ formatTimeAgo(new Date(studentModule?.first_visit)) }}
+        .op-60 LAST VISIT: {{ formatTimeAgo(new Date(studentModule?.last_visit)) }}
+      template(v-else)
+        p Welcome! 
+
+
+
+    .glass.gap-4.flex.flex-col.py-2.px-4(v-if="module?.students")
+      .flex.gap-2.items-center 
+        .p-0.uppercase.text-xs.op-70 Students 
+        NuxtLink(
+          v-for="t in module?.students" :key="t"
+          :to="`/students/${t?.students_id?.member?.id}/`")
+          UserPill(
+            :user="t?.students_id?.member?.user") 
+
+
 
   .flex.flex-col.gap-4.max-w-55ch(style="flex: 1 1 300px")
 
     .glass.max-w-55ch.px-4(v-if="module?.content")
       MDC.prose.text-lg(:value="module?.content || ''" tag="article")
-
-    .glass.p-4 Start module
-      pre {{  }}
-      p {{ !!member?.student?.[0]?.modules.find(m=>m.modules_id == module?.id)}}
 
     .glass.p-4.gap-4.flex.items-center.uppercase
       .w-full.text-sm Units

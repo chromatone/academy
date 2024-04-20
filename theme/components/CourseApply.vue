@@ -23,7 +23,7 @@ const application = reactive({
 
 async function sendApplication() {
 
-  const { success, error, data } = courseApplicationSchema.safeParse
+  const { success, error, data } = CourseApplicationSchema.safeParse
     (application)
 
   if (success) {

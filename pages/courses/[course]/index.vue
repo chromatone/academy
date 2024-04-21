@@ -75,7 +75,7 @@ useHead({
       )
 
       //- .absolute.-left-5.font-mono.text-lg.text-end {{ m + 1 }}
-      NuxtImg.rounded-xl(:src="mod?.cover" v-if="mod?.cover" width="80")
+      NuxtImg.rounded-xl.self-start(:src="mod?.cover" v-if="mod?.cover" width="80")
       .flex.flex-col.gap-1.p-2
         .text-xl {{ m + 1 }}. {{ mod.title }}
         .text-md {{ mod?.description }}

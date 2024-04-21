@@ -57,7 +57,7 @@ useHead({
       .flex.items-center 
         .text-3xl {{ l?.title }}
         .flex-1
-        .op-60.uppercase.text-sm Unit
+        .op-60.uppercase.text-sm {{ l?.type || 'Unit' }}
     .glass.gap-4.flex.flex-col.p-4(v-if="l?.description")
       .text-lg {{ l?.description }}
 

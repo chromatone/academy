@@ -110,17 +110,18 @@ const applyModule = useFetch('/api/apply/module', {
       .text-sm {{ module?.units?.length }}
       .i-la-angle-down
 
-    .glass.p-4.gap-4.flex.flex-col(v-for="unit in module?.units")
-      NuxtLink(
-        :to="`/courses/${route.params?.course}/${route.params?.module}/${unit?.slug}`"
-        )
-        .flex.items-center.gap-2
-          .text-xl.p-2 {{ unit?.title }}
-          .flex-1 
-          .text-sm.uppercase.op-60 Unit
-        .text-md.p-2(v-if="unit?.description") {{ unit?.description }}
-        .max-h-60.overflow-clip.flex.flex-col.items-center.relative.justify-center 
-          NuxtImg.w-full(v-if="unit?.cover" :src="unit?.cover" width="400")
-          .i-la-play-circle.text-6xl.absolute(v-if="unit?.youtube")
+
+    NuxtLink.gap-2.flex.flex-col.glass.p-4(
+      v-for="unit in module?.units"
+      :to="`/courses/${route.params?.course}/${route.params?.module}/${unit?.slug}`"
+      )
+      .flex.items-center.gap-2
+        .text-xl {{ unit?.title }}
+        .flex-1 
+        .text-sm.uppercase.op-60 {{ unit?.type }}
+      .text-md(v-if="unit?.description") {{ unit?.description }}
+      .max-h-60.overflow-clip.flex.flex-col.items-center.relative.justify-center 
+        NuxtImg.w-full(v-if="unit?.cover" :src="unit?.cover" width="400")
+        .i-la-play-circle.text-6xl.absolute(v-if="unit?.youtube")
         
 </template>

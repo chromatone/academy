@@ -51,22 +51,20 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
         .i-la-github
         NuxtLink.text-truncate.max-w-80(:to="p.github" target="_blank") {{ p.github.split('https://github.com/')[1] }}
 
-
-
-  .max-w-55ch.flex.flex-col.gap-4(
-  style="flex: 1 1 300px")
-
     NuxtImg.rounded-xl.w-full(
       style="flex: 1 1 200px"
       v-if="p?.cover"
       :src="p?.cover"
       width="600")
 
-    .rounded-2xl.overflow-clip
+  .max-w-55ch.flex.flex-col.gap-4(
+  style="flex: 1 1 300px")
+
+    .rounded-2xl.overflow-clip(v-if="p?.youtube_video")
       LiteYouTubeEmbed(
         title="Video" 
         :id="p?.youtube_video" 
-        v-if="p?.youtube_video")
+        )
 
     .glass.flex.flex-col.gap-3
       MDC.prose.px-4(:value="p?.content || ''" tag="article")

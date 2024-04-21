@@ -1,5 +1,4 @@
 export default oauth.discordEventHandler({
-
   async onSuccess(event, { user }) {
     console.log(user)
     return sendRedirect(event, `/me/?discord_id=${user?.id}&discord_username=${user?.username}`)

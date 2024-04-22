@@ -40,7 +40,7 @@ useHead({
         .p-0.uppercase.text-xs.op-70 Team 
         NuxtLink(
           v-for="t in course?.team" :key="t"
-          :to="`/team/${t?.team_id?.member?.id}/`")
+          :to="`/courses/${route.params?.course}/team/${t?.team_id?.member?.id}/`")
           UserPill(
             :user="t?.team_id?.member?.user") {{ t?.position }}
 

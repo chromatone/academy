@@ -31,13 +31,21 @@ export default defineNuxtConfig({
     stripeSecretKey: '',
     stripeWebhookSecret: '',
     apiToken: '',
+    emailHook: '',
+    emailFrom: '',
+    emailSmtpHost: '',
+    emailSmtpPort: '',
+    emailSmtpSecure: '',
+    emailSmtpUser: '',
+    emailSmtpPassword: '',
     public: {
       appDomain: '',
       dbUrl: '',
       dbToken: '',
       academyKey: '',
       umamiId: '',
-      umamiUrl: ''
+      umamiUrl: '',
+      subscriptionsOpen: '',
     }
   },
   modules: [
@@ -48,7 +56,8 @@ export default defineNuxtConfig({
     '@nuxtjs/mdc',
     '@nuxt/image',
     '@nuxtjs/color-mode',
-    'notivue/nuxt'
+    'notivue/nuxt',
+    '@vue-email/nuxt'
   ],
   routeRules: {
     '/': { prerender: true },
@@ -70,4 +79,8 @@ export default defineNuxtConfig({
   experimental: {
     sharedPrerenderData: true
   },
+  vueEmail: {
+    baseUrl: 'https://academy.chromatone.center/',
+    autoImport: true,
+  }
 })

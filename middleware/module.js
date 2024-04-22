@@ -8,14 +8,14 @@ export default defineNuxtRouteMiddleware(async (to, _from) => {
     collection: 'members',
     id: user?.value?.member,
     params: {
-      fields: ['student.courses.courses_slug']
+      fields: ['student.modules.modules_id.*']
     }
   })
 
-  const isStudent = !!member?.student?.[0]?.courses?.find(c => c?.courses_slug == to?.params?.course)
+  const isStudent = !!member?.student?.[0]?.modules?.find(c => c?.modules_id == to?.params?.module)
 
   if (!isStudent) {
-    return navigateTo(`/courses/${to?.params?.course}/apply/`)
+    return navigateTo(`/courses/${to?.params?.course}/${to?.params?.module}/start/`)
   }
 
 });

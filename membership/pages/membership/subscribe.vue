@@ -12,7 +12,10 @@ const { academy } = await useMeta()
     .glass.p-4.flex-1.flex.flex-col.gap-2
       .text-4xl Academy Membership 
       .text-sm.uppercase Subscription
-      .text-lg.text-red.mt-4 {{ academy?.subscription_notice }}
+      .text-lg During Pilot Semester every subscribed member gets:
+      ul.list-inside.list-circle
+        li.list-item(v-for="feature in academy?.features") {{ feature.title }},
+      .text-lg.mt-4 {{ academy?.subscription_notice }}
     .glass.p-4.text-2xl.relative.flex.items-center 1. Sign up as a new student
       .i-la-check-circle.absolute.right-4.text-green(v-if="user?.email")
     AuthSignup(v-if="!user?.email") 

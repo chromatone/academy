@@ -1,5 +1,23 @@
 <script setup>
-definePageMeta({ middleware: ["auth"] })
+definePageMeta({
+  middleware: ["auth", async (to) => {
+    const user = useDirectusUser();
+
+    const { getItemById } = useDirectusItems()
+
+    const member = await getItemById({
+      collection: 'members',
+      id: user.value?.member,
+      params: {
+        fields: ['active']
+      }
+    })
+    if (!member.active) {
+      return navigateTo(`/membership/subscribe/`)
+    }
+    console.log(member)
+  }]
+})
 
 const route = useRoute()
 

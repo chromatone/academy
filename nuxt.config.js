@@ -1,3 +1,6 @@
+import { createDirectus, rest, staticToken,readSingleton, updateSingleton } from "@directus/sdk"
+import pack from './package.json'
+
 export default defineNuxtConfig({
   extends: ['./auth', './theme', './membership'],
   app: {
@@ -82,5 +85,19 @@ export default defineNuxtConfig({
   vueEmail: {
     baseUrl: 'https://academy.chromatone.center/',
     autoImport: true,
+  },
+  hooks: {
+    'build:before': async () => {
+      const db = createDirectus(process.env?.NUXT_PUBLIC_DB_URL).with(rest()).with(staticToken(process.env?.NUXT_PUBLIC_ACADEMY_KEY))
+      const academy = await db.request(readSingleton('academy', {fields: ['version']}))
+      console.log('version in db: ',academy?.version)
+      console.log('version in package.json: ', pack?.version)
+      if (pack?.version != academy?.version) {
+        await db.request(updateSingleton('academy', {
+          version: pack?.version
+        }))
+        console.log('updated version to: ', pack?.version)
+      }
+    }
   }
 })

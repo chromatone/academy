@@ -1,4 +1,4 @@
-### Nuxt
+## Nuxt
 
 <https://nuxt.com/docs/api/utils/dollarfetch>
 <https://image.nuxt.com/usage/nuxt-picture>
@@ -39,11 +39,6 @@
 <https://unjs.io/blog/2023-08-15-h3-towards-the-edge-of-the-web#runtime-type-safe-request-utils>
 <https://vueschool.io/articles/vuejs-tutorials/zod-and-query-string-variables-in-nuxt/>
 
-### Email
-
-<https://vuemail.net/getting-started>
-<https://nuxt.com/modules/nuxt-mail>
-
 ### Translation
 
 <https://github.com/LibreTranslate/LibreTranslate>
@@ -73,3 +68,22 @@
 <https://www.youtube.com/watch?v=fUAQxqYFn8o>
 <https://www.youtube.com/watch?v=VMzRlI1Hudw>
 <https://www.youtube.com/watch?v=1__Leh5MBEM>
+
+### Podcasts
+
+<https://github.com/Podcast-Standards-Project/PSP-1-Podcast-RSS-Specification>
+<https://podcasters.apple.com/support/823-podcast-requirements>
+<https://dev.to/rafaelmagalhaes/creating-rss-feed-with-nuxt-3-5oj>
+<https://github.com/rafaelmagalhaes/nuxt3-rss/blob/master/server/routes/rss.ts>
+
+### Email
+
+<https://vuemail.net>
+<https://nodemailer.com/>
+<https://vuemail.net/ssr/nuxt>
+<https://yandex.ru/support/mail/web/letter/create/send-many-letters.html?ysclid=lvb3yvrmb7928768881>
+<https://ethereal.email/>
+<https://www.izoukhai.com/blog/build-newsletter-system-with-directus>
+<https://woodpecker.co/blog/deliverability-checks/>
+<https://woodpecker.co/blog/smtp-cold-emails/>
+<https://yandex.com/support/mail/web/letter/create/send-many-letters.html>

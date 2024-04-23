@@ -29,14 +29,15 @@ export default defineEventHandler(async event => {
 
   if (!user.member || (user?.member && user?.member?.length == 0)) {
 
-    const member = await db.request(createItem('members', {
+    const mem = await db.request(createItem('members', {
       active: false,
       user: user.id,
-      role: 'aspirant'
+      role: 'aspirant',
+      newsletter: user?.newsletter
     }))
 
-    console.log('created new member')
-    user.member = [member.id]
+    console.log('created new member', mem.id)
+    user.member = [mem.id]
   }
 
 

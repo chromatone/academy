@@ -52,8 +52,8 @@ useHead({
 
     .glass.gap-4.flex.flex-col.py-2.px-4(v-if="course?.students")
 
-      .flex.gap-2.items-center 
-        .p-0.uppercase.text-xs.op-70 Students 
+      .flex.gap-2.items-center.flex.flex-wrap.gap-2 
+        .p-0.uppercase.text-xs.op-70.w-full Students 
         NuxtLink(
           v-for="t in course?.students" :key="t"
           :to="`/students/${t?.students_id?.member?.id}/`")

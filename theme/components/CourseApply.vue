@@ -33,7 +33,10 @@ async function sendApplication() {
     })
     navigateTo(`/courses/${props.course}/`)
   } else {
-    error.issues.forEach(e => push.error(e.message))
+    error.issues.forEach(e => {
+      console.log(usr)
+      push.error(e.message)
+    })
 
   }
 }
@@ -61,4 +64,5 @@ async function sendApplication() {
       placeholder="I'm interested in this course because..."
       )
     button.button(type="submit") Apply
+    p {{ usr?.member?.[0] }}
 </template>

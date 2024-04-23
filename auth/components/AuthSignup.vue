@@ -3,7 +3,8 @@ const u = reactive({
   first_name: '',
   last_name: '',
   email: '',
-  password: ''
+  password: '',
+  newsletter: true
 })
 
 
@@ -48,6 +49,11 @@ const onSubmit = async () => {
       input#password(
         type="password"
         v-model="u.password")
+    .flex.gap-4
+      label(for="newsletter") Subscribe to weekly Academy newsletter?
+      input#newsletter.text-xl.w-8(
+        type="checkbox"
+        v-model="u.newsletter")
     button.button(type="submit") Sign up
     .text-sm.text-red(v-if="statusCode") {{ statusCode }}
 </template>

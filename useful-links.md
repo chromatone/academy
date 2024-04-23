@@ -1,10 +1,13 @@
-## Nuxt
+### Nuxt
 
 <https://nuxt.com/docs/api/utils/dollarfetch>
 <https://image.nuxt.com/usage/nuxt-picture>
 <https://nuxtseo.com/og-image/guides/icons-and-images>
 <https://nuxt-prepare.byjohann.dev/>
 <https://roe.dev/blog/nuxt-server-components>
+
+### Cron
+
 <https://nuxt-cron.hywax.space/api/presets.html>
 
 ### Directus

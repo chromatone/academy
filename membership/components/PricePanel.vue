@@ -44,7 +44,7 @@ const config = useRuntimeConfig()
 </script>
 
 <template lang='pug'>
-.glass.flex.flex-wrap.gap-8.p-4.border-dark-300.dark-border-light-300.max-h-full.overflow-scroll.flex-1(v-show="showPrice") 
+.glass.flex.flex-wrap.gap-4.p-4.border-dark-300.dark-border-light-300.max-h-full.overflow-scroll.flex-1(v-show="showPrice") 
 
   slot
 
@@ -60,17 +60,22 @@ const config = useRuntimeConfig()
         v-for="plan in plans"
         :key="plan?.id"  
         @click="prefer = plan"
-        )
+        ) 
         .flex.flex-col.gap-2(
           style="flex: 1 1 120px")
-          .text-xs.uppercase Membership plan
+          .text-xs.uppercase.flex Membership plan
+            .flex-1
+            .p-0 {{plan?.subscriptions?.length}} / {{ plan?.limit || '∞' }}
           .text-2xl(style="white-space: nowrap;") {{ plan?.title }}
 
           .text-3xl.flex.items-baseline.gap-2 ${{ +plan?.price }}/mo
             .text-sm.line-through.op-60 ${{ +plan?.old_price }}
         .text-sm.op-60.mb-2(style="flex: 1 1 200px") {{ plan?.description }}
         .flex.flex-col.gap-2.w-full
-          .text-sm.bg-light-900.p-1.px-2.rounded.bg-op-20(v-for="benefit in plan.benefits" :title="benefit?.benefits_id?.description") {{ benefit.benefits_id?.title }}
+          .text-sm.bg-light-900.p-1.px-2.rounded.bg-op-20(
+            v-for="benefit in plan.benefits" 
+            v-tooltip.bottom="{ popperClass: 'max-w-45ch',content: benefit?.benefits_id?.description}"
+            :title="benefit?.benefits_id?.description") {{ benefit.benefits_id?.title }}
 
     button.relative.p-2.bg-purple-300.hover-bg-purple-400.dark-bg-purple-600.dark-hover-bg-purple-500.dark-active-bg-purple-800.transition.rounded-xl.text-xl.items-center.flex.items-center.disabled-op-40(@click="subscribe()" :disabled="!config?.public?.subscriptionsOpen") 
       .i-la-spinner.animate-spin.absolute(v-if="sending")

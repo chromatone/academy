@@ -1,8 +1,8 @@
-import { createDirectus, rest, staticToken,readSingleton, updateSingleton } from "@directus/sdk"
+import { createDirectus, rest, staticToken, readSingleton, updateSingleton } from "@directus/sdk"
 import pack from './package.json'
 
 export default defineNuxtConfig({
-  extends: ['./auth', './theme', './membership'],
+  extends: ['./auth', './theme', './membership', './news'],
   app: {
     pageTransition: { name: 'page', mode: 'out-in' }
   },
@@ -60,7 +60,9 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/color-mode',
     'notivue/nuxt',
-    '@vue-email/nuxt'
+    '@vue-email/nuxt',
+    'floating-vue/nuxt',
+    'nuxt-cron'
   ],
   routeRules: {
     '/': { prerender: true },
@@ -89,8 +91,8 @@ export default defineNuxtConfig({
   hooks: {
     'build:before': async () => {
       const db = createDirectus(process.env?.NUXT_PUBLIC_DB_URL).with(rest()).with(staticToken(process.env?.NUXT_PUBLIC_ACADEMY_KEY))
-      const academy = await db.request(readSingleton('academy', {fields: ['version']}))
-      console.log('version in db: ',academy?.version)
+      const academy = await db.request(readSingleton('academy', { fields: ['version'] }))
+      console.log('version in db: ', academy?.version)
       console.log('version in package.json: ', pack?.version)
       if (pack?.version != academy?.version) {
         await db.request(updateSingleton('academy', {

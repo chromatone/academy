@@ -4,6 +4,8 @@ import { useDateFormat } from '@vueuse/core'
 
 const route = useRoute()
 
+const config = useRuntimeConfig()
+
 // definePageMeta({ middleware: ["auth"] })
 
 const { getItemById } = useDirectusItems()
@@ -18,7 +20,7 @@ const { data: events, error } = await useAsyncData('artifact-' + route.params?.s
         _eq: route.params?.slug
       }
     },
-    fields: ['*', 'project.title', 'project.slug', 'project.program.title', 'project.program.slug', 'project.program.color', 'place.title', 'place.url']
+    fields: ['*', 'files.directus_files_id.title', 'files.directus_files_id.id', 'files.directus_files_id.type', 'project.title', 'project.slug', 'project.program.title', 'project.program.slug', 'project.program.color', 'place.title', 'place.url']
   }
 }))
 
@@ -62,6 +64,17 @@ const date = useDateFormat(() => p.value?.date, 'DD MMM YYYY')
       .flex.items-center.gap-2(v-if="p?.github_repo")
         .i-la-github
         NuxtLink.text-truncate.max-w-80(:to="p.github_repo" target="_blank") {{ p.github_repo.split('https://github.com/')[1] || p.github_repo }}
+
+    .glass.p-4.w-full(v-if="p?.files")
+      .text-lg Files
+      a.p-2.shadow.flex.flex-wrap.gap-2.bg-light-300.bg-op-30.rounded-xl.relative.items-center(
+        :href="`${config.public.dbUrl}/assets/${file.directus_files_id?.id}?download`"
+        target="_blank" 
+        :download="file?.directus_files_id?.title"
+        v-for="file in p?.files" :key="file") 
+        .i-la-file-download
+        .p-0 {{ file.directus_files_id?.title }}
+        .absolute.right-2.op-40  {{ file.directus_files_id?.type }}
 
     NuxtImg.w-full.rounded-xl.shadow-lg(
       v-if="p?.poster && p.poster != p?.cover"

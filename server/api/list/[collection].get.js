@@ -57,6 +57,16 @@ const collections = {
       sort: ['sort'],
       fields: ['*']
     }],
+  newsletters: [
+    'newsletters',
+    {
+      fields: ['title', 'description', {
+        issues: ['title', 'description', {
+          news: ['title', 'description']
+        }]
+      }]
+    }
+  ]
 
 }
 

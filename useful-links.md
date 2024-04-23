@@ -5,6 +5,7 @@
 <https://nuxtseo.com/og-image/guides/icons-and-images>
 <https://nuxt-prepare.byjohann.dev/>
 <https://roe.dev/blog/nuxt-server-components>
+<https://nuxt-cron.hywax.space/api/presets.html>
 
 ### Directus
 
@@ -25,6 +26,17 @@
 ### Discord
 
 <https://discord.com/developers/docs/interactions/application-commands>
+<https://discord.com/developers/applications/>
+<https://www.youtube.com/watch?v=4uS08smfjsE>
+
+### Auth
+
+<https://github.com/Atinux/nuxt-auth-utils>
+<https://masteringnuxt.com/blog/protecting-server-routes>
+<https://www.youtube.com/watch?v=cQ1jUkRPZYw> Auth Crash Course
+<https://www.youtube.com/watch?v=lBr4V_3j8kI> Secure routes
+<https://www.youtube.com/watch?v=IcaL1RfnU44> Easy Auth
+<https://www.youtube.com/watch?v=cQ1jUkRPZYw&list=PLQdX2Upwv8S6C7C75dysmBzWa0Nwnjm4W> Crash Course - Auth
 
 ### Forms
 
@@ -87,3 +99,15 @@
 <https://woodpecker.co/blog/deliverability-checks/>
 <https://woodpecker.co/blog/smtp-cold-emails/>
 <https://yandex.com/support/mail/web/letter/create/send-many-letters.html>
+
+### Virtual lists
+
+<https://github.com/lucas-labs/vue3-vsl>
+
+## Calendar
+
+<https://wicky.nillia.ms/cally/>
+
+### Education
+
+<https://medium.com/@Dmitry_Krutov/exploring-new-skillbox-courses-non-linear-learning-gamification-and-real-world-tasks-c11a9f198f01>

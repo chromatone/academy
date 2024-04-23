@@ -1,6 +1,8 @@
 <script setup>
 const { data: docs } = await useFetch('/api/list/docs')
 
+const { data: academy } = await useFetch('/api/get/academy')
+
 const routes = {
   programs: 'Programs',
   courses: 'Courses',
@@ -28,6 +30,7 @@ footer.bg-dark-900.bg-opacity-20.flex.flex-col.items-stretch
 
       :to="`/docs/${doc.slug}/`"
       v-for="doc in docs" :key="doc") {{ doc.title }}
+    NuxtLink.text-sm.op-30.hover-op-80(:to="academy?.github_repo" target="_blank") v.{{ academy?.version }} 
     .text-sm.op-50 2024
   .flex.flex-wrap.gap-4.py-2.bg-dark-100.bg-opacity-40.px-4
   

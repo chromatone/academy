@@ -2,7 +2,7 @@ import { createDirectus, rest, staticToken, readSingleton, updateSingleton } fro
 import pack from './package.json'
 
 export default defineNuxtConfig({
-  extends: ['./auth', './theme', './membership', './news'],
+  extends: ['./auth', './theme', './membership'],
   app: {
     pageTransition: { name: 'page', mode: 'out-in' }
   },
@@ -34,13 +34,6 @@ export default defineNuxtConfig({
     stripeSecretKey: '',
     stripeWebhookSecret: '',
     apiToken: '',
-    emailHook: '',
-    emailFrom: '',
-    emailSmtpHost: '',
-    emailSmtpPort: '',
-    emailSmtpSecure: '',
-    emailSmtpUser: '',
-    emailSmtpPassword: '',
     public: {
       appDomain: '',
       dbUrl: '',
@@ -60,7 +53,6 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/color-mode',
     'notivue/nuxt',
-    '@vue-email/nuxt',
     'floating-vue/nuxt',
     'nuxt-cron'
   ],

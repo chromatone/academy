@@ -15,9 +15,7 @@ const eventList = computed(() => [...events.value]?.sort((a, b) => a.date > b.da
 
 <template lang='pug'>
 .p-4.flex.flex-wrap.gap-6
-  .flex.flex-col.gap-2
-    .text-2xl Upcoming Events
-  .text-2xl.w-full Past Events 
+  .text-2xl.w-full Events 
   transition-group(name="fade")
     EventCard(
       style="flex: 1 1 240px"

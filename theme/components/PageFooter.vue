@@ -5,10 +5,12 @@ const { data: academy } = await useFetch('/api/get/academy')
 
 const routes = {
   programs: 'Programs',
-  courses: 'Courses',
-  members: 'Members',
   projects: 'Projects',
+  courses: 'Courses',
   events: 'Events',
+  news: 'News',
+  members: 'Members',
+  calendar: 'Calendar'
 }
 </script>
 

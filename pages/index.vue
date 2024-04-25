@@ -25,7 +25,7 @@ const { data: programs } = await useFetch('/api/list/programs')
         li.list-circle.ml-4.py-1.text-lg(v-for="feature in academy?.features") {{ feature?.title }}
       //- button.p-4.text-2xl.bg-purple.rounded-lg.shadow-lg Buy Academy Membership
       NuxtLink.p-4.bg-purple-500.rounded-xl.shadow-lg.text-xl.text-center(to="membership/subscribe" v-if="!user?.email") Subscribe
-      WaitList(v-if="!user?.email")
+
 
 
   .flex.flex-wrap.gap-8.p-6(style="flex: 1 1 600px")
@@ -34,5 +34,6 @@ const { data: programs } = await useFetch('/api/list/programs')
       style="flex: 1 1 300px"
       v-for="p in programs"
       :p="p")
-    
+
+  WaitList(v-if="!user?.email")
 </template>

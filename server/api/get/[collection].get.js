@@ -40,7 +40,13 @@ const collections = {
     {
       fields: ['*', 'project.title', 'project.slug', 'project.program.title', 'project.program.slug', 'project.program.color', 'place.title', 'place.url']
     }
-  ]
+  ],
+  news: [
+    'news',
+    {
+      fields: ['*']
+    }
+  ],
 }
 
 export default defineEventHandler(async event => {

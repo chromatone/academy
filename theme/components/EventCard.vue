@@ -17,8 +17,8 @@ NuxtLink.p-0.flex.flex-wrap.items-start.gap-4.rounded-xl.overflow-clip.max-w-150
       title="Cover"
       format="webp"
       width="400"
-      :src="event?.cover"
-      v-if="event?.cover"
+      :src="event?.cover || event?.poster"
+      v-if="event?.cover || event?.poster"
       )
     .i-la-play-circle.pointer-events-none.op-80.text-light-400.text-80px.absolute.top-8(style="left:calc(50% - 50px)" v-if="event?.youtube_video || event?.live_stream")
   .flex.flex-col.flex-auto.gap-2.glass.p-2.mx-2.mb-2(style="flex: 1 1 400px")

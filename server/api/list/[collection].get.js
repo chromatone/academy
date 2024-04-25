@@ -51,6 +51,9 @@ const collections = {
         program: ['title', 'slug']
       }]
     }],
+  events: ['events', {
+    fields: ['*',]
+  }],
   docs: [
     'academy_docs',
     {
@@ -66,6 +69,10 @@ const collections = {
         }]
       }]
     }
+  ],
+  news: [
+    'news',
+    { fields: ['slug', 'title', 'description', 'date'] }
   ]
 
 }

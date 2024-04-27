@@ -51,6 +51,15 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
         .i-la-github
         NuxtLink.text-truncate.max-w-80(:to="p.github" target="_blank") {{ p.github.split('https://github.com/')[1] }}
 
+    .glass.gap-4.flex.flex-col.py-2.px-4(v-if="p?.team")
+      .flex.gap-2.items-center 
+        .p-0.uppercase.text-xs.op-70 Team 
+        NuxtLink(
+          v-for="t in p?.team" :key="t"
+          :to="`/courses/${route.params?.course}/team/${t?.team_id?.member?.id}/`")
+          UserPill(
+            :user="t?.team_id?.member?.user") {{ t?.position }}
+
     NuxtImg.rounded-xl.w-full(
       style="flex: 1 1 200px"
       v-if="p?.cover"
@@ -58,7 +67,8 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
       width="600")
 
   .max-w-55ch.flex.flex-col.gap-4(
-  style="flex: 1 1 300px")
+    v-if="p?.youtube_video || p?.content"
+    style="flex: 1 1 300px")
 
     .rounded-2xl.overflow-clip(v-if="p?.youtube_video")
       LiteYouTubeEmbed(

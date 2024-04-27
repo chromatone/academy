@@ -9,8 +9,9 @@ const routes = {
   courses: 'Courses',
   events: 'Events',
   news: 'News',
-  members: 'Members',
-  calendar: 'Calendar'
+  calendar: 'Calendar',
+  crafts: 'Crafts',
+  students: 'Students',
 }
 </script>
 

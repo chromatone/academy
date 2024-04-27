@@ -33,7 +33,7 @@ const collections = {
   ],
   project: [
     'projects',
-    { fields: ['*', 'artifacts.*', 'events.*', 'program.title', 'program.slug', 'program.color', 'partners.partners_id.title', 'partners.partners_id.url'] }
+    { fields: ['*', 'artifacts.*', 'events.*', 'program.title', 'program.slug', 'program.color', 'partners.partners_id.title', 'partners.partners_id.url', 'team.team_id.member.id', 'team.team_id.member.user'] }
   ],
   event: [
     'events',

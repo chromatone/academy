@@ -1,4 +1,5 @@
 <script setup>
+definePageMeta({ middleware: ["auth"] })
 const route = useRoute()
 
 const { data: n } = await useFetch('/api/get/news', { query: { slug: route.params?.slug } })

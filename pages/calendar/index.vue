@@ -1,4 +1,5 @@
 <script setup>
+definePageMeta({ middleware: ["auth"] })
 import { previousMonday, format, setDay, getWeek, isToday, isPast, isSameDay } from "date-fns";
 
 const now = ref(new Date())

@@ -1,5 +1,5 @@
 <script setup>
-
+definePageMeta({ middleware: ["auth"] })
 
 const { data: news } = await useFetch('/api/list/news')
 

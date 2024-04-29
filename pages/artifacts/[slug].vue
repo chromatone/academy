@@ -2,11 +2,13 @@
 import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
 import { useDateFormat } from '@vueuse/core'
 
+definePageMeta({ middleware: ["auth"] })
+
 const route = useRoute()
 
 const config = useRuntimeConfig()
 
-// definePageMeta({ middleware: ["auth"] })
+definePageMeta({ middleware: ["auth"] })
 
 const { getItemById } = useDirectusItems()
 const { getThumbnail: img } = useDirectusFiles();

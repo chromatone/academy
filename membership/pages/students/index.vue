@@ -1,4 +1,7 @@
 <script setup>
+
+definePageMeta({ middleware: ["auth"] })
+
 const { data: students } = await useFetch('/api/list/students')
 
 const { academy } = await useMeta()

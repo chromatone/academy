@@ -2,7 +2,7 @@
 import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
 import { useDateFormat } from '@vueuse/core'
 
-// definePageMeta({ middleware: ["auth"] })
+definePageMeta({ middleware: ["auth"] })
 
 const route = useRoute()
 

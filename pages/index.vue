@@ -35,5 +35,5 @@ const { data: programs } = await useFetch('/api/list/programs')
       v-for="p in programs"
       :p="p")
 
-  WaitList(v-if="!user?.email")
+  //- WaitList.fixed.top-20.right-4(v-if="!user?.email")
 </template>

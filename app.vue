@@ -1,6 +1,12 @@
 <script setup>
+
+const config = useRuntimeConfig()
+
 useHead({
-  titleTemplate: '- Chromatone Academy',
+  titleTemplate: '%s %separator %siteName',
+  templateParams: {
+    separator: '·'
+  },
   htmlAttrs: {
     lang: 'en',
   },
@@ -8,28 +14,14 @@ useHead({
     rel: "icon",
     type: "image/svg+xml", href: "/logo.svg"
   }],
-  script: [process.env.NODE_ENV == 'production' ?
-    {
+  script: [
+    ['production', 'prerender'].includes(process.env.NODE_ENV) ? {
       'data-website-id': config.public.umamiId,
       async: '',
       src: config.public.umamiUrl
-    } : null
-  ]
+    } : false
+  ].filter(Boolean)
 })
-
-const config = useRuntimeConfig()
-
-if (process.env.NODE_ENV == 'production') {
-  useHead({
-    script: [
-      {
-        'data-website-id': config.public.umamiId,
-        async: '',
-        src: config.public.umamiUrl
-      }
-    ]
-  })
-}
 
 useSeoMeta({
   viewport: 'width=device-width, initial-scale=1.0',

@@ -3,9 +3,9 @@
 const config = useRuntimeConfig()
 
 useHead({
-  titleTemplate: '%s %separator %siteName',
+  titleTemplate: '%s %separator Chromatone Academy',
   templateParams: {
-    separator: '·'
+    separator: '·',
   },
   htmlAttrs: {
     lang: 'en',

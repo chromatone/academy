@@ -10,7 +10,7 @@ const { token } = useDirectusToken()
 const db = createDirectus(useRuntimeConfig().public.dbUrl).with(rest())
 
 const usr = await db.request(withToken(token.value, readMe({
-  fields: ['member.*']
+  fields: ['*', 'member.*', 'member.student']
 })))
 
 const application = reactive({
@@ -64,5 +64,4 @@ async function sendApplication() {
       placeholder="I'm interested in this course because..."
       )
     button.button(type="submit") Apply
-    p {{ usr?.member?.[0] }}
 </template>

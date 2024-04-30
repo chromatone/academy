@@ -3,11 +3,16 @@ import pack from './package.json'
 
 export default defineNuxtConfig({
   extends: ['./auth', './theme', './membership'],
+  devServer: {
+    port: 3020
+  },
   app: {
-    pageTransition: { name: 'page', mode: 'out-in' }
+    pageTransition: { name: 'page', mode: 'out-in' },
+    siteName: 'Chromatone Academy',
   },
   site: {
-    url: 'https://academy.chromatone.center'
+    url: 'https://academy.chromatone.center',
+
   },
   css: [
     '@unocss/reset/tailwind.css',

@@ -70,7 +70,7 @@ useHead({
 
     NuxtLink.relative.glass.flex.items-center.gap-2.hover-bg-light-900.dark-hover-bg-dark-400(
       v-for="(mod, m) in course?.modules?.sort((a, b) => a?.sort > b?.sort ? 1 : -1)"
-      :to="user ? `/courses/${route.params?.course}/${mod?.slug}` : '/auth/login'"
+      :to="`/courses/${route.params?.course}/${mod?.slug}`"
       @click="!user ? showPrice = true : null"
       )
 

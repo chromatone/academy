@@ -52,17 +52,15 @@ const config = useRuntimeConfig()
     style="flex: 2 1 400px"
     :class="{ 'pointer-events-none cursor-cross op-50': !user?.email }"
     )
-    .text-xl Choose your plan
     .flex.flex-wrap.gap-4
-      .shadow.border-2.flex.flex-wrap.gap-2.rounded-xl.cursor-pointer.relative.p-4(
+      .shadow.border-2.flex.flex-col.gap-2.rounded-xl.cursor-pointer.relative.p-4(
         style="flex: 1 1 160px"
         :class="{ 'border-purple-500': plan == prefer }"
         v-for="plan in plans"
         :key="plan?.id"  
         @click="prefer = plan"
         ) 
-        .flex.flex-col.gap-2(
-          style="flex: 1 1 120px")
+        .flex.flex-col.gap-2
           .text-xs.uppercase.flex Membership plan
             .flex-1
             .p-0 {{plan?.subscriptions?.length}} / {{ plan?.limit || '∞' }}
@@ -70,7 +68,7 @@ const config = useRuntimeConfig()
 
           .text-3xl.flex.items-baseline.gap-2 ${{ +plan?.price }}/mo
             .text-sm.line-through.op-60 ${{ +plan?.old_price }}
-        .text-sm.op-60.mb-2(style="flex: 1 1 200px") {{ plan?.description }}
+        .text-sm.op-60.mb-2 {{ plan?.description }}
         .flex.flex-col.gap-2.w-full
           .text-sm.bg-light-900.p-1.px-2.rounded.bg-op-20(
             v-for="benefit in plan.benefits" 

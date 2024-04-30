@@ -11,7 +11,6 @@ const { data: p } = await useFetch('/api/get/program', { query: { slug: route.pa
 
 useHead({
   title: p.value?.title,
-  titleTemplate: '%s program'
 })
 
 const from = useDateFormat(() => p.value?.start_date, 'DD MMM YYYY')

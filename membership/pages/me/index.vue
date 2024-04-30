@@ -14,7 +14,7 @@ const member = await getItemById({
   collection: 'members',
   id: user.value?.member?.[0],
   params: {
-    fields: ['role', 'active', 'subscriptions.current_period_end', 'subscriptions.status', 'subscriptions.stripe_session_id', 'subscriptions.plan.title']
+    fields: ['role', 'active', 'subscriptions.current_period_end', 'subscriptions.status', 'subscriptions.stripe_session_id', 'subscriptions.stripe_session_url', 'subscriptions.plan.title']
   }
 })
 
@@ -32,8 +32,8 @@ const member = await getItemById({
 
   .glass.p-4.flex-1.flex.flex-col.gap-2.items-stretch
     .flex.gap-2.items-center.flex-wrap
-      .uppercase.op-90.text-lg {{ member.role }}
-      .uppercase.op-70.text-sm {{ member.active ? 'Active' : 'Disabled' }}
+      .uppercase.op-90.text-lg {{ member?.role }}
+      .uppercase.op-70.text-sm {{ member?.active ? 'Active' : 'Disabled' }}
       .flex-1 
       NuxtLink.bg-purple-500.px-2.py-1.rounded-xl.shadow.bg-op-80.op-60(to="/membership/subscribe") New subscription
 
@@ -43,9 +43,10 @@ const member = await getItemById({
       .op-50 {{ sub?.status }}
       .flex-1
       .op-90(v-if="sub?.status == 'active'") PAID TILL {{ new Date(sub?.current_period_end).toLocaleDateString() }}
+      NuxtLink.button(:to="sub?.stripe_session_url" v-if="sub?.status == 'incomplete'") PAY
       form(action="/api/membership/manage" method="POST")
         input(type="hidden" id="session-id" name="session_id" :value="sub.stripe_session_id")
-        button.px-2.py-2.bg-purple.rounded-xl.shadow(type="submit") Manage
+        button.button(type="submit") Manage
 
 
   .p-2.flex.flex-col.gap-4(v-if="!user?.member?.[0]")

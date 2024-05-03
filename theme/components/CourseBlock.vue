@@ -7,7 +7,7 @@ const props = defineProps({
 </script>
 
 <template lang="pug">
-NuxtLink.p-0.relative.overflow-clip.rounded-xl(
+NuxtLink.p-0.relative.rounded-xl.pb-4(
   :to="`/courses/${p?.slug}/`"
   )
   .absolute.z-2.transition.duration-500.w-full.h-auto.op-80.hover-op-90.w-full.overflow-clip.rounded-xl.w-full

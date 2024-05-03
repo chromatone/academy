@@ -43,6 +43,8 @@ useHead({
 .flex.flex-wrap.overflow-clip.items-start.px-4.gap-4 
 
   .max-w-55ch.flex.flex-col.gap-4(style="flex: 1 1 300px") 
+
+    PageCover(:id="course?.cover")
     NuxtLink.flex.flex-col.glass.p-4(
       :to="`/programs/${course?.program?.slug}`") 
       .op-50.text-xs.uppercase Program
@@ -69,7 +71,7 @@ useHead({
           UserPill(
             :user="t?.team_id?.member?.user") {{ t?.position }}
 
-    PageCover(:id="course?.cover")
+
 
     .glass.gap-4.flex.flex-col.py-2.px-4(v-if="course?.students")
 

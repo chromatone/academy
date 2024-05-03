@@ -38,7 +38,9 @@ const plans = await usePublicItems('plans', {
             li.rounded.px-2.py-1.bg-purple-200.bg-op-20(
               style="flex: 1"
               v-for="feature in academy?.features") {{ feature?.title }}
-          NuxtLink.max-w-45ch.bg-purple-300.p-4.rounded-xl.text-xl(to="/membership/subscribe/") Subscribe now
+          .flex.gap-2.items-center
+            NuxtLink.max-w-45ch.bg-purple-300.dark-bg-purple-600.p-4.rounded-xl.text-xl.flex-1(to="/membership/subscribe/") Subscribe now
+            NuxtLink.bg-purple-300.bg-op-40.op-80.dark-bg-purple-600.dark-bg-op-40.p-4.rounded-xl.text-xl.box-border(to="/auth/login/") Login
         .flex-1
   .flex.flex-col.p-4.flex-1.w-full(style="flex: 1 1 100%")
     PageCount
@@ -53,7 +55,7 @@ const plans = await usePublicItems('plans', {
         .text-xl Join us today and get the early bird price
         p From open source to open minds. You will see how we're growing from the ground up, from the very first students with you among them. There will be constant documented improvements and warm feedback loop for you to be able to learn the things you want to explore. We're open for 
 
-        NuxtLink.max-w-45ch.max-w-45ch.bg-purple-300.p-4.rounded-xl.text-xl(to="/membership/subscribe/") Subscribe today
+        NuxtLink.max-w-45ch.max-w-45ch.bg-purple-300.dark-bg-purple-600.p-4.rounded-xl.text-xl.grayscale-10.hover-grayscale-0.transition(to="/membership/subscribe/") Subscribe today
 
   .flex.flex-wrap.gap-8.p-6(style="flex: 1 1 600px")
     NuxtLink.w-full.text-4xl(to="/programs/") Programs 

@@ -43,25 +43,37 @@ async function sendApplication() {
 </script>
 
 <template lang='pug'>
-.flex.flex-wrap.overflow-clip.items-start.px-4.gap-4
+.flex.flex-wrap.overflow-clip.items-start.gap-4
   .max-w-55ch.glass.p-4.flex.flex-col.gap-4
     h1.text-4xl Welcome!
-    .text-md To participate in this course you need to apply to it by filling out this simple form. Just press Apply and you will immediately get access to the course and we will get to know our students a bit better. 
+    .text-md Apply to the course by sharing a snapshot of where you are and where are you going.
 
-  form.form.max-w-55ch.glass.p-4.flex.flex-col.gap-4(
+  form.form.flex.flex-col.gap-4(
     @submit.prevent="sendApplication()"
     )
-    .text-xl Prior experience
-    .text-sm Tell us about your journey. How and when did you start being interested in the topics of this course? What level of knowledge and practical skills do you have by now. Where, how and how long did you study to get there? 
-    textarea(
-      v-model="application.prior_experience"
-      placeholder="I've learned a bit by myself back in my school days, then..."
-      )
-    .text-xl Motivation
-    .text-sm Tell us about your goals and aspirations. Why are you interested in studying this topic? What do you see the most important to learn? How do you suppose to use the skills and knowledge, aquired throughout this course?
-    textarea(
-      v-model="application.motivation"
-      placeholder="I'm interested in this course because..."
-      )
-    button.button(type="submit") Apply
+    .max-w-55ch.glass.p-4.flex.flex-col.gap-4
+      .text-2xl Prior experience
+      .text-sm Tell us about your journey. 
+        ul.p-4.flex.flex-col.gap-2
+          li.list-circle When and how did you become interested in topics of the course? 
+          li.list-circle What level of knowledge and practical skills do you currently have? 
+          li.list-circle Where, when and how long have you studied to get to this point? 
+      textarea(
+        v-model="application.prior_experience"
+        placeholder="I've learned a bit by myself back in my school days, then..."
+        )
+    .max-w-55ch.glass.p-4.flex.flex-col.gap-4
+      .text-2xl Motivation
+      .text-sm Tell us about your goals and aspirations. 
+        ul.p-4.flex.flex-col.gap-2 
+          li.list-circle Why are you interested in studying this topic? 
+          li.list-circle What do you see the most important to learn? 
+          li.list-circle How do you suppose to use the skills and knowledge, aquired throughout this course?
+      textarea(
+        v-model="application.motivation"
+        placeholder="I'm interested in this course because..."
+        )
+    .text-md Press Apply button and you will be automatically enrolled into the course and get full access to it's content. 
+    button.button(type="submit") Apply for course
+    .text-sm Your Experience and Motivation texts may be shared on your personal Student page and may be viewed by other students.
 </template>

@@ -1,4 +1,6 @@
 <script setup>
+import { useClipboard } from '@vueuse/core'
+
 definePageMeta({ middleware: ["auth"] })
 
 const user = useDirectusUser();
@@ -8,15 +10,31 @@ watch(user, us => !us?.email ? navigateTo('/auth/login') : '')
 
 const onSubmit = async () => { await logout(); await navigateTo('/auth/') };
 
-const { getItemById } = useDirectusItems()
+const { getItemById, updateItem } = useDirectusItems()
 
 const member = await getItemById({
   collection: 'members',
   id: user.value?.member?.[0],
   params: {
-    fields: ['role', 'active', 'subscriptions.current_period_end', 'subscriptions.status', 'subscriptions.stripe_session_id', 'subscriptions.stripe_session_url', 'subscriptions.plan.title']
+    fields: ['*', 'role', 'active', 'subscriptions.current_period_end', 'subscriptions.status', 'subscriptions.stripe_session_id', 'subscriptions.stripe_session_url', 'subscriptions.plan.title']
   }
 })
+
+const discordSecret = ref('')
+const activationMessage = computed(() => `activate ${discordSecret.value}`)
+
+const { copy, copied } = useClipboard({ source: activationMessage })
+
+async function generateDiscordSecret() {
+  const mem = await updateItem({
+    collection: 'members',
+    id: user.value?.member?.[0],
+    item: {
+      discord_secret: generatePassword(12)
+    }
+  })
+  discordSecret.value = mem.discord_secret
+}
 
 </script>
 
@@ -28,7 +46,27 @@ const member = await getItemById({
       .text-4xl {{ user?.last_name }}
     .font-mono  {{ user?.email }}
     button.absolute.right-4.rounded-xl.flex-1.p-2.border-1.shadow-lg(@click="onSubmit()") Logout
-    NuxtLink(to="/api/auth/discord" target="_blank") Connect Discord
+
+  .glass.flex.gap-4.items-center.p-4(v-if="member.discord_user") 
+    .i-la-discord.text-4xl
+    .p-2.text-2xl {{ member.discord_username }}
+
+  .glass.p-4.flex.flex-wrap.gap-4.items-center.form(v-else)
+    .flex.flex-col.gap-4(v-if="!discordSecret")
+      button.button.flex.items-center.gap-2(
+        @click="generateDiscordSecret()")
+        .i-la-discord.text-4xl
+        p  Connect Discord User
+    //- NuxtLink(to="/api/auth/discord" target="_blank") Connect Discord
+    .flex.flex-col.gap-4.w-full(v-else)
+
+      .flex.gap-2
+        input.font-mono.text-lg.flex-1(
+          disabled
+          type="text" :value="activationMessage")
+        button.button(@click="copy()") {{ copied ? 'Copied' : 'Copy' }}
+      .text-lg Paste this secret phrase the special channel on Discord and our bot will activate your Student role on the server
+      NuxtLink.button(:to="`https://discord.com/channels/920977894002540555/1236009672583024703`") Open the Role Requests channel on Discord
 
   .glass.p-4.flex-1.flex.flex-col.gap-2.items-stretch
     .flex.gap-2.items-center.flex-wrap

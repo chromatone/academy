@@ -4,9 +4,10 @@ import pack from './package.json'
 export default defineNuxtConfig({
   extends: ['./auth', './theme', './membership'],
   devServer: {
-    port: 3020
+    port: 3000
   },
   app: {
+    layoutTransition: { name: 'page', mode: 'out-in' },
     pageTransition: { name: 'page', mode: 'out-in' },
     siteName: 'Chromatone Academy',
   },

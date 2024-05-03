@@ -29,6 +29,12 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
   .max-w-55ch.flex.flex-col.gap-4(
   style="flex: 1 1 300px")
 
+    NuxtImg.rounded-xl.w-full(
+      style="flex: 1 1 200px"
+      v-if="p?.cover"
+      :src="p?.cover"
+      width="600")
+
     NuxtLink.flex.flex-col.p-4.glass(
       :to="`/programs/${p?.program?.slug}`")
       .op-50.uppercase.text-xs  Program
@@ -60,11 +66,6 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
           UserPill(
             :user="t?.team_id?.member?.user") {{ t?.position }}
 
-    NuxtImg.rounded-xl.w-full(
-      style="flex: 1 1 200px"
-      v-if="p?.cover"
-      :src="p?.cover"
-      width="600")
 
   .max-w-55ch.flex.flex-col.gap-4(
     v-if="p?.youtube_video || p?.content"

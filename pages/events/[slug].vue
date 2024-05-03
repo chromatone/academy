@@ -18,10 +18,13 @@ const date = useDateFormat(() => event.value?.date, 'DD MMM YYYY')
 
 <template lang='pug'>
 .px-4.flex.flex-wrap.gap-4.items-start
-
-
-
   .max-w-55ch.flex.flex-col.gap-4(style="flex: 1 1 300px")
+
+    NuxtImg.w-full.rounded-xl.shadow-lg(
+      v-if="event?.cover"
+      :src="event?.cover"
+      width="400"
+      )
 
     NuxtLink.glass.p-4.text-lg.flex.gap-2.flex-wrap.items-center(
       :to="`/programs/${event?.project?.program?.slug}/`") {{ event?.project?.program?.title }} 
@@ -42,11 +45,7 @@ const date = useDateFormat(() => event.value?.date, 'DD MMM YYYY')
 
       .text-lg {{ event?.description }}
 
-    NuxtImg.w-full.rounded-xl.shadow-lg(
-      v-if="event?.cover"
-      :src="event?.cover"
-      width="400"
-      )
+
 
 
   .max-w-55ch.flex.flex-col.gap-4(style="flex: 1 1 300px")

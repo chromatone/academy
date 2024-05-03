@@ -25,6 +25,7 @@ const to = p.value?.end_date ? useDateFormat(() => p.value?.end_date, 'DD MMM YY
   .flex.flex-col.gap-4(
     style="flex: 1 1 300px")
 
+    PageCover(:id="p?.cover")
 
     .glass.gap-4.flex.flex-col.p-4
       .flex.flex-wrap.items-center.gap-0
@@ -41,7 +42,7 @@ const to = p.value?.end_date ? useDateFormat(() => p.value?.end_date, 'DD MMM YY
           v-for="t in p?.team" :key="t"
           :user="t?.team_id?.member?.user") {{ t?.position }}
 
-    PageCover(:id="p?.cover")
+
 
 
     //- NuxtLink.rounded-xl.shadow-lg.p-4.text-2xl.shadow.bg-light-900.dark-bg-dark-900.filter.dark-brightness-62.dark-contrast-400(

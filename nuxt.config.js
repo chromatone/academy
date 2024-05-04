@@ -13,7 +13,6 @@ export default defineNuxtConfig({
   },
   site: {
     url: 'https://academy.chromatone.center',
-
   },
   css: [
     '@unocss/reset/tailwind.css',
@@ -62,6 +61,11 @@ export default defineNuxtConfig({
     'floating-vue/nuxt',
     'nuxt-cron'
   ],
+  router: {
+    scrollBehavior() {
+      return { top: 0 }
+    }
+  },
   routeRules: {
     '/': { prerender: true },
   },

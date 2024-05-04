@@ -40,7 +40,6 @@ const date = useDateFormat(() => p.value?.date, 'DD MMM YYYY')
         :to="`/courses/${p?.module?.course?.slug}/${p?.module?.slug}/`") {{ p?.module?.title }}
 
   .glass.p-2.max-w-55ch(style="flex: 1 1 400px")
-    p {{ p }}
     MDC.prose.text-lg(:value="p?.content || ''" tag="article")
 
 

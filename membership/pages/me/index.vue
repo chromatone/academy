@@ -8,7 +8,7 @@ const { logout } = useDirectusAuth();
 
 watch(user, us => !us?.email ? navigateTo('/auth/login') : '')
 
-const onSubmit = async () => { await logout(); await navigateTo('/auth/') };
+const onSubmit = async () => { await logout(); await navigateTo('/auth/login') };
 
 const { getItemById, updateItem } = useDirectusItems()
 
@@ -39,13 +39,14 @@ async function generateDiscordSecret() {
 </script>
 
 <template lang='pug'>
-.flex.flex-col.gap-4.mx-4.max-w-55ch
+.flex.flex-col.gap-4.mx-4.max-w-55ch 
+
   .glass.p-4.flex.flex-col.gap-4.justify-center 
     .flex.flex-wrap.gap-2
       .text-4xl {{ user?.first_name }} 
       .text-4xl {{ user?.last_name }}
     .font-mono  {{ user?.email }}
-    button.absolute.right-4.rounded-xl.flex-1.p-2.border-1.shadow-lg(@click="onSubmit()") Logout
+    button.absolute.right-4.rounded-xl.flex-1.p-2.border-1.shadow-lg(@click="logout()") Logout
 
   .glass.flex.gap-4.items-center.p-4(v-if="member.discord_user") 
     .i-la-discord.text-4xl
@@ -65,8 +66,8 @@ async function generateDiscordSecret() {
           disabled
           type="text" :value="activationMessage")
         button.button(@click="copy()") {{ copied ? 'Copied' : 'Copy' }}
-      .text-lg Paste this secret phrase the special channel on Discord and our bot will activate your Student role on the server
-      NuxtLink.button(:to="`https://discord.com/channels/920977894002540555/1236009672583024703`") Open the Role Requests channel on Discord
+      .text-lg Paste this secret phrase the special Role Request channel on Discord and the bot will activate your Student role on the server
+      NuxtLink.button(:to="`https://discord.com/channels/920977894002540555/1236009672583024703`") Go to the Role Requests channel on Discord
 
   .glass.p-4.flex-1.flex.flex-col.gap-2.items-stretch
     .flex.gap-2.items-center.flex-wrap

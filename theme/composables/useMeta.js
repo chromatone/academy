@@ -9,3 +9,4 @@ export async function useMeta() {
 
 export const useShowPrice = () => useState('show-price', () => true)
 
+export const usePreferPlan = () => useState('prefer-plan', () => null)

@@ -19,12 +19,15 @@ const date = useDateFormat(() => p.value?.date, 'DD MMM YYYY')
 .flex.flex-wrap.gap-4.p-4
 
   .flex.flex-col.gap-4.max-w-55ch(style="flex: 1 1 200px")
+
+    PageCover(:id="p?.cover")
+
     .glass.p-2
       NuxtLink.text-sm.uppercase.op-60(to="/crafts/") Craft
       .text-2xl {{ p?.title }}
       .text-lg {{ p?.description }}
 
-    PageCover(:id="p?.cover")
+
 
   .flex.flex-col.gap-2
     .glass.p-2.flex.flex-col.gap-2.p-2

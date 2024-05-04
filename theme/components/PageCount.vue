@@ -3,14 +3,16 @@ import { TransitionPresets, useTransition } from '@vueuse/core'
 
 const routes = {
   programs: 'Programs',
-
   courses: 'Courses',
   modules: 'Modules',
   units: 'Units',
   projects: 'Projects',
   artifacts: 'Artifacts',
   events: 'Events',
+  news: 'News'
 }
+
+const user = useDirectusUser()
 
 const counts = reactive({})
 
@@ -37,7 +39,9 @@ nav.flex.flex-col.items-stretch.gap-2
       ) 
       .p-0.text-4xl {{ counts[r].toFixed() }}
       .p-0.text-2xl {{ rTitle }}
-      //- NuxtLink.text-sm( :to="`/${r}/`") View
+      NuxtLink.text-sm(
+        v-if="user?.email"
+        :to="`/${r}/`") View
 
   
 </template>

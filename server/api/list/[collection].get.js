@@ -23,6 +23,12 @@ const collections = {
   courses: ['courses', {
     fields: ['*', 'program.title', 'program.slug']
   }],
+  modules: ['modules', {
+    fields: ['*', 'course.title', 'course.slug']
+  }],
+  units: ['units', {
+    fields: ['*', 'module.title', 'module.slug', 'module.course.slug', 'module.course.title']
+  }],
   crafts: [
     'crafts',
     {

@@ -41,6 +41,7 @@ export default defineNuxtConfig({
     apiToken: '',
     public: {
       appDomain: '',
+      botUrl: '',
       dbUrl: '',
       dbToken: '',
       academyKey: '',

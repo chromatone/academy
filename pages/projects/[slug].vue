@@ -46,8 +46,8 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
       .text-md.mt-2 {{ p?.description }}
 
     .glass.p-4.flex.flex-col.bg-light-300.dark-bg-dark-300.gap-2  
-      .text-sm.font-mono from:  {{ from }} 
-      .text-sm.font-mono till: {{ to }}
+      .text-sm.font-mono FROM:  {{ from }} 
+      .text-sm.font-mono TILL: {{ to }}
 
     .glass.p-4.flex.flex-col.bg-light-300.dark-bg-dark-300.gap-2(v-if="p?.url || p?.github")
       .flex.items-center.gap-2(v-if="p?.url")
@@ -57,7 +57,7 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
         .i-la-github
         NuxtLink.text-truncate.max-w-80(:to="p.github" target="_blank") {{ p.github.split('https://github.com/')[1] }}
 
-    .glass.gap-4.flex.flex-col.py-2.px-4(v-if="p?.team")
+    .glass.gap-4.flex.flex-col.py-2.px-4(v-if="p?.team?.length >0") 
       .flex.gap-2.items-center 
         .p-0.uppercase.text-xs.op-70 Team 
         NuxtLink(

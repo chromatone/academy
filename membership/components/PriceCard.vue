@@ -25,7 +25,7 @@ const config = useRuntimeConfig()
     .text-2xl(style="white-space: nowrap;") {{ plan?.title }}
 
     .text-3xl.flex.items-baseline.gap-2 ${{ +plan?.price }}/mo
-      .text-sm.line-through.op-60 ${{ +plan?.old_price }}
+      .text-sm.line-through.op-60 ${{ +plan?.old_price }}/mo
 
   .text-sm.op-60.mb-2 {{ plan?.description }}
   .flex.flex-col.gap-2.w-full

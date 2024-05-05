@@ -75,7 +75,7 @@ const plans = await usePublicItems('plans', {
 
       p The Pilot Summer Season promises an exciting and engaging approach to music education, empowering students to become active participants in their learning journey.
 
-  .flex.flex-wrap.gap-8.p-6(style="flex: 1 1 600px")
+  .flex.flex-wrap.gap-4.p-6(style="flex: 1 1 600px")
     NuxtLink.w-full.text-4xl(to="/programs/") Programs 
     ProgramBlock.overflow-clip.rounded-xl(
       style="flex: 1 1 300px"

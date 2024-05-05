@@ -38,10 +38,10 @@ const config = useRuntimeConfig()
 <template lang='pug'>
 .glass.flex.flex-col.gap-4.p-4.border-dark-300.dark-border-light-300.max-h-full.overflow-scroll
 
-  button.relative.p-2.bg-purple-300.hover-bg-purple-400.dark-bg-purple-600.dark-hover-bg-purple-500.dark-active-bg-purple-800.transition.rounded-xl.text-xl.items-center.flex.items-center.disabled-op-40(@click="subscribe()" :disabled="!config?.public?.subscriptionsOpen")
+  button.relative.p-2.bg-purple-300.hover-bg-purple-400.dark-bg-purple-600.dark-hover-bg-purple-500.dark-active-bg-purple-800.transition.rounded-xl.items-center.flex.items-center.disabled-op-40(@click="subscribe()" :disabled="!config?.public?.subscriptionsOpen")
     .i-la-spinner.animate-spin.absolute(v-if="sending")
     .i-la-lock.absolute.op-50(v-else)
-    .flex-1 Subscribe 
+    .flex-1.text-xl Subscribe 
     .i-fa6-brands-stripe.text-2xl.absolute.right-4.op-60
 
   .flex.flex-col.gap-0

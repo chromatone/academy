@@ -15,7 +15,7 @@ NuxtLink.p-0.relative.overflow-clip.rounded-xl(
       :src="p?.cover"
       width="300"
       )
-  .z-200.p-4.m-4.mt-50.glass.flex.flex-col.gap-4.max-w-55ch.relative()
+  .z-200.p-4.mb-4.mx-2.mt-50.glass.flex.flex-col.gap-4.max-w-55ch.relative()
 
     .text-2xl {{ p?.title }}
     .text-md {{ p?.description }}

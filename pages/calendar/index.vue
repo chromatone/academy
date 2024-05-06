@@ -10,6 +10,8 @@ const { data: events } = await useFetch('/api/list/events')
 
 const { data: news } = await useFetch('/api/list/news')
 
+const { data: updates } = await useFetch('/api/list/updates')
+
 </script>
 
 <template lang='pug'>
@@ -34,8 +36,17 @@ const { data: news } = await useFetch('/api/list/news')
         ) {{ day.getDate() }}  {{ day.getDate() == 1 ? format(day, 'MMM') : '' }}
         NuxtLink.p-1.text-xs.border-1.shadow.block.rounded.bg-light-300.bg-op-90.dark-bg-dark-400.dark-bg-op-90(
           :to="`/events/${event?.slug}/`"
-          v-for="event in events?.filter(d=>isSameDay(day,d?.date))") {{ event?.title }}
+          v-for="event in events?.filter(d=>isSameDay(day,d?.date))") 
+          .op-40 {{ event?.project.title }}
+          p {{ event?.title }}
         NuxtLink.p-1.text-xs.rounded.bg-light-300.bg-op-50.dark-bg-dark-400.dark-bg-op-50.op-80(
           :to="`/news/${n?.slug}/`"
-          v-for="n in news?.filter(n=>isSameDay(day,n?.date))") {{ n?.title }}
+          v-for="n in news?.filter(n=>isSameDay(day,n?.date))") 
+          .op-40 Academy 
+          p {{ n?.title }}
+        NuxtLink.p-1.text-xs.rounded.bg-light-300.bg-op-50.dark-bg-dark-400.dark-bg-op-50.op-80(
+          :to="`/projects/${update?.project?.slug}/`"
+          v-for="update in updates?.filter(update=>isSameDay(day,update?.date))") 
+          .op-40 {{ update?.project?.title }}
+          p {{ update?.title }}
 </template>

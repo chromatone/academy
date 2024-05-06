@@ -33,7 +33,17 @@ const collections = {
   ],
   project: [
     'projects',
-    { fields: ['*', 'artifacts.*', 'events.*', 'program.title', 'program.slug', 'program.color', 'partners.partners_id.title', 'partners.partners_id.url', 'team.team_id.member.id', 'team.team_id.member.user'] }
+    {
+      deep: {
+        artifacts: {
+          _sort: 'sort'
+        },
+        events: {
+          _sort: 'sort'
+        }
+      },
+      fields: ['*', 'artifacts.*', 'events.*', 'program.title', 'program.slug', 'program.color', 'partners.partners_id.title', 'partners.partners_id.url', 'team.team_id.member.id', 'team.team_id.member.user', 'updates.*']
+    }
   ],
   event: [
     'events',

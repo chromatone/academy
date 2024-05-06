@@ -42,6 +42,12 @@ const date = useDateFormat(() => p.value?.date, 'DD MMM YYYY')
 
   .max-w-55ch.flex.flex-col.gap-4(style="flex: 1 1 300px")
 
+    NuxtImg.w-full.rounded-xl.shadow-lg(
+      v-if="p?.cover"
+      :src="p?.cover"
+      width="600"
+      )
+
     NuxtLink.glass.p-2.text-lg.flex.gap-2.flex-wrap(
       :to="`/programs/${p?.project?.program?.slug}/`") {{ p?.project?.program?.title }} 
       .flex-1
@@ -67,6 +73,7 @@ const date = useDateFormat(() => p.value?.date, 'DD MMM YYYY')
         .i-la-github
         NuxtLink.text-truncate.max-w-80(:to="p.github_repo" target="_blank") {{ p.github_repo.split('https://github.com/')[1] || p.github_repo }}
 
+
     .glass.p-4.w-full(v-if="p?.files")
       .text-lg Files
       a.p-2.shadow.flex.flex-wrap.gap-2.bg-light-300.bg-op-30.rounded-xl.relative.items-center(
@@ -78,17 +85,6 @@ const date = useDateFormat(() => p.value?.date, 'DD MMM YYYY')
         .p-0 {{ file.directus_files_id?.title }}
         .absolute.right-2.op-40  {{ file.directus_files_id?.type }}
 
-    NuxtImg.w-full.rounded-xl.shadow-lg(
-      v-if="p?.poster && p.poster != p?.cover"
-      :src="p?.poster"
-      width="400"
-      )
-
-    NuxtImg.w-full.rounded-xl.shadow-lg(
-      v-if="p?.cover"
-      :src="p?.cover"
-      width="600"
-      )
 
   .max-w-55ch.flex.flex-col.gap-4(style="flex: 1 1 300px")
 

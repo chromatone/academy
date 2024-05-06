@@ -53,12 +53,12 @@ const collections = {
     'projects',
     {
       sort: ['sort'],
-      fields: ['slug', 'color', 'title', 'description', 'cover', 'courses', 'events', {
+      fields: ['slug', 'color', 'title', 'description', 'cover', 'courses', 'events', 'artifacts', {
         program: ['title', 'slug']
       }]
     }],
   events: ['events', {
-    fields: ['*',]
+    fields: ['*', 'project.slug', 'project.title']
   }],
   docs: [
     'academy_docs',
@@ -79,6 +79,10 @@ const collections = {
   news: [
     'news',
     { fields: ['slug', 'title', 'description', 'date'] }
+  ],
+  updates: [
+    'project_updates',
+    { fields: ['*', 'project.slug', 'project.title'] }
   ]
 
 }

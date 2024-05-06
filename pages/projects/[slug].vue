@@ -124,5 +124,22 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
         v-for="partner in p?.partners"
         :to="partner.partners_id.url"
         target="_blank") {{ partner.partners_id.title }}
-  
+
+  .flex.flex-wrap.gap-4(
+    v-if="p?.updates?.length > 0"
+    style="flex: 1 1 300px")
+    .glass.py-2.px-3.flex.bg-light-300.dark-bg-dark-300.gap-2.text-sm.uppercase.w-full.flex
+      .flex-1 Updates
+      .p-0 {{ p?.updates?.length }}
+
+    .glass.flex.flex-col.gap-1(
+      style="flex: 1 1 200px"
+      v-for="update in p?.updates"
+      ) 
+      .p-2.flex-1
+        .text-xs {{ update?.date.slice(0,10) }}
+        .text-lg {{ update?.title }}
+        .text-sm {{ update?.description }}
+
+      a.bg-light-800.p-2.text-xs(:href="update?.link" v-if="update?.link") {{ update?.link }}
 </template>

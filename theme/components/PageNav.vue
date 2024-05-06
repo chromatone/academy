@@ -8,7 +8,6 @@ const routes = {
   news: 'News',
   calendar: 'Calendar',
   crafts: 'Crafts',
-  students: 'Students',
 }
 </script>
 

@@ -22,6 +22,9 @@ NuxtLink.flex.items-start.flex-col.gap-2.relative(
     .text-md.flex-1.mt-2 {{ project.description }}
 
     .flex.flex-wrap.gap-2.mt-2
+      .flex.gap-1.p-2.bg-light-800.dark-bg-dark-800.self-start.rounded-2xl(v-if="project?.artifacts?.length > 0")  
+        b {{ project?.artifacts?.length }} 
+        .a artifacts
       .flex.gap-1.p-2.bg-light-800.dark-bg-dark-800.self-start.rounded-2xl(v-if="project?.events?.length > 0")  
         b {{ project?.events?.length }} 
         .a events

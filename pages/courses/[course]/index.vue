@@ -1,7 +1,11 @@
 <script setup>
+import { formatTimeAgo } from '@vueuse/core'
+
 definePageMeta({ middleware: ["auth", "course"] })
 
 const user = useDirectusUser()
+
+const { getItemById } = useDirectusItems()
 
 const route = useRoute()
 
@@ -12,8 +16,19 @@ const { getItems } = useDirectusItems()
 const { data: course } = await useFetch('/api/get/course', { query: { slug: route.params?.course } })
 
 useHead({
-  title: course.value?.title,
-  titleTemplate: '%s course'
+  title: course.value?.title
+})
+
+const member = await getItemById({
+  collection: 'members',
+  id: user?.value?.member,
+  params: {
+    fields: ['student.id', 'student.courses.*']
+  }
+})
+
+const studentCourse = computed(() => {
+  return member?.student?.[0]?.courses.find(m => m.courses_slug == course.value?.slug)
 })
 </script>
 
@@ -49,6 +64,11 @@ useHead({
     .glass.flex.flex-col.p-4
       .op-50.text-xs.uppercase Craft
       NuxtLink.text-xl(:to="`/crafts/${course?.craft?.slug}`") {{ course?.craft.title }}
+
+    .glass.p-4.font-mono.text-xs.flex.flex-col.gap-2(v-if="studentCourse")
+
+      .op-60 STARTED: {{ formatTimeAgo(new Date(studentCourse?.start_date)) }}
+      .op-60(v-if="studentCourse?.complete_date") COMPLETED: {{ formatTimeAgo(new Date(studentCourse?.complete_date)) }}
 
     .glass.gap-4.flex.flex-col.py-2.px-4(v-if="course?.students")
 

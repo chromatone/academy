@@ -48,6 +48,8 @@ const applyModule = useFetch('/api/apply/module', {
 
   .flex.flex-col.gap-2.max-w-55ch(style="flex: 1 1 300px")
 
+    PageCover(:id="module?.cover")
+
     .glass.p-4.gap-4.flex.flex-col
       NuxtLink.uppercase.text-sm.flex(:to="`/programs/${module?.course?.program?.slug}/`") 
         .p-0 {{ module?.course?.program?.title }}
@@ -77,7 +79,6 @@ const applyModule = useFetch('/api/apply/module', {
           UserPill(
             :user="t?.team_id?.member?.user") {{ t?.position }}
 
-    PageCover(:id="module?.cover")
 
     .glass.p-4.font-mono.text-xs.flex.flex-col.gap-2
       template(v-if="studentModule")

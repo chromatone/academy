@@ -3,16 +3,6 @@ const { data: docs } = await useFetch('/api/list/docs')
 
 const { data: academy } = await useFetch('/api/get/academy')
 
-const routes = {
-  programs: 'Programs',
-  projects: 'Projects',
-  courses: 'Courses',
-  events: 'Events',
-  news: 'News',
-  calendar: 'Calendar',
-  crafts: 'Crafts',
-  students: 'Students',
-}
 </script>
 
 <template lang='pug'>

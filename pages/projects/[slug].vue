@@ -132,7 +132,7 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
       .flex-1 Updates
       .p-0 {{ p?.updates?.length }}
 
-    .glass.flex.flex-col.gap-1(
+    .glass.flex.flex-col.gap-1.overflow-clip(
       style="flex: 1 1 200px"
       v-for="update in p?.updates"
       ) 
@@ -141,5 +141,5 @@ const eventList = computed(() => [...p?.value.events]?.sort((a, b) => a.date > b
         .text-lg {{ update?.title }}
         .text-sm {{ update?.description }}
 
-      a.bg-light-800.p-2.text-xs(:href="update?.link" v-if="update?.link") {{ update?.link }}
+      a.bg-light-800.dark-bg-dark-400.p-2.text-xs(:href="update?.link" v-if="update?.link") {{ update?.link }}
 </template>

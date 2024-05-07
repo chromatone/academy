@@ -1,3 +1,6 @@
+<https://diataxis.fr/>
+<https://date-fns.org/v3.6.0/docs/format>
+
 ### Nuxt
 
 <https://nuxt.com/docs/api/utils/dollarfetch>
@@ -5,6 +8,9 @@
 <https://nuxtseo.com/og-image/guides/icons-and-images>
 <https://nuxt-prepare.byjohann.dev/>
 <https://roe.dev/blog/nuxt-server-components>
+
+<https://nuxt-security.vercel.app/documentation/headers/csp>
+<https://nuxtseo.com/nuxt-seo/guides/title-templates>
 
 ### Cron
 
@@ -21,10 +27,15 @@
 
 ### Stripe
 
+<https://docs.stripe.com/products-prices/pricing-models>
 <https://docs.stripe.com/api/customer_portal/sessions>
 <https://docs.stripe.com/billing/subscriptions/overview>
 <https://docs.stripe.com/webhooks/quickstart>
 <https://docs.stripe.com/payments/handling-payment-events#signature-checking>
+<https://docs.stripe.com/billing/subscriptions/billing-cycle>
+<https://docs.stripe.com/cli/events/resend>
+<https://docs.stripe.com/api/checkout/sessions/create>
+<https://docs.stripe.com/stripe-cli/reference>
 
 ### Discord
 
@@ -114,3 +125,7 @@
 ### Education
 
 <https://medium.com/@Dmitry_Krutov/exploring-new-skillbox-courses-non-linear-learning-gamification-and-real-world-tasks-c11a9f198f01>
+
+### UI
+
+<https://docs.notivue.smastrom.io/push-usage/methods>

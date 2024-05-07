@@ -19,8 +19,8 @@ const plans = await usePublicItems('plans', {
 <template lang="pug">
 .flex.flex-wrap.relative
 
-  .flex.flex-wrap.pt-30vh.bg-purple-100.bg-op-20.dark-bg-purple-400.dark-bg-op-20.min-h-100vh.items-end.overflow-hidden.pb-8(style="flex: 1 1 100%")
-    .top-0.absolute.right-0.-z-1.max-w-90vw
+  .flex.flex-wrap.pt-30vh.bg-purple-200.bg-op-20.dark-bg-purple-400.dark-bg-op-20.min-h-100vh.items-end.overflow-hidden.pb-8(style="flex: 1 1 100%")
+    .top-0.absolute.right-0.-z-4.max-w-90vw
       img.w-full.-scale-x-100(src="~/assets/images/spin.png")
     .w-full.flex.flex-col.gap-2.p-6.z-20
       h1.font-bold.text-6xl Chromatone

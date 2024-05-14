@@ -1,4 +1,6 @@
 <script setup>
+import { formatTimeAgo } from '@vueuse/core'
+
 definePageMeta({ middleware: ["auth", "course"] })
 
 
@@ -6,7 +8,21 @@ import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
 
 const route = useRoute()
 
+const user = useDirectusUser();
+
+const { getItemById, updateItem } = useDirectusItems()
+
+const member = await getItemById({
+  collection: 'members',
+  id: user?.value?.member,
+  params: {
+    fields: ['student.id', 'student.units.*']
+  }
+})
+
 const { getItems } = useDirectusItems()
+
+const { token } = useDirectusToken()
 
 const { data: units, error } = await useAsyncData('unit-' + route.params?.unit, async () => await getItems({
   collection: 'units',
@@ -25,6 +41,44 @@ const l = computed(() => units.value?.[0])
 useHead({
   title: l.value?.title,
   titleTemplate: '%s unit'
+})
+
+const record = await getItems({
+  collection: 'units_students',
+  params: {
+    filter: {
+      units_id: {
+        _eq: l.value?.id
+      },
+      students_id: {
+        _eq: member?.student?.[0]?.id
+      }
+    }
+  }
+})
+
+async function unitComplete() {
+
+  if (!record?.[0]) return
+  await updateItem({
+    collection: 'units_students',
+    id: record?.[0]?.id,
+    item: {
+      finish_date: new Date().toISOString()
+    }
+  })
+  await navigateTo(`/courses/${route.params?.course}/${route?.params?.module}/`)
+}
+
+const body = {
+  units_id: l.value?.id,
+  students_id: member?.student?.[0]?.id,
+  token: token.value
+}
+
+const { data: studentUnit } = await useFetch('/api/apply/unit', {
+  method: 'POST',
+  body
 })
 
 
@@ -63,6 +117,16 @@ useHead({
 
     PageCover(:id="l?.cover")
 
+    .glass.p-4.font-mono.text-xs.flex.flex-col.gap-2 
+      template(v-if="studentUnit")
+        .op-60 FIRST OPEN: {{ formatTimeAgo(new Date(studentUnit?.start_date)) }}
+        .op-60 LAST VISIT: {{ formatTimeAgo(new Date(studentUnit?.last_visit)) }}
+        .op-60(v-if="studentUnit?.finish_date") FINISHED: {{ formatTimeAgo(new Date(studentUnit?.finish_date)) }}
+      template(v-else)
+        p Welcome! 
+
+    button.button.w-full(@click="unitComplete()" v-if="!record?.[0]?.finish_date") Complete 
+
   .flex.flex-col.gap-4.max-w-55ch(style="flex: 1 1 300px")
 
     LiteYouTubeEmbed(
@@ -80,5 +144,9 @@ useHead({
       style="flex: 1 1 300px")
       MDC.prose.text-lg(:value="l?.content || ''" tag="article")
 
+
+
   iframe.min-h-80vh.rounded-xl.w-full(:src="l?.link" v-if="l?.link")
+
+ 
 </template>

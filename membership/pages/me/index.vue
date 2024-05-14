@@ -89,12 +89,11 @@ const member = await getItemById({
     style="flex: 1 1 200px")
 
     .glass.p-4.flex.flex-col.gap-2
-      .text-2xl Author
+      .text-2xl Team
 
     template(v-for="team in member?.team")
       template(v-for="t in ['programs', 'projects','courses','modules']")
         .glass.p-4(v-if="team?.[t]?.length>0")
           .font-mono.capitalize {{ t }}: {{ team?.[t]?.length }}
 
-  pre {{ member }}
 </template>

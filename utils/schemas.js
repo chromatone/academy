@@ -15,6 +15,12 @@ export const ModuleApplicationSchema = z.object({
   token: z.string()
 })
 
+export const UnitApplicationSchema = z.object({
+  students_id: z.number(),
+  units_id: z.number(),
+  token: z.string()
+})
+
 // export const CourseApplicationSchema = z.object({
 //   member: z.string().uuid(),
 //   course: z.string(),

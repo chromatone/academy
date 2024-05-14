@@ -20,7 +20,7 @@ const member = await getItemById({
   collection: 'members',
   id: user?.value?.member,
   params: {
-    fields: ['student.id', 'student.modules.*']
+    fields: ['student.id', 'student.modules.*', 'student.units.*']
   }
 })
 
@@ -100,29 +100,33 @@ const applyModule = useFetch('/api/apply/module', {
 
 
 
-  .flex.flex-col.gap-4.max-w-55ch(style="flex: 1 1 300px")
+  .flex.flex-col.gap-8.max-w-55ch(style="flex: 1 1 300px")
 
     .glass.max-w-55ch.px-4(v-if="module?.content")
       MDC.prose.text-lg(:value="module?.content || ''" tag="article")
 
     .glass.p-4.gap-4.flex.items-center.uppercase
-      .w-full.text-sm Units
+      .w-full.text-sm Units 
       .flex-1 
       .text-sm {{ module?.units?.length }}
       .i-la-angle-down
 
 
-    NuxtLink.gap-2.flex.flex-col.glass.p-4(
+    NuxtLink.gap-2.flex.flex-col.relative.overflow-clip.rounded-xl(
       v-for="unit in module?.units"
       :to="`/courses/${route.params?.course}/${route.params?.module}/${unit?.slug}`"
-      )
-      .flex.items-center.gap-2
-        .text-xl {{ unit?.title }}
-        .flex-1 
-        .text-sm.uppercase.op-60 {{ unit?.type }}
-      .text-md(v-if="unit?.description") {{ unit?.description }}
-      .max-h-60.overflow-clip.flex.flex-col.items-center.relative.justify-center 
-        NuxtImg.w-full(v-if="unit?.cover" :src="unit?.cover" width="400")
+      :class="{'op-30': member.student?.[0]?.units?.find(u=> u.units_id == unit.id)?.finish_date}"
+      ) 
+      .w-full.relative.flex.justify-center.items-start.max-h-30
+        NuxtImg.w-full.rounded-xl(v-if="unit?.cover" :src="unit?.cover" width="400")
         .i-la-play-circle.text-6xl.absolute(v-if="unit?.youtube")
+      .glass.p-4.m-2.flex.flex-col.gap-4
+        .flex.items-center.gap-2
+          .text-2xl {{ unit?.title }}
+          .flex-1 
+          .text-sm.uppercase.op-60 {{ unit?.type }}
+        .text-sm(v-if="unit?.description") {{ unit?.description }}
+        .text-sm(v-if="member.student?.[0]?.units?.find(u=> u.units_id == unit.id)?.finish_date") Completed {{ formatTimeAgo(new Date(member.student?.[0]?.units?.find(u=> u.units_id == unit.id)?.finish_date)) }}
+
         
 </template>

@@ -95,7 +95,7 @@ export default defineNuxtConfig({
     'build:before': async () => {
       const db = createDirectus(process.env?.NUXT_PUBLIC_DB_URL).with(rest()).with(staticToken(process.env?.NUXT_PUBLIC_ACADEMY_KEY))
       const academy = await db.request(readSingleton('academy', { fields: ['version'] }))
-      console.log('version: ', pack?.version, pack?.version == academy?.version ? '✔️' : 'updated')
+      console.log('version: ', pack?.version, pack?.version == academy?.version ? '✔️' : 'updating')
       if (pack?.version != academy?.version) {
         await db.request(updateSingleton('academy', {
           version: pack?.version

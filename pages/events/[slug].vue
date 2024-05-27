@@ -63,9 +63,9 @@ const date = useDateFormat(() => event.value?.date, 'DD MMM YYYY')
 
     .glass
 
-      EventSchedule(:schedule="event?.schedule")
+      EventSchedule(v-if="event?.schedule" :schedule="event?.schedule")
 
-      MDC.prose.p-4(:value="event?.content || ''" tag="article")
+      MDC.prose.p-4(v-if="event?.content" :value="event?.content" tag="article")
 
     LiteYouTubeEmbed(
       title="Video" 

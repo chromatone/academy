@@ -48,7 +48,7 @@ const member = await getItemById({
 
 <template lang='pug'>
 .flex.flex-wrap.gap-4.mx-4.items-start
-  .glass.p-4.flex.flex-col.gap-4.justify-center(style="flex: 1 1 200px")
+  .glass.p-4.flex.flex-col.gap-4.justify-center(style="flex: 1 1 400px")
     .flex.flex-wrap.gap-2
       .text-4xl {{ user?.first_name }} 
       .text-4xl {{ user?.last_name }}
@@ -63,13 +63,13 @@ const member = await getItemById({
       .flex-1 
       .op-40 @{{ member?.discord_username }}
 
-  .p-2.flex.flex-col.gap-4.flex-1(v-if="!user?.member?.[0]")
-    .p-2 No membership yet.
+  .p-2.flex.flex-col.gap-4.flex-1(
+    style="flex: 1 1 200px"
+    v-if="!user?.member?.[0] || member?.subscriptions.length==0")
+    .p-2 No membership yet. 
     NuxtLink.flex-1.text-xl.bg-purple-500.p-4.rounded-xl.shadow(to="/membership/subscribe/") Subscribe for membership
 
   .flex.flex-col.gap-4(style="flex: 1 1 200px")
-    .glass.p-4
-      .text-2xl Student
     .glass.p-4.flex
       .text-xl Courses
       .flex-1 

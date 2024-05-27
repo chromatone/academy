@@ -13,13 +13,17 @@ const user = useDirectusUser();
 
 const { getItemById, updateItem } = useDirectusItems()
 
-const member = await getItemById({
-  collection: 'members',
-  id: user.value?.member?.[0],
-  params: {
-    fields: ['discord_username', 'discord_user', 'discord_active']
-  }
-})
+const member = ref({})
+
+try {
+  member.value = await getItemById({
+    collection: 'members',
+    id: user.value?.member?.[0],
+    params: {
+      fields: ['discord_username', 'discord_user', 'discord_active']
+    }
+  })
+} catch (e) { console.log(e) }
 
 const { copy, copied } = useClipboard({ source: activationMessage })
 
@@ -27,14 +31,21 @@ const generating = ref(false)
 
 async function generateDiscordSecret() {
   generating.value = true
-  const mem = await updateItem({
-    collection: 'members',
-    id: user.value?.member?.[0],
-    item: {
-      discord_secret: generatePassword(12)
-    }
-  })
-  discordSecret.value = mem?.discord_secret
+
+  try {
+    const mem = await updateItem({
+      collection: 'members',
+      id: user.value?.member?.[0],
+      item: {
+        discord_secret: generatePassword(12)
+      }
+    })
+    discordSecret.value = mem?.discord_secret
+  } catch (e) {
+
+  }
+
+
   generating.value = false
 }
 

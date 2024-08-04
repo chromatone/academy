@@ -2,6 +2,7 @@ import { createDirectus, rest, staticToken, readSingleton, updateSingleton } fro
 import pack from './package.json'
 
 export default defineNuxtConfig({
+  compatibilityDate: "2024-08-04",
   extends: ['./auth', './theme', './membership'],
   devServer: {
     port: 3000

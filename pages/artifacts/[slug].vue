@@ -1,6 +1,5 @@
 <script setup>
 import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
-import { useDateFormat } from '@vueuse/core'
 
 definePageMeta({ middleware: ["auth"] })
 
@@ -33,7 +32,6 @@ useHead({
   titleTemplate: '%s event'
 })
 
-const date = useDateFormat(() => p.value?.date, 'DD MMM YYYY')
 </script>
 
 <template lang='pug'>

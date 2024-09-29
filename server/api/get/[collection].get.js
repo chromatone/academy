@@ -48,7 +48,7 @@ const collections = {
   event: [
     'events',
     {
-      fields: ['*', 'project.title', 'project.slug', 'project.program.title', 'project.program.slug', 'project.program.color', 'place.title', 'place.url']
+      fields: ['*', 'media.*', 'media.*.*', 'project.title', 'project.slug', 'project.program.title', 'project.program.slug', 'project.program.color', 'place.title', 'place.url']
     }
   ],
   news: [

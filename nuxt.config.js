@@ -17,17 +17,12 @@ export default defineNuxtConfig({
   },
   css: [
     '@unocss/reset/tailwind.css',
-    'notivue/notifications.css',
-    'notivue/animations.css'
   ],
   devtools: {
     enabled: true,
     timeline: {
       enabled: true
     }
-  },
-  notivue: {
-    position: 'top-right'
   },
   directus: {
     autoRefresh: true,
@@ -59,7 +54,6 @@ export default defineNuxtConfig({
     '@nuxtjs/mdc',
     '@nuxt/image',
     '@nuxtjs/color-mode',
-    'notivue/nuxt',
     'floating-vue/nuxt',
     'nuxt-cron'
   ],

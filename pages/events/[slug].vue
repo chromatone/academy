@@ -2,6 +2,7 @@
 import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
 import { useDateFormat } from '@vueuse/core'
 
+const config = useRuntimeConfig()
 
 const route = useRoute()
 
@@ -44,8 +45,18 @@ const date = useDateFormat(() => event.value?.date, 'DD MMM YYYY')
 
       .text-lg {{ event?.description }}
 
+      .text-sm {{ event?.announcement }}
 
-
+    .glass.p-4.w-full.flex.flex-col.gap-4(v-if="event?.media")
+      .text-xl Media downloads
+      a.p-2.shadow.flex.flex-wrap.gap-2.bg-light-300.bg-op-30.rounded-xl.relative.items-center(
+        :href="`${config.public.dbUrl}/assets/${file.directus_files_id?.id}?download`"
+        target="_blank" 
+        :download="file?.directus_files_id?.title"
+        v-for="file in event?.media" :key="file") 
+        .i-la-file-download
+        .p-0 {{ file.directus_files_id?.title }}
+        .absolute.right-2.op-40  {{ file.directus_files_id?.type }}
 
   .max-w-55ch.flex.flex-col.gap-4(style="flex: 1 1 300px")
 

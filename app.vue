@@ -57,8 +57,6 @@ const { loggedIn, user, session, clear } = useUserSession()
 
 <template lang="pug">
 NuxtLoadingIndicator(color='purple')
-Notivue(v-slot="item")
-  Notification(:item="item")
 NuxtLayout
   NuxtPage
 </template>

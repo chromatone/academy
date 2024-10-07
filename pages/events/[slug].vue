@@ -54,9 +54,12 @@ const date = useDateFormat(() => event.value?.date, 'DD MMM YYYY')
         target="_blank" 
         :download="file?.directus_files_id?.title"
         v-for="file in event?.media" :key="file") 
-        .i-la-file-download
-        .p-0 {{ file.directus_files_id?.title }}
-        .absolute.right-2.op-40  {{ file.directus_files_id?.type }}
+        template(v-if="['image/jpeg', 'image/png'].includes(file.directus_files_id?.type)")
+          img(:src="`${config.public.dbUrl}/assets/${file.directus_files_id?.id}?width=600`")
+        template(v-else)
+          .i-la-file-download
+          .p-0 {{ file.directus_files_id?.title }}
+          .absolute.right-2.op-40  {{ file.directus_files_id?.type }}
 
   .max-w-55ch.flex.flex-col.gap-4(style="flex: 1 1 300px")
 
@@ -81,5 +84,6 @@ const date = useDateFormat(() => event.value?.date, 'DD MMM YYYY')
       title="Video" 
       :id="event?.live_stream" 
       v-if="event?.live_stream")
+
 
 </template>
